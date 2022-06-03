@@ -62,15 +62,6 @@ public class BoardController {
 		model.addAttribute("board",board);
 		return "boardDetail";
 	}
-	//수정
-//	@GetMapping("/boardUpdate")
-//	public String boardUpdate() {
-//		System.out.println("BoardController boardUpdate Start...");
-//		Board board = null;
-//		board = bs.boardUpdate(boardno);
-//		model.addAttribute("board",board);
-//		return "boardDetail";
-//	}
 	@GetMapping(value="boardUpdateForm")
 	public String updateForm(Model model, Board board) {
 		System.out.println("BoardController updateForm Start...");
