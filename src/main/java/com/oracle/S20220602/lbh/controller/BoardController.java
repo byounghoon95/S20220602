@@ -57,11 +57,14 @@ public class BoardController {
 	@GetMapping("/boardDetail")
 	public String boardDetail(int boardno, Model model) {
 		System.out.println("BoardController boardDetail Start...");
-		Board board = null;
-		board = bs.boardDetail(boardno);
+		List<Board> boardReplyList = null;
+		Board board = bs.boardDetail(boardno);
+		boardReplyList = bs.boardReplyList(board.getRef());
+		model.addAttribute("boardReplyList",boardReplyList);
 		model.addAttribute("board",board);
 		return "boardDetail";
 	}
+	
 	@GetMapping(value="boardUpdateForm")
 	public String updateForm(Model model, Board board) {
 		System.out.println("BoardController updateForm Start...");
@@ -97,7 +100,6 @@ public class BoardController {
 		model.addAttribute("board",board);
 		return "boardReplyPro";
 	}
-	
 	@GetMapping("/market")
 	public String main_market(Model model) {
 		model.addAttribute("data", "안녕하세요");

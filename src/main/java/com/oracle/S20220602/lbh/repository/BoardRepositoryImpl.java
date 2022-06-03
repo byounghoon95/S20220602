@@ -55,6 +55,7 @@ public class BoardRepositoryImpl implements BoardRepository{
 	@Override
 	public Board boardDetail(int boardno) {
 		System.out.println("BoardRepositoryImpl boardDetail Start");
+		upHit(boardno);
 		Board board = null;
 		try {
 			board = session.selectOne("lbhBoardDetail",boardno);
@@ -63,8 +64,16 @@ public class BoardRepositoryImpl implements BoardRepository{
 		}
 		return board;
 	}
+	private void upHit(int boardno) {
+		System.out.println("BoardRepositoryImpl upHit Start");
+		try {
+			int result = session.update("lbhupHit",boardno);
+		}catch (Exception e) {
+			System.out.println("BoardRepositoryImpl upHit Exception -> " + e.getMessage());
+		}
+	}
 	
-	//리뷰 S
+	//리뷰 등록
 	@Override
 	public int boardReply(Board board) {
 		System.out.println("BoardRepositoryImpl boardReply Start");
@@ -85,6 +94,7 @@ public class BoardRepositoryImpl implements BoardRepository{
 		System.out.println("boardDao boardReply result->"+result);
 		return result;
 	}
+	//댓글 대댓글 구분
 	@Override
 	public int replyShape(Board board) {
 		System.out.println("BoardRepositoryImpl replyShape Start");
@@ -96,7 +106,6 @@ public class BoardRepositoryImpl implements BoardRepository{
 		}
 		return result;
 	}
-	//리뷰 E
 	@Override
 	public int boardUpdate(Board board) {
 		System.out.println("BoardRepositoryImpl boardUpdate Start");
@@ -119,6 +128,17 @@ public class BoardRepositoryImpl implements BoardRepository{
 			System.out.println("BoardRepositoryImpl boardDelete Exception -> " + e.getMessage());
 		}
 		return result;
+	}
+	@Override
+	public List<Board> boardReplyList(int ref) {
+		System.out.println("BoardRepositoryImpl boardReplyList Start");
+		List<Board> boardReplyList = null;
+		try {
+			boardReplyList = session.selectList("lbhboardReplyList",ref);
+		}catch (Exception e) {
+			System.out.println("BoardRepositoryImpl boardReplyList Exception -> " + e.getMessage());
+		}
+		return boardReplyList;
 	}
 	
 }

@@ -71,3 +71,16 @@
   font-size: 0.9rem;
   color: #ced4da;
 }
+hr {
+  background-color: #ced4da;
+}
+#writer {
+  width: 5%;
+}
+#comment_reply {
+  color: #ced4da;
+  font-size: 0.8rem;
+}
+.comment1 {
+  margin-left: 5%;
+}
