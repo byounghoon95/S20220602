@@ -1,0 +1,16 @@
+#scroll {
+  background-color: rgba(253, 201, 0, 0.15);
+}
+#character {
+  width: 70%;
+}
+nav {
+  background-color: white;
+}
+#s_btn1,
+#s_btn2 {
+  color: white;
+}
+#s_btn1 {
+  margin-right: 5%;
+}
