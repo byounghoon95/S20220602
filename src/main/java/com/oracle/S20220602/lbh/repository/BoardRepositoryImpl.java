@@ -140,5 +140,16 @@ public class BoardRepositoryImpl implements BoardRepository{
 		}
 		return boardReplyList;
 	}
+	@Override
+	public Board boardReplyOne(int boardno) {
+		System.out.println("BoardRepositoryImpl boardReplyOne Start");
+		Board board = null;
+		try {
+			board = session.selectOne("lbhReplyOne",boardno);
+		}catch (Exception e) {
+			System.out.println("BoardRepositoryImpl boardReplyOne Exception -> " + e.getMessage());
+		}
+		return board;
+	}
 	
 }

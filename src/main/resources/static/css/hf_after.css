@@ -2,6 +2,9 @@
 #blank {
   height: 10vh;
 }
+#blank_5vh {
+  height: 5vh;
+}
 #logo {
   width: 50%;
   margin-right: 5%;

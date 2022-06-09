@@ -13,4 +13,5 @@ public interface BoardService {
 	int boardUpdate(Board board);
 	int boardDelete(Board board);
 	List<Board> boardReplyList(int ref);
+	Board boardReplyOne(int boardno);
 }

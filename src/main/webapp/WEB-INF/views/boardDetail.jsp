@@ -7,13 +7,26 @@
 <meta charset="UTF-8">
 <link href="css/boardDetail.css" rel="stylesheet" />
 <title>Insert title here</title>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 </head>
+<script>
+ 	$(document).ready(function() {
+		$(".register").click(function() {
+			var boardno = $(this).val();
+			var comment = $(".comment_input"+boardno).val();
+			console.log(boardno);
+			console.log(comment);
+			$(location).attr('href',"rereply?comment=" + comment + "&boardno=" + boardno);
+		});
+	});
+</script>
 <body>
 	<div id="blank"></div>
 	<div id="blank_5vh"></div>
 
 
-	<div class="wrap">
+		<div class="wrap">
 		<form action="reply">
 			<input type="hidden" name='boardno' value="${board.boardno }">
 			<input type="hidden" name='id' value="${board.id }"> <input
@@ -49,82 +62,80 @@
 
 
 		<form action="reply">
-		<p>댓글&nbsp4</p>
-		<!-- 상세글 출력 -->
-		<c:forEach var="brList" items="${boardReplyList }">
-			<!-- 답변쓰기 했을 때 전체가 다 안열리고 하나씩만 열리게끔 하는 로직, i -> default는 0 -->
-			<c:set var="i" value="${i + 1 }" />
-			<c:choose>
-				<c:when
-					test="${board.nickname eq brList.nickname && brList.ref_level eq 1}">
-					<div class="comment">
-						<h6>${brList.nickname }&nbsp&nbsp<img src="images/writer.png"
-								id="writer" />
-						</h6>
-						${brList.boardcontent }
-						<p>
-							<span id="comment_reply" data-bs-toggle="collapse"
-								href="#collapseExample${i }" role="button" aria-expanded="false"
-								aria-controls="collapseExample">답글쓰기</span>
-						</p>
-						<div class="collapse" id="collapseExample${i }">
-							<input type="text" id="comment_input" name="comment"
-								placeholder="${brList.nickname }에게 답글달기" />
-							<div class="d-flex justify-content-end">
-								<button type="submit" id="register">등록</button>
+			<p>댓글&nbsp4</p>
+			<!-- 상세글 출력 -->
+			<c:forEach var="brList" items="${boardReplyList }">
+				<!-- 답변쓰기 했을 때 전체가 다 안열리고 하나씩만 열리게끔 하는 로직, i -> default는 0 -->
+				<c:set var="i" value="${i + 1 }" />
+				<c:choose>
+					<c:when
+						test="${board.nickname eq brList.nickname && brList.ref_level eq 1}">
+						<div class="comment">
+							<h6>${brList.nickname }&nbsp&nbsp<img
+									src="images/writer.png" id="writer" />
+							</h6>
+							${brList.boardcontent }
+							<p>
+								<span id="comment_reply" data-bs-toggle="collapse"
+									href="#collapseExample${i }" role="button"
+									aria-expanded="false" aria-controls="collapseExample">답글쓰기</span>
+							</p>
+							<div class="collapse" id="collapseExample${i }">
+								<input type="text" id="comment_input" name="comment"
+									placeholder="${brList.nickname }에게 답글달기" />
+								<div class="d-flex justify-content-end">
+									<button type="submit" id="register">등록</button>
+								</div>
 							</div>
 						</div>
-					</div>
-					<hr />
-				</c:when>
-				<c:when
-					test="${board.nickname eq brList.nickname && brList.ref_level > 1}">
-					<div class="comment1">
-						<input type="hidden" name='brListno' value="${brList.boardno }">
-						<h6>${brList.nickname }&nbsp&nbsp<img src="images/writer.png"
-								id="writer" />
-						</h6>
-						${brList.boardcontent }
-					</div>
-					<hr />
-				</c:when>
-				<c:when
-					test="${board.nickname ne brList.nickname && brList.ref_level eq 1}">
-					<div class="comment">
-						<h6>${brList.nickname }&nbsp&nbsp</h6>
-						${brList.boardcontent }
-						<p>
-							<span id="comment_reply" data-bs-toggle="collapse"
-								href="#collapseExample${i }" role="button" aria-expanded="false"
-								aria-controls="collapseExample"> 답글쓰기 </span>
-						</p>
-						<div class="collapse" id="collapseExample${i }">
-							<input type="text" id="comment_input" name="comment"
-								placeholder="${brList.nickname }에게 답글달기" />
-							<div class="d-flex justify-content-end">
-								<button type="submit" id="register">등록</button>
+						<hr />
+					</c:when>
+					<c:when
+						test="${board.nickname eq brList.nickname && brList.ref_level > 1}">
+						<div class="comment1">
+							<h6>${brList.nickname }&nbsp&nbsp<img
+									src="images/writer.png" id="writer" />
+							</h6>
+							${brList.boardcontent }
+						</div>
+						<hr />
+					</c:when>
+					<c:when
+						test="${board.nickname ne brList.nickname && brList.ref_level eq 1}">
+						<div class="comment">
+							<h6>${brList.nickname }&nbsp&nbsp</h6>
+							${brList.boardcontent }
+							<p>
+								<span id="comment_reply" data-bs-toggle="collapse"
+									href="#collapseExample${i }" role="button"
+									aria-expanded="false" aria-controls="collapseExample">
+									답글쓰기 </span>
+							</p>
+							<div class="collapse" id="collapseExample${i }">
+								<input type="text" id="comment_input" name="comment"
+									placeholder="${brList.nickname }에게 답글달기" />
+								<div class="d-flex justify-content-end">
+									<button type="submit" id="register">등록</button>
+								</div>
 							</div>
 						</div>
-					</div>
-					<hr />
-				</c:when>
-				<c:when
-					test="${board.nickname ne brList.nickname && brList.ref_level > 1}">
-					<div class="comment1">
-					<input type="hidden" name='brListno' value="${brList.boardno }">
-						<h6>${brList.nickname }&nbsp&nbsp</h6>
-						${brList.boardcontent }
-					</div>
-					<hr />
-				</c:when>
-			</c:choose>
-		</c:forEach>
+						<hr />
+					</c:when>
+					<c:when
+						test="${board.nickname ne brList.nickname && brList.ref_level > 1}">
+						<div class="comment1">
+							<h6>${brList.nickname }&nbsp&nbsp</h6>
+							${brList.boardcontent }
+						</div>
+						<hr />
+					</c:when>
+				</c:choose>
+			</c:forEach>
 		</form>
-		<!-- 상세글 끝 -->
-
 	</div>
-	<div id="blank"></div>
 	
+	<div id="blank"></div>
+
 	<div id="blank"></div>
 	<%@ include file="footer.jsp"%>
 </body>
