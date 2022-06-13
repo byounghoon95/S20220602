@@ -10,6 +10,7 @@
 <title>Cheese Market</title>
 </head>
 <body id="page-top">
+
     <main>
 
         <section id="scroll">
@@ -17,28 +18,11 @@
               <div class="row gx-5 align-items-center">
                 <div class="col-lg-6 order-lg-2">
                     <div class="p-5">
-                        <h4 class="categorytitle">카테고리</h4><br>
-                        <ul>
-                            <div class="maincategory">
-                                <div class="maincategory_left">
-                                    <li><a href="#">전체</a></li>
-                                    <li><a href="#">디지털기기</a></li>
-                                    <li><a href="#">가구/인테리어</a></li>
-                                    <li><a href="#">생활/가공식품</a></li>
-                                    <li><a href="#">스포츠/레저</a></li>
-                                </div>
-                                <div class="maincategory_right">
-                                    <li><a href="#">의류</a></li>
-                                    <li><a href="#">뷰티/미용</a></li>
-                                    <li><a href="#">도서</a></li>
-                                    <li><a href="#">기타</a></li>
-                                    <li><a href="#">삽니다</a></li>
-                                </div>
-                            </div>
-                          </ul><br><br>
-                          
-                          <button type="button" class="btn btn-warning sellbtn" id="start">내 물건 팔기</button>
-
+                    	<h3 class="display-4">치즈 마켓</h3>
+						<p>필요한 중고 물품을 주변에서 쉽게 구해봐요 !</p>
+						<p>언제 어디서나 쉽고 편하게~</p>
+						<p>함께해요 치즈마켓 :D</p><br><br>
+                        <button type="button" class="btn btn-warning sellbtn" id="start">내 물건 팔기</button>
                       </div>
                 </div>
                 <div class="col-lg-6 order-lg-1">
@@ -59,317 +43,112 @@
         
         
   
-        <center>
         <div class="itemtitle font-size: large" >
           <h2>오늘의 인기상품</h2>
         </div>
-      </center>
-  
-        <div class="items">
+      
+	  	<div class="items">
+	        <div class="container">
+				<div class="market_itembox">
+					<ul class="faq-list">
+						<c:forEach var="bestList" items="${marketBestList }">
+							<li class="li_item">
+								<div class="card item" style="width: 18rem;">
+						          <img src="images/cheese.png" class="card-img-top" alt="...">
+						         <%--  <img src="<%=context %>/fileSave/${bestList.img_path}" class="card-img-top"> --%>
+						          <div class="card-body">
+						            <h5 class="card-title"><div class="card-itemTitle">${bestList.itemtitle }</div></h5>
+						            <p class="card-text">
+						            	<span>${bestList.itemcost }</span><br>
+						            	<span>서울시&nbsp&nbsp ${bestList.content }</span>
+						            </p>
+						           
+						            <div class="item_boxbottom">
+						              <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
+						              
+						              <div class="board_icon_view d-flex justify-content-start likechat">
+						                <i class="fa-solid fa-heart"></i>&nbsp
+						                <span id="heart_cnt">${bestList.itemwish }&nbsp&nbsp</span>
+						                <i class="fa-solid fa-eye"></i>&nbsp&nbsp
+						                <span id="reply_cnt">${bestList.itemview }</span>
+						              </div>
+						            </div>
+						          </div>
+						        </div>
+							</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</div>
+	  </div>
+ 
 
-        <div class="card item" style="width: 18rem;">
-          <img src="images/cheese.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-           
-            <div class="item_boxbottom">
-            <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
-            
-            <div class="board_icon_view d-flex justify-content-start likechat">
-              <i class="fa-solid fa-heart"></i>&nbsp
-              <span id="heart_cnt">5&nbsp&nbsp</span>
-              <i class="fa-solid fa-comments"></i>&nbsp
-              <span id="reply_cnt">5</span>
-            </div>
-          </div>
-
-          </div>
-        </div>
-
-  
-        <div class="card item" style="width: 18rem;">
-          <img src="images/cheese.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-           
-            <div class="item_boxbottom">
-              <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
-              
-              <div class="board_icon_view d-flex justify-content-start likechat">
-                <i class="fa-solid fa-heart"></i>&nbsp
-                <span id="heart_cnt">5&nbsp&nbsp</span>
-                <i class="fa-solid fa-comments"></i>&nbsp
-                <span id="reply_cnt">5</span>
-              </div>
-            </div>
-
-
-          </div>
-        </div>
-  
-        <div class="card item" style="width: 18rem;">
-          <img src="images/cheese.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            
-
-            <div class="item_boxbottom">
-              <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
-              
-              <div class="board_icon_view d-flex justify-content-start likechat">
-                <i class="fa-solid fa-heart"></i>&nbsp
-                <span id="heart_cnt">5&nbsp&nbsp</span>
-                <i class="fa-solid fa-comments"></i>&nbsp
-                <span id="reply_cnt">5</span>
-              </div>
-            </div>
-
-
-
-          </div>
-        </div>
-  
-        <div class="card item" style="width: 18rem;">
-          <img src="images/cheese.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-           
-            <div class="item_boxbottom">
-              <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
-              
-              <div class="board_icon_view d-flex justify-content-start likechat">
-                <i class="fa-solid fa-heart"></i>&nbsp
-                <span id="heart_cnt">5&nbsp&nbsp</span>
-                <i class="fa-solid fa-comments"></i>&nbsp
-                <span id="reply_cnt">5</span>
-              </div>
-            </div>
-
-
-          </div>
-        </div>
-  
-        </div>
-  
-  
-  
-  
        
-        <center>
         <div class="itemtitle">
           <h2>전체 상품</h2>
         </div>
-      </center>
-  
-
-        <div class="items">
-          <div class="card item" style="width: 18rem;">
-            <img src="images/cheese.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              
-
-              <div class="item_boxbottom">
-                <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
-                
-                <div class="board_icon_view d-flex justify-content-start likechat">
-                  <i class="fa-solid fa-heart"></i>&nbsp
-                  <span id="heart_cnt">5&nbsp&nbsp</span>
-                  <i class="fa-solid fa-comments"></i>&nbsp
-                  <span id="reply_cnt">5</span>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-    
-          <div class="card item" style="width: 18rem;">
-            <img src="images/cheese.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              
-              <div class="item_boxbottom">
-                <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
-                
-                <div class="board_icon_view d-flex justify-content-start likechat">
-                  <i class="fa-solid fa-heart"></i>&nbsp
-                  <span id="heart_cnt">5&nbsp&nbsp</span>
-                  <i class="fa-solid fa-comments"></i>&nbsp
-                  <span id="reply_cnt">5</span>
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-    
-          <div class="card item" style="width: 18rem;">
-            <img src="images/cheese.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              
-              <div class="item_boxbottom">
-                <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
-                
-                <div class="board_icon_view d-flex justify-content-start likechat">
-                  <i class="fa-solid fa-heart"></i>&nbsp
-                  <span id="heart_cnt">5&nbsp&nbsp</span>
-                  <i class="fa-solid fa-comments"></i>&nbsp
-                  <span id="reply_cnt">5</span>
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-    
-          <div class="card item" style="width: 18rem;">
-            <img src="images/cheese.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              
-              <div class="item_boxbottom">
-                <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
-                
-                <div class="board_icon_view d-flex justify-content-start likechat">
-                  <i class="fa-solid fa-heart"></i>&nbsp
-                  <span id="heart_cnt">5&nbsp&nbsp</span>
-                  <i class="fa-solid fa-comments"></i>&nbsp
-                  <span id="reply_cnt">5</span>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          </div>
-
-          <div class="items">
-            <div class="card item" style="width: 18rem;">
-              <img src="images/cheese.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-               
-
-                <div class="item_boxbottom">
-                  <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
-                  
-                  <div class="board_icon_view d-flex justify-content-start likechat">
-                    <i class="fa-solid fa-heart"></i>&nbsp
-                    <span id="heart_cnt">5&nbsp&nbsp</span>
-                    <i class="fa-solid fa-comments"></i>&nbsp
-                    <span id="reply_cnt">5</span>
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-      
-            <div class="card item" style="width: 18rem;">
-              <img src="images/cheese.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                
-                <div class="item_boxbottom">
-                  <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
-                  
-                  <div class="board_icon_view d-flex justify-content-start likechat">
-                    <i class="fa-solid fa-heart"></i>&nbsp
-                    <span id="heart_cnt">5&nbsp&nbsp</span>
-                    <i class="fa-solid fa-comments"></i>&nbsp
-                    <span id="reply_cnt">5</span>
-                  </div>
-                </div>
-
-
-              </div>
-            </div>
-      
-            <div class="card item" style="width: 18rem;">
-              <img src="images/cheese.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                
-                <div class="item_boxbottom">
-                  <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
-                  
-                  <div class="board_icon_view d-flex justify-content-start likechat">
-                    <i class="fa-solid fa-heart"></i>&nbsp
-                    <span id="heart_cnt">5&nbsp&nbsp</span>
-                    <i class="fa-solid fa-comments"></i>&nbsp
-                    <span id="reply_cnt">5</span>
-                  </div>
-                </div>
-
-
-              </div>
-            </div>
-      
-            <div class="card item" style="width: 18rem;">
-              <img src="images/cheese.png" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-               
-                <div class="item_boxbottom">
-                  <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
-                  
-                  <div class="board_icon_view d-flex justify-content-start likechat">
-                    <i class="fa-solid fa-heart"></i>&nbsp
-                    <span id="heart_cnt">5&nbsp&nbsp</span>
-                    <i class="fa-solid fa-comments"></i>&nbsp
-                    <span id="reply_cnt">5</span>
-                  </div>
-                </div>
-
-
-              </div>
-            </div>
-            </div>
+        
+  			
+ 				  	<div class="items">
+			        <div class="container">
+						<div class="market_itembox">
+							<ul class="faq-list">
+								<c:forEach var="allList" items="${marketAllList }">
+									<li class="li_item">
+										<div class="card item" style="width: 18rem;">
+								          <img src="images/cheese.png" class="card-img-top" alt="...">
+								          <div class="card-body">
+								            <h5 class="card-title"><div class="card-itemTitle">${allList.itemtitle }</div></h5>
+								            <p class="card-text">
+								            	<span>${allList.itemcost }</span><br>
+								            	<span>서울시&nbsp&nbsp ${allList.content }</span>
+								            </p>
+								           
+								            <div class="item_boxbottom">
+								              <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
+								              
+								              <div class="board_icon_view d-flex justify-content-start likechat">
+								                <i class="fa-solid fa-heart"></i>&nbsp
+								                <span id="heart_cnt">${allList.itemwish }&nbsp&nbsp</span>
+								                <i class="fa-solid fa-eye"></i>&nbsp&nbsp
+								                <span id="reply_cnt">${allList.itemview }</span>
+								              </div>
+								            </div>
+								          </div>
+								        </div>
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
+					</div>
+			  </div>
+  			
 
 
 
   
          <!-- pagination -->
-         <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-              <li class="page-item">
-                <a
-                  class="page-link"
-                  href="#"
-                  aria-label="Previous"
-                  id="page_btn"
-                >
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#" id="page_btn">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#" id="page_btn">2</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#" id="page_btn">3</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next" id="page_btn">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <!-- pagination end-->
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						<c:if test="${pg.startPage > pg.pageBlock }">
+							<li class="page-item"><a class="page-link" href="market?currentPage=${pg.startPage-pg.pageBlock}"
+								aria-label="Previous" id="page_btn"> <span
+									aria-hidden="true">&laquo;</span>
+							</a></li>
+						</c:if>
+						<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+							<li class="page-item"><a class="page-link" href="market?currentPage=${i}"
+								id="page_btn">${i}</a></li>
+						</c:forEach>
+						<c:if test="${pg.endPage < pg.totalPage }">
+							<li class="page-item"><a class="page-link" href="market?currentPage=${pg.startPage+pg.pageBlock}"
+								aria-label="Next" id="page_btn"> <span aria-hidden="true">&raquo;</span>
+							</a></li>
+						</c:if>
+					</ul>
+				</nav>
+		<!-- pagination end-->
+				
 	</main>
 
 <%@ include file="footer.jsp" %>

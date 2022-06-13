@@ -57,3 +57,10 @@ footer {
 .footer_a:hover{
    color: black;
 }
+
+.customer{
+	display: flex;
+}
+.customer_phone{
+	color: rgb(253, 201, 0);
+}

@@ -98,9 +98,4 @@ public class BoardController {
 		return "boardReplyPro";
 	}
 	
-	@GetMapping("/market")
-	public String main_market(Model model) {
-		model.addAttribute("data", "안녕하세요");
-		return "market";
-	}
 }

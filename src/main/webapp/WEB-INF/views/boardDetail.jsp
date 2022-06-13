@@ -37,7 +37,7 @@
 			<h6>댓글</h6>
 			<input type="text" id="comment_input" name="comment" placeholder="내용을 입력해주세요" />
 			<div class="d-flex justify-content-end">
-				<button type="submit" id="register">등록</button>
+				<button class="btn_reg" type="submit" id="register">등록</button>
 			</div>
 			<hr />
 		</div>

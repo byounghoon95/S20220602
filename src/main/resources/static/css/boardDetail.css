@@ -57,7 +57,7 @@
 #delete {
   color: white;
 }
-#register {
+/* #register {
   position: relative;
   bottom: 43px;
   right: 10px;
@@ -66,8 +66,28 @@
   height: 30px;
   color: black;
   border-color: #ced4da;
+} */
+
+
+#register {
+  position: relative;
+  bottom: 43px;
+  right: 10px;
+  border-radius: 4px;
+  width: 60px;
+  color: white;
+  background-color: #BDBDBD;
+  border-color: #BDBDBD;
 }
+
+
 #view {
   font-size: 0.9rem;
   color: #ced4da;
 }
+
+.btn_reg:hover {
+	background-color: #EAEAEA;
+	border-color: #EAEAEA;
+}
+

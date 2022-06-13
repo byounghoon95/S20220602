@@ -18,9 +18,9 @@
             <div><a class="footer_a" href="#">1:1문의</a></div>
           </div>
           <div class="footer2">
-            <div><a class="footer_a" href="#">이용약관</a></div>
-            <div><a class="footer_a" href="#">개인정보처리방침</a></div>
-            <div><a class="footer_a" href="#">위치기반서비스 이용약관</a></div>
+            <div><a class="footer_a" href="footer_userAgreement">이용약관</a></div>
+            <div><a class="footer_a" href="footer_personalInfo">개인정보처리방침</a></div>
+            <div><a class="footer_a customer" >고객센터&nbsp&nbsp<div class="customer_phone">0000-0000</div>&nbsp(유료)</a></div>
           </div>
         </div>
         <hr />

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.MypageMapper">
+	<select id="khjMemberMypage" parameterType="String" resultType="Member">
+		select * from member where id=#{id}
+	</select>
+	
+	<select id="khjMemberMypageLocname" parameterType="String" resultType="String">
+		select content from common where mcd = (select locno from member where id = #{id} )
+	</select>
+	
+	<select id="khjmypageListBoard" parameterType="Board" resultType="Board">
+        select * from board where id = #{id}
+	</select>
+	
+	
+	<select id="khjmypageWishList" parameterType="Item" resultType="Item">
+        select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview
+			from common c, member m, item i, (SELECT * FROM wish WHERE id =#{id}) w
+			where c.mcd = m.locno
+			and i.itemno = w.itemno
+			and i.id = m.id
+			and m.id in (select id from item where itemno in (select itemno from wish where id =#{id}))
+	</select>
+	
+	<select id="khjmypageBuyList" parameterType="Item" resultType="Item">
+		select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview
+		from common c, member m, item i, resdeal r
+		where i.itemno=r.itemno
+		and c.mcd = m.locno
+		and i.id = m.id
+		and r.id=#{id}
+		and i.smcd=203
+	</select>
+	
+	<select id="khjmypageSellList" parameterType="Item" resultType="Item">
+        select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview
+		from common c, member m, item i
+		where c.mcd = m.locno
+		and i.id = m.id
+		and i.id=#{id}
+		and i.smcd=203
+	</select>
+	
+	<select id="khjtotalSellCount" parameterType="Item" resultType="int">
+		select count(*) 
+		from item 
+		where id=#{id}
+		and smcd=203
+	</select>	
+	
+	<select id="khjtotalSellCost" parameterType="Item" resultType="int">
+		select sum(itemcost)
+		from item 
+		where id=#{id}
+		and smcd=203
+	</select>		
+	
+
+	
+</mapper>

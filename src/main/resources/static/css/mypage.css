@@ -1,0 +1,148 @@
+/* 프로필 영역 */
+
+.mypage_all{
+	margin-top: 50px;
+	width: 60%;
+}
+
+.my_cheese{
+	color: rgb(253, 201, 0);
+	margin-left: 20px;
+}
+
+.all_prf{
+	display: flex;
+	margin-bottom: 50px;
+}
+
+.profile_box{
+	/* background-color: rgba(253, 201, 0, 0.15); */
+/* 	max-width: 1200px;
+	height: 400px; */
+	margin-bottom: 100px;
+	display: flex;
+	/* border: 3px solid rgba(253, 201, 0, 0.15); */
+	border-top: 1px solid #BDBDBD;
+}
+
+.left_prf{
+	padding-top: 50px;
+	margin-bottom: 50px;
+}
+
+.right_prf{
+	padding-top: 50px;
+	padding-left: 200px;
+}
+
+.update_box{
+	margin-left: auto;
+}
+
+/* 프사 */
+
+.profile_img{
+	margin: 20px;
+	width: 200px;
+	height: 200px;
+	margin-top: 40px;
+	/* margin-left: 150px; */
+}
+
+/* 치즈이미지 */
+.cheese_img{
+	width: 40px;
+	height: 40px;
+}
+
+
+/* 버튼 */
+
+.btn_prf{
+	color: white;
+	margin-left: 65px;
+	margin-top: 20px;
+}
+
+.btn_prf:hover {
+	color: white;
+}
+.btn_prf:active, .btn_prf:focus{
+	outline: none !important;
+   	box-shadow: none !important;
+   	color: white;
+}
+
+
+/* 아이콘 */
+.icon_up{
+	display: flex;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.icon_down {
+	display: flex;
+	
+}
+
+.icon_prf{
+	width: 50px;
+	height: 50px;
+	/* color: black; */
+	color: #BDBDBD;
+	/* color: rgb(75, 137, 220); */
+	/* margin-left: 10px; */
+	font-weight: lighter;
+}
+
+.icon_prf:hover{
+	color: #FFBB00;
+}
+
+.icons_each{
+	margin-right: 150px;
+	color: black;
+	/* color: rgb(75, 137, 220); */
+	font-size: small;
+	/* font-weight: bold; */
+}
+
+.icon_myboard{
+	margin-left: 20px;
+}
+
+.icon_mycart{
+	margin-left: 15px;
+}
+
+.icon_A{
+	text-decoration: none;
+	color: gray;
+}
+
+.icon_A:hover{
+	color: #FFBB00;
+	/* color: rgb(75, 137, 220); */
+}
+
+/* 프로필 상세항목  */
+.prf_loc{
+	font-size: small;
+	font-weight: bold;
+	color: #FFBB00;
+}
+
+.prf_name{
+	font-size: large;
+	font-weight: bold;
+}
+
+.prf_cheeseper{
+	color: #FFBB00;
+	font-weight: 900;
+}
+.prf_warn{
+	color: rgb(192, 57, 43);
+	font-weight: bold;
+}

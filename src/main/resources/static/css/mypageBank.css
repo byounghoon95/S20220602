@@ -1,0 +1,29 @@
+.wrap {
+  width: 50%;
+  margin: 0 auto;
+}
+
+/* 아이콘 */
+.icon_prf{
+	width: 30px;
+	height: 30px;
+	color: black;
+	font-weight: lighter;
+}
+
+.mypage_title{
+	display: flex;
+}
+
+.mypage_title h4{
+	margin-top: 5px;
+	margin-left: 10px;
+}
+
+.banklist{
+	display: flex;
+}
+
+.bankresult{
+	margin-left: 200px;
+}
