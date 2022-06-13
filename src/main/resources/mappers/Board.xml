@@ -29,6 +29,10 @@
 		select * from board b, member m where b.id=m.id and boardno=#{boardno}
 	</select>
 	
+	<update id="lbhupHit"  parameterType="int">
+		update Board set boardview=(boardview+1) where boardno=#{boardno}
+	</update>
+	
 	<insert id="lbhReplyWrite" parameterType="Board">
 		insert into Board values(board_seq.nextval,'leebh','댓글',#{boardcontent},sysdate,0,
 		0,#{ref},#{ref_step}+1,#{ref_level}+1,'N',400,401)
@@ -45,4 +49,11 @@
 		delete from Board where boardno=#{boardno}
 	</delete>
 	
+	<select id="lbhboardReplyList" parameterType="int" resultType="Board">
+		select * from Board b, Member m where b.id=m.id and ref=#{ref} and ref_step>0 order by ref_step desc, ref_level desc
+	</select>
+	
+	<select id="lbhReplyOne" parameterType="int" resultType="Board">
+		select * from Board where boardno=#{boardno}
+	</select>
 </mapper>

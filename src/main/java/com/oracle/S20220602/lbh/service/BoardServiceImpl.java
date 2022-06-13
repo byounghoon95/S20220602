@@ -73,6 +73,20 @@ public class BoardServiceImpl implements BoardService{
 		return result;
 	}
 
-	
+	@Override
+	public List<Board> boardReplyList(int ref) {
+		System.out.println("BoardServiceImpl boardReplyList Start");
+		List<Board> boardReplyList = null;
+		boardReplyList = boardRepository.boardReplyList(ref);
+		return boardReplyList;
+	}
+
+	@Override
+	public Board boardReplyOne(int boardno) {
+		System.out.println("BoardServiceImpl boardReplyOne Start");
+		Board board = boardRepository.boardReplyOne(boardno);
+		return board;
+	}
+
 
 }

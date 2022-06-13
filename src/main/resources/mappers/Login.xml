@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.LoginMapper">
+	<select id="kkhGetIdPass" parameterType="Member" resultType="Member">
+		select * from Member where id=#{id}
+	</select>
+	
+	<insert id="kkhregister" parameterType="Member">
+		insert into Member values
+		(#{id},#{nickname},#{name},#{pw},#{email},#{phone},
+		#{locno},'image1',sysdate,0,0,100,102)
+	</insert>
+</mapper>

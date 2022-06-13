@@ -8,17 +8,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${result > 0 }">
+<c:choose>
+<c:when test="${(member.id == input_id) && (member.pw == input_pw)}">
 	<script type="text/javascript">
-		alert("등록에 성공했습니다.");
-		location.href="boardDetail?boardno=${board.boardno}";
+		alert("로그인에 성공했습니다.");
+		location.href="main?id=${input_id}";
 	</script>
-</c:if>	
-<c:if test="${result == 0 }">
+</c:when>
+<c:otherwise>
 	<script type="text/javascript">
-		alert("등록에 실패했습니다.");
-		history.go(-1);
+		alert("로그인에 실패했습니다.");
+		location.href="login";
 	</script>
-</c:if>
+</c:otherwise>
+</c:choose>
 </body>
 </html>

@@ -17,11 +17,7 @@ public class BoardController {
 	@Autowired
 	private BoardService bs;
 	
-	@GetMapping("/main")
-	public String main(Model model) {
-		model.addAttribute("data", "안녕하세요");
-		return "main";
-	}
+
 	// Board 전체 리스트 불러오기
 	@GetMapping("/board")
 	public String board(Board board,String currentPage, Model model) {
@@ -57,11 +53,14 @@ public class BoardController {
 	@GetMapping("/boardDetail")
 	public String boardDetail(int boardno, Model model) {
 		System.out.println("BoardController boardDetail Start...");
-		Board board = null;
-		board = bs.boardDetail(boardno);
+		List<Board> boardReplyList = null;
+		Board board = bs.boardDetail(boardno);
+		boardReplyList = bs.boardReplyList(board.getRef());
+		model.addAttribute("boardReplyList",boardReplyList);
 		model.addAttribute("board",board);
 		return "boardDetail";
 	}
+	
 	@GetMapping(value="boardUpdateForm")
 	public String updateForm(Model model, Board board) {
 		System.out.println("BoardController updateForm Start...");
@@ -97,5 +96,27 @@ public class BoardController {
 		model.addAttribute("board",board);
 		return "boardReplyPro";
 	}
-	
+
+	// 대댓글
+	@GetMapping("/rereply")
+	public String rereply(int boardno, Model model, String comment) {
+		System.out.println("BoardController rereply Start...");
+		Board board = bs.boardReplyOne(boardno);
+		int before_boardno = board.getRef();
+		board.setBoardcontent(comment);
+		int result = bs.boardReply(board);
+		model.addAttribute("board",before_boardno);
+		model.addAttribute("result",result);
+		return "boardReReplyPro";
+	}
+	@GetMapping("/market")
+	public String main_market(Model model) {
+		model.addAttribute("data", "안녕하세요");
+		return "market";
+	}
+	@GetMapping("/main")
+	public String main(Model model) {
+		return "main";
+	}
+
 }

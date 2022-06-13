@@ -11,7 +11,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("등록에 성공했습니다.");
-		location.href="boardDetail?boardno=${board.boardno}";
+		location.href="boardDetail?boardno=${board}";
 	</script>
 </c:if>	
 <c:if test="${result == 0 }">

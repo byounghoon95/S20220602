@@ -99,9 +99,11 @@ footer {
   color: rgb(127, 127, 127);
 }
 
+
 .customer{
 	display: flex;
 }
 .customer_phone{
 	color: rgb(253, 201, 0);
 }
+

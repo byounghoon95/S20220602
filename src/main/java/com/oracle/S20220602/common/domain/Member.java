@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Member {
+
 	
 	private String id;
 	private String nickname;
@@ -25,5 +26,9 @@ public class Member {
 	
 	//join
 	private String content;
+
+
+	private String userimg;
+	
 
 }
