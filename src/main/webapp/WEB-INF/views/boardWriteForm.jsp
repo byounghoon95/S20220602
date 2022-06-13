@@ -13,7 +13,7 @@
 	<div id="blank_5vh"></div>
 	
 	<form action="boardWrite">
-	<input type="hidden" name="memberId" value="${id }">
+	<input type="hidden" name="id" value="${id }">
 	<div class="wrap">
 		<h4>
 			<i class="fa-solid fa-clipboard"></i>&nbsp게시글등록

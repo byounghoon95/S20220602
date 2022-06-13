@@ -21,4 +21,5 @@ public class Member {
 	private int warningcnt;
 	private int bcd;
 	private int mcd;
+	
 }

@@ -22,4 +22,11 @@ public class MemberServiceImpl implements MemberService {
 		
 		return member;
 	}
+
+	@Override
+	public int register(Member member) {
+		System.out.println("MemberServiceImpl register start");
+		int result = memberRepository.register(member);
+		return result;
+	}
 }

@@ -7,16 +7,9 @@
 		select * from Member where id=#{id}
 	</select>
 	
-	
-	<select id="lbhBoardCount" resultType="int">
-		select count(*) from board where ref_step=0
-	</select>
-	
-	<insert id="lbhBoardWrite" parameterType="Board">
-		insert into Board values
-		(board_seq.nextval,'leebh',#{boardtitle},#{boardcontent},sysdate,0,
-		0,board_seq.currval,0,0,'N',400,401)
+	<insert id="kkhregister" parameterType="Member">
+		insert into Member values
+		(#{id},#{nickname},#{name},#{pw},#{email},#{phone},
+		#{locno},'image1',sysdate,0,0,100,102)
 	</insert>
-	
-	
 </mapper>

@@ -24,4 +24,16 @@ public class MemberRepositoryImpl implements MemberRepository {
 		}
 		return member;
 	}
+
+	@Override
+	public int register(Member member) {
+		int result = 0;
+		System.out.println("MemberRepositoryImpl register start");
+		try {
+			result = session.insert("kkhregister",member);
+		}catch (Exception e) {
+			System.out.println("MemberRepositoryImpl register exception -> " + e.getMessage());
+		}
+		return result;
+	}
 }

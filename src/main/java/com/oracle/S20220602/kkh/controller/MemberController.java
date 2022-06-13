@@ -38,4 +38,30 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return "loginPro";
 	}
+	@GetMapping("/registerForm")
+	public String registerForm(Member member, Model model) {
+		System.out.println("registerForm start..");
+		return "registerForm";
+	}
+	@GetMapping("/register")
+	public String register(Member member, Model model) {
+		System.out.println("register start..");
+		int result = ms.register(member);
+		
+		
+		
+		
+		return "login";
+	}
+	@GetMapping("/idcheck")
+	public String idcheck(Member member, Model model) {
+		System.out.println("register start..");
+		int result = ms.register(member);
+		
+		
+		
+		
+		return "login";
+	}
+	
 }
