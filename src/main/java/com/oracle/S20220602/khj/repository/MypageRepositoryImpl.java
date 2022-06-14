@@ -131,6 +131,20 @@ public class MypageRepositoryImpl implements MypageRepository {
 	}
 
 
+	@Override
+	public int mypagePrfUpdate(Member member) {
+		System.out.println("MypageRepositoryImpl mypagePrfUpdate Start...");
+		int result = 0;
+		try {
+			System.out.println("id -> " + member.getId());
+			result = session.update("khjmypagePrfUpdate", member);
+		}catch (Exception e) {
+			System.out.println("MypageRepositoryImpl mypagePrfUpdate Exception -> " + e.getMessage());
+		}
+		return result;
+	}
+
+
 
 
 

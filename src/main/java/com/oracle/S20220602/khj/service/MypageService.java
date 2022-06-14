@@ -16,5 +16,6 @@ public interface MypageService {
 	List<Item> mypageSellList(Item item);
 	int totalSellCount(Item item);
 	int totalSellCost(Item item);
+	int mypagePrfUpdatePro(Member member);
 
 }

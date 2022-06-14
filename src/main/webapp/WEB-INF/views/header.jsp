@@ -62,7 +62,7 @@
             <li class="nav-item"><a class="nav-link" href="/board">치즈일상</a></li>
           </ul>
         </div>
-        <button type="button" class="btn btn-warning" id="start">
+        <button type="button" class="btn btn-warning" id="start" onclick="location.href='/memlogin'">
           시작하기
         </button>
       </div>

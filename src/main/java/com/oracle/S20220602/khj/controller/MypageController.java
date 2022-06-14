@@ -2,6 +2,9 @@ package com.oracle.S20220602.khj.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,12 +23,17 @@ public class MypageController {
 	@Autowired
 	private MypageService ms;
 	
-	
+	// 마이페이지
 	@GetMapping("/mypage")
-	public String mypage(String id, Model model) {
+	public String mypage(Model model, HttpServletRequest request, Member member) {
 		System.out.println("MypageController mypage Start...");
-		id = "kanghj";
-		Member member = null;
+		String id = null;
+		
+		// 세션에서 id 가져오기
+		HttpSession session = request.getSession();
+		id = (String) session.getAttribute("id");
+		model.addAttribute("id", id);
+		
 		String memberLocName = ms.memberLocNameSelect(id);
 		member = ms.memberMypage(id);
 		model.addAttribute("member", member);
@@ -33,19 +41,42 @@ public class MypageController {
 		return "mypage";
 	}
 	
+	// 프로필 수정폼
 	@GetMapping("/mypagePrfUpdate")
-	public String mypagePrfUpdate(String id, Model model) {
+	public String mypagePrfUpdate(HttpServletRequest request, Model model, Member member) {
 		System.out.println("MypageController mypagePrfUpdate Start...");
-		id = "kanghj";
-		Member member = null;
+		// 세션에서 id 가져오기
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		
+		member = ms.memberMypage(id);
+		
 		model.addAttribute("member", member);
 		return "mypagePrfUpdate";
+		
 	}
 	
+	// 프로필 업데이트
+	@PostMapping(value="/mypagePrfUpdatePro")
+	public String mypagePrfUpdatePro(HttpServletRequest request, Model model, Member member) {
+		System.out.println("MypageController mypagePrfUpdatePro Start...");
+		int result = ms.mypagePrfUpdatePro(member);
+		model.addAttribute("result", result);
+		return "mypagePrfUpdatePro";
+	}
+	
+	
+	
+	// 내가 작성한 글 
 	@GetMapping("/mypageBoard")
-	public String mypageBoard(Model model, Board board) {
+	public String mypageBoard(Model model, HttpServletRequest request, Board board) {
 		System.out.println("MypageController mypageBoard Start...");
-		board.setId("kanghj");
+		
+		// 세션에서 id 가져오기
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		board.setId(id);
+		
 		List<Board> mypageBoardList = ms.mypageBoardSelect(board);
 		System.out.println("MypageController mypageBoardList boardList.size()->"+mypageBoardList.size());
 		
@@ -56,12 +87,15 @@ public class MypageController {
 	
 	// 관심상품
 	@GetMapping("/mypageWish")
-	public String mypageWish(Model model, Item item) {
+	public String mypageWish(Model model, HttpServletRequest request, Item item) {
 		System.out.println("MypageController mypageWish Start...");
-//		id = "kanghj";
-		item.setId("kanghj");
+		
+		// 세션에서 id 가져오기
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		item.setId(id);
+		
 		List<Item> mypageWishList = ms.mypageWishList(item);
-//		String itemLocName = ms.itemLocNameSelect(id);
 		System.out.println("MypageController mypageWish mypageWishList.size()-> "+mypageWishList.size());
 		
 //		데이터를 잘 가져왔는지 확인하는 방법
@@ -70,15 +104,20 @@ public class MypageController {
 //			System.out.println("item2.getId()->"+item2.getId());
 //		}
 		model.addAttribute("mypageWishList", mypageWishList);
-//		model.addAttribute("itemLocName", itemLocName);
 		
 		return "mypageWish";
 	}
 	
+	// 구매/판매내역
 	@GetMapping("/mypageDeal")
-	public String mypageDeal(Model model, Item item) {
+	public String mypageDeal(Model model, HttpServletRequest request, Item item) {
 		System.out.println("MypageController mypageDeal Start...");
-		item.setId("kanghj");
+		
+		// 세션에서 id 가져오기
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		item.setId(id);
+		
 		List<Item> mypageBuyList = ms.mypageBuyList(item);
 		List<Item> mypageSellList = ms.mypageSellList(item);
 		System.out.println("MypageController mypageDeal mypageBuyList.size()->"+mypageBuyList.size());
@@ -89,10 +128,16 @@ public class MypageController {
 		return "mypageDeal";
 	}
 	
+	// 가계부
 	@GetMapping("/mypageBank")
-	public String mypageBank(Model model, Item item) {
+	public String mypageBank(Model model, HttpServletRequest request, Item item) {
 		System.out.println("MypageController mypageBank Start...");
-		item.setId("kanghj");
+		
+		// 세션에서 id 가져오기
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		item.setId(id);
+		
 		int totalSellCount =  ms.totalSellCount(item);
 		int totalSellCost =  ms.totalSellCost(item);
 		model.addAttribute("totalSellCount", totalSellCount);

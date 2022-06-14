@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	
 	<div class="container mypage_all">
 	<h4 class="my_cheese">My 치즈</h4>
@@ -18,7 +17,6 @@
 				<img src="images/profile.jpg" class="profile_img" alt="..."><p>
 				<button type="button" class="btn btn-warning btn_prf" id="s_btn1" onclick="location.href='/mypagePrfUpdate'">프로필 수정</button>
 			</div>
-			
 			<div class="right_prf">
 				<span class="prf_name">${member.nickname }</span>
 				<img src="images/cheese.png" class="cheese_img" alt="..."><br>

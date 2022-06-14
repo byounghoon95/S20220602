@@ -2,6 +2,9 @@ package com.oracle.S20220602.lbh.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.oracle.S20220602.common.domain.Board;
+import com.oracle.S20220602.common.domain.Member;
 import com.oracle.S20220602.lbh.service.BoardService;
 import com.oracle.S20220602.lbh.service.Paging;
 
@@ -20,8 +24,16 @@ public class BoardController {
 
 	// Board 전체 리스트 불러오기
 	@GetMapping("/board")
-	public String board(Board board,String currentPage, Model model) {
+	public String board(Board board,String currentPage, Model model, HttpServletRequest request, Member member) {
 		System.out.println("BoardController board Start...");
+		
+		// 세션에서 id 가져오기
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		session.setAttribute("id", id);
+		model.addAttribute("id", id);
+		
+		
 		int total = bs.total();
 		System.out.println("BoardController total ->" +total);
 		Paging pg = new Paging(total, currentPage);
@@ -29,6 +41,13 @@ public class BoardController {
 		board.setEnd(pg.getEnd());
 		List<Board> boardList = bs.boardSelect(board);
 		System.out.println("BoardController board boardList.size()->"+boardList.size());
+		
+//		// header --> id 값 받기
+//		String input_id = member.getId();
+//		HttpSession session = request.getSession();
+//		session.setAttribute("id", input_id);
+//		model.addAttribute("input_id", input_id);
+		
 		
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("pg", pg);
@@ -109,14 +128,10 @@ public class BoardController {
 		model.addAttribute("result",result);
 		return "boardReReplyPro";
 	}
-	@GetMapping("/market")
-	public String main_market(Model model) {
-		model.addAttribute("data", "안녕하세요");
-		return "market";
-	}
-	@GetMapping("/main")
-	public String main(Model model) {
-		return "main";
-	}
+
+//	@GetMapping("/main")
+//	public String main(Model model) {
+//		return "main";
+//	}
 
 }

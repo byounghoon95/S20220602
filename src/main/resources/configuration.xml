@@ -6,10 +6,8 @@
    <typeAliases>
       <typeAlias alias="Board"       type="com.oracle.S20220602.common.domain.Board"/>
       <typeAlias alias="Member"       type="com.oracle.S20220602.common.domain.Member"/>
-<<<<<<< HEAD
       <typeAlias alias="Item"       type="com.oracle.S20220602.common.domain.Item"/>
-=======
->>>>>>> branch 'master' of https://github.com/byounghoon95/S20220602.git
+
       
    </typeAliases>
 </configuration>

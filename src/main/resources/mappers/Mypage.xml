@@ -56,8 +56,11 @@
 		from item 
 		where id=#{id}
 		and smcd=203
-	</select>		
-	
+	</select>	
+		
+	<update id="khjmypagePrfUpdate"  parameterType="Member">
+		update Member set nickname=#{nickname}, pw=#{pw}, email=#{email}, phone=#{phone}, locno=#{locno} where id=#{id}
+	</update>
 
 	
 </mapper>

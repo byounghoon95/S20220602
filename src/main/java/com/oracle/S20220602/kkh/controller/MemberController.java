@@ -1,4 +1,4 @@
-package com.oracle.S20220602.kkh.controller;
+	package com.oracle.S20220602.kkh.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,12 +18,13 @@ public class MemberController {
 	@Autowired
 	private MemberService ms;
 	
-	@GetMapping("/login")
+	@GetMapping("/memlogin")
 	public String login(Model model) {
 		
-		return "login";
+		return "memlogin";
 	}
-	@PostMapping("/loginPro")
+	
+	@PostMapping("/memloginPro")
 	public String loginPro(HttpServletRequest request, Member member, Model model) {
 		System.out.println("loginPro start..");
 		String input_id = member.getId();
@@ -33,35 +34,40 @@ public class MemberController {
 		System.out.println("input_id -> " + input_id);
 		System.out.println("input_pw -> " + input_pw);
 		member = ms.memberLogin(input_id);
+		session.setAttribute("nickname", member.getNickname());
 		model.addAttribute("input_id", input_id);
 		model.addAttribute("input_pw", input_pw);
 		model.addAttribute("member", member);
-		return "loginPro";
+		return "memloginPro";
 	}
-	@GetMapping("/registerForm")
+	@GetMapping("/memregisterForm")
 	public String registerForm(Member member, Model model) {
 		System.out.println("registerForm start..");
-		return "registerForm";
+		return "memregisterForm";
 	}
-	@GetMapping("/register")
+	@GetMapping("/memregister")
 	public String register(Member member, Model model) {
 		System.out.println("register start..");
 		int result = ms.register(member);
 		
 		
-		
-		
-		return "login";
+		return "memlogin";
 	}
-	@GetMapping("/idcheck")
+	@GetMapping("/memidcheck")
 	public String idcheck(Member member, Model model) {
 		System.out.println("register start..");
 		int result = ms.register(member);
 		
 		
+		return "memlogin";
+	}
+	
+	@GetMapping("/memlogout")
+	public String memlogout(HttpServletRequest request, Member member, Model model) {
+		HttpSession session = request.getSession();
+		session.invalidate();
 		
-		
-		return "login";
+		return "memlogout";
 	}
 	
 }

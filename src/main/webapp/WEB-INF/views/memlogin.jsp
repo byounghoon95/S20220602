@@ -7,7 +7,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
 integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="css/hf_before.css" rel="stylesheet" />
-    <link href="css/login.css" rel="stylesheet" />
+    <link href="css/memlogin.css" rel="stylesheet" />
 <title>Insert title here</title>
  <body>
     <section class="vh-100">
@@ -28,14 +28,14 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                 </div>
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
-                    <form action="loginPro" method="post">
+                    <form action="memloginPro" method="post">
                       <div class="d-flex align-items-center mb-3 pb-1">
                         <i
                           class="fas fa-cubes fa-2x me-3"
                           style="color: #ff6219"
                         ></i>
                       </div>
-
+		
                       <div class="form-outline mb-4">
                         <label class="form-label" for="form2Example17"
                           >아이디</label
@@ -60,12 +60,12 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                         </button>
                       </div>
 
-                      <a href="#!" id="reg"
+                      <a href="/memregisterForm" id="reg"
                         >계정이 없습니까?
                         <span id="reg_in">회원가입</span>하세요</a
                       ><br />
                       <div class="mt-3">
-                        <a href="#!" class="last" id="last1">회원가입</a>
+                        <a href="#!" class="last" id="last1" onclick="location.href='/memregisterForm'">회원가입</a>
                         <span class="last">|</span>
                         <a href="#!" class="last" id="last2">아이디찾기</a>
                         <span class="last">|</span>

@@ -85,6 +85,14 @@ public class MypageServiceImpl implements MypageService {
 	    return totalSellCost;
 	}
 
+	@Override
+	public int mypagePrfUpdatePro(Member member) {
+		System.out.println("MypageServiceImpl mypagePrfUpdatePro Start...");
+		int result = 0;
+		result = mypageRepository.mypagePrfUpdate(member);
+		return result;
+	}
+
 
 
 

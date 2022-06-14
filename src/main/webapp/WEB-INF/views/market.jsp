@@ -1,14 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="css/market.css" rel="stylesheet" />
+
+<%
+	String id = (String) session.getAttribute("id");
+%>
 
 <title>Cheese Market</title>
 </head>
+
+<!-- header -->
+<c:choose>
+<c:when test="${id == null}">
+	<%@ include file="header.jsp"%>
+</c:when>
+<c:otherwise>
+	<%@ include file="header_mem.jsp"%>
+</c:otherwise>
+</c:choose>
+
+<link href="css/market.css" rel="stylesheet" />
+
 <body id="page-top">
 
     <main>

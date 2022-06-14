@@ -8,11 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/hf_before.css" rel="stylesheet" />
-<link href="css/register.css" rel="stylesheet" />
+<link href="css/memregister.css" rel="stylesheet" />
 <title>Insert title here</title>
 </head>
 <script type="text/javascript">
-function idCheck(Vdeptno) {
+function memidCheck(Vdeptno) {
 	 console.log(Vdeptno);
 	 $.ajax(
    		 {

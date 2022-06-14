@@ -16,5 +16,6 @@ public interface MypageRepository {
 	List<Item> mypageSellSelect(Item item);
 	int totalSellCount(Item item);
 	int totalSellCost(Item item);
+	int mypagePrfUpdate(Member member);
 
 }
