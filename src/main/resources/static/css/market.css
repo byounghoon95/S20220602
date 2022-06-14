@@ -55,6 +55,16 @@ nav {
  }
   
 /* 아이템 카드 */
+
+.item_detail{
+	text-decoration: none;
+	color: black;
+}
+
+.item_detail:hover{
+	color: #ffc107;
+}
+
 .market_itembox li {
 	float: left;
 	list-style: none;
@@ -84,6 +94,7 @@ nav {
   padding-top: 10px;
 }
 .board_icon_view{
+	margin-top: 18px;
    color: rgb(204, 204, 204);
 }
 

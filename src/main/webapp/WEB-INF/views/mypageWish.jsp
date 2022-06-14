@@ -23,27 +23,29 @@
 								<ul class="faq-list">
 									<c:forEach var="wList" items="${mypageWishList }">
 										<li>
+										  <a class="item_detail" href="#">
 											<div class="card item" style="width: 18rem;">
 									          <img src="images/cheese.png" class="card-img-top" alt="...">
 									          <div class="card-body">
 									            <h5 class="card-title"><div class="card-itemTitle">${wList.itemtitle }</div></h5>
-									            <p class="card-text">
-									            	<span>${wList.itemcost }</span><br>
-									            	<span>서울시&nbsp&nbsp ${wList.content }</span>
-									            </p>
+									           
 									           
 									            <div class="item_boxbottom">
-									              <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
+										            <p class="card-text">
+										            	<span>${wList.itemcost }</span><br>
+										            	<span>서울시&nbsp&nbsp ${wList.content }</span>
+										            </p>
 									              
-									              <div class="board_icon_view d-flex justify-content-start likechat">
-									                <i class="fa-solid fa-heart"></i>&nbsp
-									                <span id="heart_cnt">${wList.itemwish }&nbsp&nbsp</span>
-									                <i class="fa-solid fa-eye"></i>&nbsp&nbsp
-									                <span id="reply_cnt">${wList.itemview }</span>
-									              </div>
+									                <div class="board_icon_view d-flex justify-content-start likechat">
+										                <i class="fa-solid fa-heart"></i>&nbsp
+										                <span id="heart_cnt">${wList.itemwish }&nbsp&nbsp</span>
+										                <i class="fa-solid fa-eye"></i>&nbsp&nbsp
+										                <span id="reply_cnt">${wList.itemview }</span>
+									                </div>
 									            </div>
 									          </div>
 									        </div>
+									       </a>
 										</li>
 									</c:forEach>
 								</ul>

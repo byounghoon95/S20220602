@@ -25,6 +25,14 @@
 }
 
 /* 아이템 카드 */
+.item_detail{
+   text-decoration: none;
+   color: black;
+}
+
+.item_detail:hover{
+   color: #ffc107;
+}
 
 .faq .faq-list {
   padding: 0;
@@ -117,7 +125,8 @@ nav {
 }
 
 .board_icon_view{
-   color: rgb(204, 204, 204);
+	margin-top: 18px;
+    color: rgb(204, 204, 204);
 }
 
 li {

@@ -44,5 +44,8 @@ public class Item {
 	private String search;   	private String keyword;
 	private String pageNum;  
 	private int start; 		 	private int end;
+	
+	// 거래테이블 조인
+	private String dealcontent;
  
 }

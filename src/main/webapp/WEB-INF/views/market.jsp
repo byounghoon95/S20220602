@@ -71,18 +71,19 @@
 					<ul class="faq-list">
 						<c:forEach var="bestList" items="${marketBestList }">
 							<li class="li_item">
+							  <a class="item_detail" href="#">
 								<div class="card item" style="width: 18rem;">
 						          <img src="images/cheese.png" class="card-img-top" alt="...">
 						         <%--  <img src="<%=context %>/fileSave/${bestList.img_path}" class="card-img-top"> --%>
 						          <div class="card-body">
 						            <h5 class="card-title"><div class="card-itemTitle">${bestList.itemtitle }</div></h5>
-						            <p class="card-text">
-						            	<span>${bestList.itemcost }</span><br>
-						            	<span>서울시&nbsp&nbsp ${bestList.content }</span>
-						            </p>
+						            
 						           
 						            <div class="item_boxbottom">
-						              <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
+							            <p class="card-text">
+							            	<span>${bestList.itemcost }</span><br>
+							            	<span>서울시&nbsp&nbsp ${bestList.content }</span>
+							            </p>
 						              
 						              <div class="board_icon_view d-flex justify-content-start likechat">
 						                <i class="fa-solid fa-heart"></i>&nbsp
@@ -90,9 +91,11 @@
 						                <i class="fa-solid fa-eye"></i>&nbsp&nbsp
 						                <span id="reply_cnt">${bestList.itemview }</span>
 						              </div>
+						              
 						            </div>
 						          </div>
 						        </div>
+						       </a>
 							</li>
 						</c:forEach>
 					</ul>
@@ -113,27 +116,28 @@
 							<ul class="faq-list">
 								<c:forEach var="allList" items="${marketAllList }">
 									<li class="li_item">
+									  <a class="item_detail" href="#">
 										<div class="card item" style="width: 18rem;">
 								          <img src="images/cheese.png" class="card-img-top" alt="...">
 								          <div class="card-body">
 								            <h5 class="card-title"><div class="card-itemTitle">${allList.itemtitle }</div></h5>
-								            <p class="card-text">
-								            	<span>${allList.itemcost }</span><br>
-								            	<span>서울시&nbsp&nbsp ${allList.content }</span>
-								            </p>
+								            
 								           
 								            <div class="item_boxbottom">
-								              <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
-								              
-								              <div class="board_icon_view d-flex justify-content-start likechat">
-								                <i class="fa-solid fa-heart"></i>&nbsp
-								                <span id="heart_cnt">${allList.itemwish }&nbsp&nbsp</span>
-								                <i class="fa-solid fa-eye"></i>&nbsp&nbsp
-								                <span id="reply_cnt">${allList.itemview }</span>
-								              </div>
+									            <p class="card-text">
+									            	<span>${allList.itemcost }</span><br>
+									            	<span>서울시&nbsp&nbsp ${allList.content }</span>
+									            </p>
+								              	<div class="board_icon_view d-flex justify-content-start likechat">
+									                <i class="fa-solid fa-heart"></i>&nbsp
+									                <span id="heart_cnt">${allList.itemwish }&nbsp&nbsp</span>
+									                <i class="fa-solid fa-eye"></i>&nbsp&nbsp
+									                <span id="reply_cnt">${allList.itemview }</span>
+								                </div>
 								            </div>
 								          </div>
 								        </div>
+								      </a>
 									</li>
 								</c:forEach>
 							</ul>

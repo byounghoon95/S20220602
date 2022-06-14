@@ -38,7 +38,18 @@
 										            </p>
 										           
 										            <div class="item_boxbottom">
-										              <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
+										            
+										            	<c:choose>
+														<c:when test="${buyList.dealcontent == null}">
+															<a href="#" class="btn btn-primary itembtn">후기 보내기</a>
+														</c:when>
+														<c:otherwise>
+															<a href="#" class="btn btn-primary itembtn">보낸 후기보기</a>
+														</c:otherwise>
+														</c:choose>
+										            
+										            
+										              <!-- <a href="#" class="btn btn-primary itembtn">후기 보내기</a> -->
 										              
 										              <div class="board_icon_view d-flex justify-content-start likechat">
 										                <i class="fa-solid fa-heart"></i>&nbsp
@@ -72,7 +83,7 @@
 										            </p>
 										           
 										            <div class="item_boxbottom">
-										              <a href="#" class="btn btn-primary itembtn">상품 보러가기</a>
+										              <a href="#" class="btn btn-primary itembtn">후기 보러가기</a>
 										              
 										              <div class="board_icon_view d-flex justify-content-start likechat">
 										                <i class="fa-solid fa-heart"></i>&nbsp

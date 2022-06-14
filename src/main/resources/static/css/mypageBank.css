@@ -20,10 +20,32 @@
 	margin-left: 10px;
 }
 
-.banklist{
+/* .banklist{
 	display: flex;
-}
+}  */
 
 .bankresult{
 	margin-left: 200px;
+}
+
+.bank_box{
+	display: flex;
+	/* background-color: rgba(253, 201, 0, 0.15); */
+	margin-bottom: 200px;
+	
+}
+
+#character {
+  width: 50%;
+  left: 20%;
+  /* top: 7%; */
+}
+
+.bank_right{
+	margin-left: 300px;
+}
+
+.bank_left{
+	margin-left: 50px;
+	padding-top: 10px;
 }

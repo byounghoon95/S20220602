@@ -20,8 +20,16 @@
 					<span class="mypage_title"><i class="fa-solid fa-sack-dollar icon_prf"></i><h4>가계부</h4></span>
 					<hr /><br><br>
 					
-					<span class="banklist"><h5>총 판매건수</h5><div class="bankresult">${totalSellCount }	&nbsp&nbsp	건</div></span>
-					<span class="banklist"><h5>총 판매금액</h5><div class="bankresult">${totalSellCost }	&nbsp&nbsp	원</div></span>
+					<div class="bank_box">
+						<div class="bank_left">
+							${nickname }님의 치즈마켓 이용 현황입니다<br><br>
+							<div><span class="banklist">총 판매건수</span><span class="bankresult">${totalSellCount }	&nbsp건</span></div>
+							<span class="banklist"><div>총 판매금액<span class="bankresult">${totalSellCost }	&nbsp원</span></div></span>
+						</div>
+						<div class="bank_right">
+							<img id="character" alt="images/character.png" src="images/character.png">
+						</div>
+					</div>
 					
 					
 				</div>
