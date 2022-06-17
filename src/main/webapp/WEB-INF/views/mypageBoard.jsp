@@ -24,8 +24,8 @@
 							<li><a class="text-start" id="board_title" href="boardDetail?boardno=${bList.boardno }">${bList.boardtitle }</a>
 							<p class="text-start" id="board_txt">${bList.boardcontent }</p>
 							<div class="board_icon_view d-flex justify-content-start">
-								<i class="fa-solid fa-heart"></i>&nbsp <span id="heart_cnt">${bList.boardlike } &nbsp&nbsp</span>
-								<i class="fa-solid fa-comments"></i>&nbsp <span id="reply_cnt">5</span>
+								<i class="fa-solid fa-eye"></i>&nbsp <span id="heart_cnt">${bList.boardview } &nbsp&nbsp</span>
+								<i class="fa-solid fa-comments"></i>&nbsp <span id="reply_cnt">0</span>
 							</div></li>
 						</c:forEach> 
 					</ul>

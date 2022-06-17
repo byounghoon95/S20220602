@@ -27,7 +27,7 @@
 					<div class="icon_up">
 						<span class="icons_each"><a class="icon_A" href="/mypageOtherDeal"><i class="fa-solid fa-cart-shopping icon_prf"></i><br>판매내역</a></span>
 						<span class="icons_each"><a class="icon_A" href="/mypageOtherBoard"><i class="fa-solid fa-note-sticky icon_prf"></i><br>작성한 글</a></span>
-						<span class="icons_each"><a class="icon_A" href="/mypageOtherDealComment"><i class="fa-solid fa-envelope icon_prf"></i><br>받은 후기</a></span>
+						<span class="icons_each"><a class="icon_A" href="/mypageOtherComment"><i class="fa-solid fa-envelope icon_prf"></i><br>받은 후기</a></span>
 					</div>
 				</div>
 			</div>

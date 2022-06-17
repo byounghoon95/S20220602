@@ -44,19 +44,7 @@ public class MypageController {
 		return "mypage";
 	}
 	
-	// 프로필 수정
-//	@GetMapping("/mypagePrfUpdate")
-//	public String mypagePrfUpdate(HttpServletRequest request, Model model, Member member) {
-//		System.out.println("MypageController mypagePrfUpdate Start...");
-//		// 세션에서 id 가져오기
-//		HttpSession session = request.getSession();
-//		String id = (String) session.getAttribute("id");
-//		member.setId(id);
-//		model.addAttribute("id",id); 
-//		
-//		return "mypagePrfUpdate";
-//	}
-	
+
 	
 	// 프로필 수정폼
 	@GetMapping("/mypagePrfUpdate")
@@ -73,14 +61,6 @@ public class MypageController {
 		
 	}
 		
-	// 프로필 업데이트
-//	@PostMapping(value="/mypagePrfUpdatePro")
-//	public String mypagePrfUpdatePro(HttpServletRequest request, Model model, Member member) {
-//		System.out.println("MypageController mypagePrfUpdatePro Start...");
-//		int result = ms.mypagePrfUpdatePro(member);
-//		model.addAttribute("result", result);
-//		return "mypagePrfUpdatePro";
-//	}
 	
 	
 	@PostMapping("/mypagePrfUpdatePro")
@@ -236,7 +216,7 @@ public class MypageController {
 		public String mypageDeal(Model model, Item item) {
 			System.out.println("MypageController mypageOtherDeal Start...");
 			
-			String id = "kanghj";
+			String id = "kimjh";
 			item.setId(id);
 			
 			List<Item> mypageSellList = ms.mypageSellList(item);
@@ -244,6 +224,20 @@ public class MypageController {
 			model.addAttribute("mypageSellList", mypageSellList);
 			
 			return "mypageOtherDeal";
+		}
+		
+		// 남의 후기
+		@GetMapping("/mypageOtherComment")
+		public String mypageOtherComment(Model model, HttpServletRequest request, Reservation reservation) {
+			System.out.println("MypageController mypageOtherComment Start...");
+			
+			String id = "parkch";
+			reservation.setSessionId(id);
+			
+			List<Reservation> mypageOtherCommentList = ms.mypageCommentSelect(reservation);
+			model.addAttribute("mypageOtherCommentList", mypageOtherCommentList);
+			
+			return "mypageOtherComment";
 		}
 	
 	

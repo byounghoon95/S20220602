@@ -19,7 +19,8 @@
 					<!-- <img src="images/profile.jpg" class="profile_img" alt="..."> -->
 					<img src="${context}/itemImgs/${member.userImg }" class="profile_img" width="200" height="200" >
 					<p>
-					<a class="prfimgUpd_A" href="#">프로필 이미지 수정</a>
+					<!-- <span class="prfimgUpd_A" href="#">프로필 이미지 수정</span><br> -->
+					<input type="file" name="userImg" value="${member.userImg }">
 				</div>
 				
 				<div class="right_prf">
