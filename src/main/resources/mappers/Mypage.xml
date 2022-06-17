@@ -62,6 +62,16 @@
 	<update id="khjmypagePrfUpdate"  parameterType="Member">
 		update Member set nickname=#{nickname}, pw=#{pw}, email=#{email}, phone=#{phone}, locno=#{locno} where id=#{id}
 	</update>
+	
+	<select id="khjmypageCommentList" parameterType="Reservation" resultType="Reservation">
+        select r.dealcontent, r.id, m.nickname
+		from resdeal r, item i, member m
+		where i.itemno = r.itemno
+		and r.id = m.id
+		and i.id != r.id
+		and i.id=#{sessionId}
+		and dealcontent is not null
+	</select>
 
 	
 </mapper>

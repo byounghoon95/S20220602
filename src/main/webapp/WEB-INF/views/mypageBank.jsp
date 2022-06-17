@@ -22,9 +22,9 @@
 					
 					<div class="bank_box">
 						<div class="bank_left">
-							${nickname }님의 치즈마켓 이용 현황입니다<br><br>
-							<div><span class="banklist">총 판매건수</span><span class="bankresult">${totalSellCount }	&nbsp건</span></div>
-							<span class="banklist"><div>총 판매금액<span class="bankresult">${totalSellCost }	&nbsp원</span></div></span>
+							${nickname }님의 치즈마켓 이용 현황입니다<br><br><br>
+							<div class="bankrow"><div class="banklist">총 판매건수</div><div class="bankresult">${totalSellCount }	&nbsp</div>건</div>
+							<div class="bankrow"><div class="banklist">총 판매금액</div><div class="bankresult">${totalSellCost }	&nbsp</div>원</div>
 						</div>
 						<div class="bank_right">
 							<img id="character" alt="images/character.png" src="images/character.png">

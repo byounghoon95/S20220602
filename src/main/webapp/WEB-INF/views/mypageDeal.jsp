@@ -28,8 +28,10 @@
 									<ul class="faq-list">
 										<c:forEach var="buyList" items="${mypageBuyList }">
 											<li>
+											 <a class="item_detail" href="#">
 												<div class="card item" style="width: 18rem;">
-										          <img src="images/cheese.png" class="card-img-top" alt="...">
+										          <!-- <img src="images/cheese.png" class="card-img-top" alt="..."> -->
+										          <img src="${context}/itemImgs/${buyList.itemimg1 }" class="card-img-top" width="286" height="286" >
 										          <div class="card-body">
 										            <h5 class="card-title"><div class="card-itemTitle">${buyList.itemtitle }</div></h5>
 										            <p class="card-text">
@@ -60,6 +62,7 @@
 										            </div>
 										          </div>
 										        </div>
+										       </a>
 											</li>
 										</c:forEach>
 									</ul>
@@ -73,8 +76,10 @@
 									<ul class="faq-list">
 										<c:forEach var="sellList" items="${mypageSellList }">
 											<li>
+											  <a class="item_detail" href="#">
 												<div class="card item" style="width: 18rem;">
-										          <img src="images/cheese.png" class="card-img-top" alt="...">
+										          <!-- <img src="images/cheese.png" class="card-img-top" alt="..."> -->
+										          <img src="${context}/itemImgs/${sellList.itemimg1 }" class="card-img-top" width="286" height="286" >
 										          <div class="card-body">
 										            <h5 class="card-title"><div class="card-itemTitle">${sellList.itemtitle }</div></h5>
 										            <p class="card-text">
@@ -94,6 +99,7 @@
 										            </div>
 										          </div>
 										        </div>
+										      </a>
 											</li>
 										</c:forEach>
 									</ul>

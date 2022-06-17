@@ -25,7 +25,8 @@
 										<li>
 										  <a class="item_detail" href="#">
 											<div class="card item" style="width: 18rem;">
-									          <img src="images/cheese.png" class="card-img-top" alt="...">
+									          <!-- <img src="images/cheese.png" class="card-img-top" alt="..."> -->
+									          <img src="${context}/itemImgs/${wList.itemimg1 }" class="card-img-top" width="286" height="286" >
 									          <div class="card-body">
 									            <h5 class="card-title"><div class="card-itemTitle">${wList.itemtitle }</div></h5>
 									           

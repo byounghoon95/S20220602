@@ -90,3 +90,24 @@ body {
 #check_btn:hover {
   font-weight: bold;
 }
+.idchk{
+	color: rgb(253, 201, 0);
+	font-size: 0.7rem;
+	position: relative;
+	bottom: 23px;
+}
+.pwchk{
+	font-size: 0.7rem;
+	position: relative;
+	bottom: 23px;
+}
+.nicknamechk{
+	font-size: 0.7rem;
+	position: relative;
+	bottom: 23px;
+}
+.pwchk1{
+	font-size: 0.7rem;
+	position: relative;
+	bottom: 23px;
+}

@@ -14,7 +14,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col col-xl-10">
-            <img src="images/cheese.png" id="cheese" />
+			<img src="images/logo.png" id="logo" />
             <div class="card" style="border-radius: 1rem">
               <div class="row g-0">
                 <div class="col-md-6 col-lg-5 d-none d-md-block">
@@ -28,26 +28,31 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                 </div>
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                   <div class="card-body p-4 p-lg-5 text-black">
-                    <form action="memloginPro" method="post">
+                  
+                  <div class="adminpage"><a href="adminlogin" id="reg">
+                        <span id="admin_in">관리자</span>이신가요?</a>
+                   	</div>
+                  
+                    <form action="loginPro" method="post">
                       <div class="d-flex align-items-center mb-3 pb-1">
                         <i
                           class="fas fa-cubes fa-2x me-3"
                           style="color: #ff6219"
                         ></i>
                       </div>
-		
+
                       <div class="form-outline mb-4">
                         <label class="form-label" for="form2Example17"
                           >아이디</label
                         >
-                        <input type="text" id="input1" name="id"/>
+                        <input type="text" id="input1" name="id" required="required"/>
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label" for="form2Example27"
                           >패스워드</label
                         >
-                        <input type="password" id="input2" name="pw"/>
+                        <input type="password" id="input2" name="pw" required="required"/>
                       </div>
 
                       <div>
@@ -60,18 +65,19 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                         </button>
                       </div>
 
-                      <a href="/memregisterForm" id="reg"
+                      <a href="registerForm" id="reg"
                         >계정이 없습니까?
                         <span id="reg_in">회원가입</span>하세요</a
                       ><br />
                       <div class="mt-3">
-                        <a href="#!" class="last" id="last1" onclick="location.href='/memregisterForm'">회원가입</a>
+                        <a href="registerForm" class="last" id="last1">회원가입</a>
                         <span class="last">|</span>
-                        <a href="#!" class="last" id="last2">아이디찾기</a>
+                        <a href="idFind" class="last" id="last2">아이디찾기</a>
                         <span class="last">|</span>
-                        <a href="#!" class="last" id="last3">비밀번호찾기</a>
+                        <a href="pwForm" class="last" id="last3">비밀번호찾기</a>
                       </div>
                     </form>
+                    
                   </div>
                 </div>
               </div>

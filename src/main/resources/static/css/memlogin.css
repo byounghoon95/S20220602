@@ -49,10 +49,11 @@
   left: 20%;
   top: 7%;
 }
-#cheese {
-  width: 10%;
+#logo {
+  width: 30%;
   position: relative;
-  left: 46%;
+  left: 35%;
+  margin-bottom: 5%;
 }
 #login_btn {
   background-color: rgb(253, 201, 0);
@@ -69,13 +70,15 @@
   text-decoration: none;
   color: rgb(94, 94, 94);
   font-weight: bold;
+  font-size: 0.8rem;
 }
 #reg_in {
   color: rgb(253, 201, 0);
+  font-size: 0.8rem;
 }
 .last {
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   color: rgb(127, 127, 127);
 }
@@ -83,4 +86,16 @@
 #last2:hover,
 #last3:hover {
   color: rgb(253, 201, 0);
+}
+
+#admin_in{
+	color: rgb(75, 137, 220);
+}
+.adminpage{
+	float: right;
+	margin-bottom: 50px;
+}
+
+#member_in{
+	color: rgb(253, 201, 0);
 }

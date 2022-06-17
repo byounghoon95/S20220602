@@ -16,7 +16,9 @@
 		<div class="profile_box">
 			
 				<div class="left_prf">
-					<img src="images/profile.jpg" class="profile_img" alt="..."><p>
+					<!-- <img src="images/profile.jpg" class="profile_img" alt="..."> -->
+					<img src="${context}/itemImgs/${member.userImg }" class="profile_img" width="200" height="200" >
+					<p>
 					<a class="prfimgUpd_A" href="#">프로필 이미지 수정</a>
 				</div>
 				
@@ -25,7 +27,7 @@
 						
 						<div class="card-body p-4 p-lg-5 text-black">
 							
-								<form>
+								<form action="mypagePrfUpdatePro" method="post">
 									<div class="input_all">
 									
 									<span class="prf_name">${member.name } &nbsp&nbsp ${member.id }</span>
@@ -63,7 +65,7 @@
 										<div class="form-outline mb-4">
 											<label class="form-label" for="form2Example27">지역</label>
 											<select name="locno" class="input">
-												<option value="${member.locno }" selected disabled hidden>지역을
+												<option value="locno" selected disabled hidden>지역을
 													선택해주세요</option>
 												<option value="1101">강남구</option>
 												<option value="1102">강동구</option>
@@ -93,8 +95,8 @@
 											</select>
 										</div>
 										<div>
-											<button class="btn btn-lg btn-block" type="button"
-												id="login_btn" onclick="location.href='/mypagePrfUpdatePro'">수정완료</button>
+											<button class="btn btn-lg btn-block" type="submit"
+												id="login_btn">수정완료</button>
 										</div>
 									</div>
 								</form>

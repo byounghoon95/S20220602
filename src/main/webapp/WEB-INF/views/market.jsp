@@ -37,9 +37,12 @@
                 <div class="col-lg-6 order-lg-2">
                     <div class="p-5">
                     	<h3 class="display-4">치즈 마켓</h3>
+                    	<div class="market_notice">
 						<p>필요한 중고 물품을 주변에서 쉽게 구해봐요 !</p>
 						<p>언제 어디서나 쉽고 편하게~</p>
-						<p>함께해요 치즈마켓 :D</p><br><br>
+						<p>함께해요 치즈마켓 :D</p>
+						</div>
+						<br><br>
                         <button type="button" class="btn btn-warning sellbtn" id="start">내 물건 팔기</button>
                       </div>
                 </div>
@@ -73,7 +76,8 @@
 							<li class="li_item">
 							  <a class="item_detail" href="#">
 								<div class="card item" style="width: 18rem;">
-						          <img src="images/cheese.png" class="card-img-top" alt="...">
+						         <!--  <img src="images/cheese.png" class="card-img-top" alt="..."> -->
+						          <img src="${context}/itemImgs/${bestList.itemimg1 }" class="card-img-top" width="286" height="286" >
 						         <%--  <img src="<%=context %>/fileSave/${bestList.img_path}" class="card-img-top"> --%>
 						          <div class="card-body">
 						            <h5 class="card-title"><div class="card-itemTitle">${bestList.itemtitle }</div></h5>
@@ -118,7 +122,8 @@
 									<li class="li_item">
 									  <a class="item_detail" href="#">
 										<div class="card item" style="width: 18rem;">
-								          <img src="images/cheese.png" class="card-img-top" alt="...">
+								          <!-- <img src="images/cheese.png" class="card-img-top" alt="..."> -->
+								          <img src="${context}/itemImgs/${allList.itemimg1 }" class="card-img-top" width="286" height="286" >
 								          <div class="card-body">
 								            <h5 class="card-title"><div class="card-itemTitle">${allList.itemtitle }</div></h5>
 								            

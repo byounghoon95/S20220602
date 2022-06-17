@@ -24,6 +24,8 @@
 </c:otherwise>
 </c:choose>
 
+<link href="css/board.css" rel="stylesheet" />
+
 <body>
 	<!-- Content section 1-->
 	<section id="scroll">

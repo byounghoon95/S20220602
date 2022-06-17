@@ -38,4 +38,7 @@ public class Board {
 	private String search;   	private String keyword;
 	private String pageNum;  
 	private int start; 		 	private int end;
+	
+	//session id
+	private String sessionId;
 }

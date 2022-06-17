@@ -26,9 +26,11 @@ public class Member {
 	
 	//join
 	private String content;
+	
+	private int chk;
 
 
-	private String userimg;
+//	private String userimg;
 	
 
 }

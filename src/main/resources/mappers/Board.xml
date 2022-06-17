@@ -21,7 +21,7 @@
 	
 	<insert id="lbhBoardWrite" parameterType="Board">
 		insert into Board values
-		(board_seq.nextval,'leebh',#{boardtitle},#{boardcontent},sysdate,0,
+		(board_seq.nextval,#{sessionId},#{boardtitle},#{boardcontent},sysdate,0,
 		0,board_seq.currval,0,0,'N',400,401)
 	</insert>
 	
@@ -34,7 +34,7 @@
 	</update>
 	
 	<insert id="lbhReplyWrite" parameterType="Board">
-		insert into Board values(board_seq.nextval,'leebh','댓글',#{boardcontent},sysdate,0,
+		insert into Board values(board_seq.nextval,#{sessionId},'댓글',#{boardcontent},sysdate,0,
 		0,#{ref},#{ref_step}+1,#{ref_level}+1,'N',400,401)
 	</insert>
 	
@@ -51,6 +51,10 @@
 	
 	<select id="lbhboardReplyList" parameterType="int" resultType="Board">
 		select * from Board b, Member m where b.id=m.id and ref=#{ref} and ref_step>0 order by ref_step desc, ref_level desc
+	</select>
+	
+	<select id="lbhboardReplycnt" parameterType="int" resultType="int">
+		select count(*) from Board b, Member m where b.id=m.id and ref=#{ref} and ref_step>0 order by ref_step desc
 	</select>
 	
 	<select id="lbhReplyOne" parameterType="int" resultType="Board">

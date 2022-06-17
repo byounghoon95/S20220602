@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.oracle.S20220602.common.domain.Board;
 import com.oracle.S20220602.common.domain.Item;
 import com.oracle.S20220602.common.domain.Member;
+import com.oracle.S20220602.common.domain.Reservation;
 import com.oracle.S20220602.khj.repository.MypageRepository;
 
 @Service
@@ -86,12 +87,28 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public int mypagePrfUpdatePro(Member member) {
-		System.out.println("MypageServiceImpl mypagePrfUpdatePro Start...");
+	public int mypagePrfUpdate(Member member) {
+		System.out.println("MypageServiceImpl mypagePrfUpdate Start...");
 		int result = 0;
 		result = mypageRepository.mypagePrfUpdate(member);
 		return result;
 	}
+
+	@Override
+	public List<Reservation> mypageCommentSelect(Reservation reservation) {
+		System.out.println("MypageServiceImpl mypageCommentSelect ...");
+		List<Reservation> mypageCommentSelect = null;
+		mypageCommentSelect = mypageRepository.mypageCommentSelect(reservation);
+		return mypageCommentSelect;
+	}
+	
+//	@Override
+//	public int mypagePrfUpdatePro(Member member) {
+//		System.out.println("MypageServiceImpl mypagePrfUpdatePro Start...");
+//		int result = 0;
+//		result = mypageRepository.mypagePrfUpdate(member);
+//		return result;
+//	}
 
 
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.Reservation">
+	<select id="pjhReservationList" parameterType="Item" resultType="Item">
+        <![CDATA[
+		    SELECT i.itemtitle, i.itemcost, i.itemview, i.itemwish, i.itemimg1,  b.resloc, i.itemno
+			FROM item i,(select a.* from (select * from resdeal where id=#{sessionId} ) a) b, common c, member m
+			WHERE i.itemno = b.itemno 
+			AND i.id = m.id
+			AND m.locno = c.mcd
+			
+	 	]]>
+	</select>
+	
+	<select id="pjhReservItemCount" resultType="int">
+     SELECT count(*) FROM resdeal
+    </select>
+	
+	<insert id="pjhReservation" parameterType="Reservation">
+		insert into resdeal values
+		( #{itemno}, #{sessionId}, #{resdate}, #{restime}, #{resloc},'',0 ,500 ,501 ,600 ,0)
+	</insert>
+	<!-- 판매중에서 ~ 예약중으로  -->	
+	<update id="pjhResCondition" parameterType="Reservation">
+		update item set smcd=202 where itemno=#{itemno}
+	</update>
+    
+    <select id="pjhReservationDetail" parameterType="int" resultType="Reservation">
+    		select *
+			from resdeal
+			where itemno=#{itemno }
+    </select>
+	
+	<update id="pjhreservationUpdate" parameterType="Reservation">
+		update resdeal set resdate=#{resdate}, restime=#{restime}, resloc=#{resloc} where itemno=#{itemno}
+	</update>
+	
+	<delete id="pjhreservationDelete">
+		delete from resdeal where itemno=#{itemno}
+	</delete>
+	
+</mapper>

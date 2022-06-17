@@ -10,10 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.oracle.S20220602.common.domain.Board;
 import com.oracle.S20220602.common.domain.Item;
 import com.oracle.S20220602.common.domain.Member;
+import com.oracle.S20220602.common.domain.Reservation;
 import com.oracle.S20220602.khj.service.MypageService;
 import com.oracle.S20220602.lbh.service.BoardService;
 import com.oracle.S20220602.lbh.service.Paging;
@@ -24,7 +26,8 @@ public class MypageController {
 	private MypageService ms;
 	
 	// 마이페이지
-	@GetMapping("/mypage")
+//	@GetMapping("/mypage")
+	@RequestMapping(value = "/mypage")
 	public String mypage(Model model, HttpServletRequest request, Member member) {
 		System.out.println("MypageController mypage Start...");
 		String id = null;
@@ -41,6 +44,20 @@ public class MypageController {
 		return "mypage";
 	}
 	
+	// 프로필 수정
+//	@GetMapping("/mypagePrfUpdate")
+//	public String mypagePrfUpdate(HttpServletRequest request, Model model, Member member) {
+//		System.out.println("MypageController mypagePrfUpdate Start...");
+//		// 세션에서 id 가져오기
+//		HttpSession session = request.getSession();
+//		String id = (String) session.getAttribute("id");
+//		member.setId(id);
+//		model.addAttribute("id",id); 
+//		
+//		return "mypagePrfUpdate";
+//	}
+	
+	
 	// 프로필 수정폼
 	@GetMapping("/mypagePrfUpdate")
 	public String mypagePrfUpdate(HttpServletRequest request, Model model, Member member) {
@@ -55,16 +72,32 @@ public class MypageController {
 		return "mypagePrfUpdate";
 		
 	}
-	
+		
 	// 프로필 업데이트
-	@PostMapping(value="/mypagePrfUpdatePro")
+//	@PostMapping(value="/mypagePrfUpdatePro")
+//	public String mypagePrfUpdatePro(HttpServletRequest request, Model model, Member member) {
+//		System.out.println("MypageController mypagePrfUpdatePro Start...");
+//		int result = ms.mypagePrfUpdatePro(member);
+//		model.addAttribute("result", result);
+//		return "mypagePrfUpdatePro";
+//	}
+	
+	
+	@PostMapping("/mypagePrfUpdatePro")
 	public String mypagePrfUpdatePro(HttpServletRequest request, Model model, Member member) {
 		System.out.println("MypageController mypagePrfUpdatePro Start...");
-		int result = ms.mypagePrfUpdatePro(member);
+		// 세션에서 id 가져오기
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		member.setId(id);
+		
+		int result = ms.mypagePrfUpdate(member); 
 		model.addAttribute("result", result);
-		return "mypagePrfUpdatePro";
+		
+//		member = ms.mypagePrfUpdate(id);
+		model.addAttribute("member", member);
+		return "forward:mypage";
 	}
-	
 	
 	
 	// 내가 작성한 글 
@@ -78,6 +111,7 @@ public class MypageController {
 		board.setId(id);
 		
 		List<Board> mypageBoardList = ms.mypageBoardSelect(board);
+		
 		System.out.println("MypageController mypageBoardList boardList.size()->"+mypageBoardList.size());
 		
 		model.addAttribute("mypageBoardList", mypageBoardList);
@@ -145,6 +179,72 @@ public class MypageController {
 		
 		return "mypageBank";
 	}
+	
+	// 받은 후기
+	@GetMapping("/mypageComment")
+	public String mypageComment(Model model, HttpServletRequest request, Reservation reservation) {
+		System.out.println("MypageController mypageComment Start...");
+		
+		// 세션에서 id 가져오기
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		reservation.setSessionId(id);
+		
+		List<Reservation> mypageCommentList = ms.mypageCommentSelect(reservation);
+		model.addAttribute("mypageCommentList", mypageCommentList);
+		
+		return "mypageComment";
+	}
+	
+	
+	@GetMapping("/mypageOther")
+	public String mypageOther(Model model, HttpServletRequest request, Member member) {
+		System.out.println("MypageController mypage Start...");
+		String id = "kimjh";
+		
+		model.addAttribute("id", id);
+		
+		String memberLocName = ms.memberLocNameSelect(id);
+		member = ms.memberMypage(id);
+		model.addAttribute("member", member);
+		model.addAttribute("memberLocName", memberLocName);
+		return "mypageOther";
+	}
+	
+	
+	
+	// 남의 글 보기
+	@GetMapping("/mypageOtherBoard")
+	public String mypageOtherBoard(Model model, Board board) {
+		
+		System.out.println("MypageController mypageBoard Start...");
+		
+		String id = "kimjh";
+		board.setId(id);
+		
+		List<Board> mypageBoardList = ms.mypageBoardSelect(board);
+		System.out.println("MypageController mypageBoardList boardList.size()->"+mypageBoardList.size());
+		
+		model.addAttribute("mypageBoardList", mypageBoardList);
+		
+		return "mypageOtherBoard";
+	}
+	
+	
+	// 남의 판매내역
+		@GetMapping("/mypageOtherDeal")
+		public String mypageDeal(Model model, Item item) {
+			System.out.println("MypageController mypageOtherDeal Start...");
+			
+			String id = "kanghj";
+			item.setId(id);
+			
+			List<Item> mypageSellList = ms.mypageSellList(item);
+			System.out.println("MypageController mypageDeal mypageSellList.size()->"+mypageSellList.size());
+			model.addAttribute("mypageSellList", mypageSellList);
+			
+			return "mypageOtherDeal";
+		}
 	
 	
 }

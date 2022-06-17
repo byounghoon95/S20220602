@@ -47,5 +47,9 @@ public class Item {
 	
 	// 거래테이블 조인
 	private String dealcontent;
+	private String resloc;
+	
+	// 세션아이디
+	private String sessionId;
  
 }

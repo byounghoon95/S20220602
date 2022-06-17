@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="css/main.css" rel="stylesheet" />
+
 <meta charset="UTF-8">
 <title>Cheese Market</title>
 </head>
@@ -21,16 +21,8 @@
 	<%@ include file="header_mem.jsp"%>
 </c:otherwise>
 </c:choose>
+<link href="css/main.css" rel="stylesheet" />
 
-<%-- <!-- header -->
-<c:choose>
-<c:when test="${input_id == null }">
-	<%@ include file="header.jsp"%>
-</c:when>
-<c:otherwise>
-	<%@ include file="header_mem.jsp"%>
-</c:otherwise>
-</c:choose> --%>
 
 
 <body>

@@ -34,7 +34,7 @@
     <div class="container d-flex flex-row justify-content-end welcome">
       <i class="fa-regular fa-bell"></i
       ><span id="welcome">${nickname }님 환영합니다!</span
-      ><a id="logout" href="/memlogout">Logout</a>
+      ><a id="logout" href="/logout">Logout</a>
     </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">

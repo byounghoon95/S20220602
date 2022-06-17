@@ -56,15 +56,29 @@ public class BoardController {
 	}
 	// 글 작성하기 클릭 후 새글 작성 페이지로 이동
 	@GetMapping("/boardWriteForm")
-	public String boardWriteForm(String id, Model model) {
+	public String boardWriteForm(String id, Model model, HttpServletRequest request) {
 		System.out.println("BoardController boardWriteForm Start...");
 //		model.addAttribute("id",id); id 넘길 것으로 예상
+		
+		// 세션에서 id 가져오기
+		HttpSession session = request.getSession();
+		id = (String) session.getAttribute("id");
+		System.out.println("BoardController boardWriteForm id->"+id);
+		model.addAttribute("id",id); 
+		
 		return "boardWriteForm";
 	}
 	// 글 등록 후 board 페이지로 전환
 	@GetMapping("/boardWrite")
-	public String boardWrite(Board board, Model model) {
+	public String boardWrite(Board board, Model model, HttpServletRequest request) {
 		System.out.println("BoardController boardWrite Start...");
+		
+		// 세션에서 id 가져오기
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		board.setSessionId(id);
+		System.out.println("BoardController boardWrite id->"+id);
+		
 		int result = bs.boardWrite(board);
 		model.addAttribute("result",result);
 		return "boardWritePro";
@@ -73,10 +87,12 @@ public class BoardController {
 	public String boardDetail(int boardno, Model model) {
 		System.out.println("BoardController boardDetail Start...");
 		List<Board> boardReplyList = null;
+		int replycnt = bs.boardReplyCnt(boardno);
 		Board board = bs.boardDetail(boardno);
 		boardReplyList = bs.boardReplyList(board.getRef());
 		model.addAttribute("boardReplyList",boardReplyList);
 		model.addAttribute("board",board);
+		model.addAttribute("replycnt",replycnt);
 		return "boardDetail";
 	}
 	
@@ -107,8 +123,15 @@ public class BoardController {
 	}
 	//리뷰
 	@GetMapping("/reply")
-	public String reply(Board board, Model model, String comment) {
+	public String reply(Board board, Model model, String comment, HttpServletRequest request) {
 		System.out.println("BoardController reply Start...");
+		
+		// 세션에서 id 가져오기
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		board.setSessionId(id);
+		System.out.println("BoardController reply id->"+id);
+		
 		board.setBoardcontent(comment);
 		int result = bs.boardReply(board);
 		model.addAttribute("result",result);

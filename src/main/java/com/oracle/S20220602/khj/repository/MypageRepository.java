@@ -5,6 +5,7 @@ import java.util.List;
 import com.oracle.S20220602.common.domain.Board;
 import com.oracle.S20220602.common.domain.Item;
 import com.oracle.S20220602.common.domain.Member;
+import com.oracle.S20220602.common.domain.Reservation;
 
 public interface MypageRepository {
 
@@ -16,6 +17,8 @@ public interface MypageRepository {
 	List<Item> mypageSellSelect(Item item);
 	int totalSellCount(Item item);
 	int totalSellCost(Item item);
+//	int mypagePrfUpdate(Member member);
 	int mypagePrfUpdate(Member member);
+	List<Reservation> mypageCommentSelect(Reservation reservation);
 
 }

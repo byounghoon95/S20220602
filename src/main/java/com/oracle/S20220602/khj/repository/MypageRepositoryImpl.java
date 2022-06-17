@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.oracle.S20220602.common.domain.Board;
 import com.oracle.S20220602.common.domain.Item;
 import com.oracle.S20220602.common.domain.Member;
+import com.oracle.S20220602.common.domain.Reservation;
 
 @Repository
 public class MypageRepositoryImpl implements MypageRepository {
@@ -136,12 +137,26 @@ public class MypageRepositoryImpl implements MypageRepository {
 		System.out.println("MypageRepositoryImpl mypagePrfUpdate Start...");
 		int result = 0;
 		try {
-			System.out.println("id -> " + member.getId());
+			System.out.println("MypageRepositoryImpl mypagePrfUpdate id -> " + member.getId());
 			result = session.update("khjmypagePrfUpdate", member);
 		}catch (Exception e) {
 			System.out.println("MypageRepositoryImpl mypagePrfUpdate Exception -> " + e.getMessage());
 		}
 		return result;
+	}
+
+
+	@Override
+	public List<Reservation> mypageCommentSelect(Reservation reservation) {
+		List<Reservation> mypageListComment = null;
+		System.out.println("MypageRepositoryImpl mypageCommentSelect start...");
+		try {
+			mypageListComment = session.selectList("khjmypageCommentList",reservation);
+			System.out.println("MypageRepositoryImpl mypageCommentSelect listBoard.size() -> " + mypageListComment.size());
+		} catch (Exception e) {
+			System.out.println("MypageRepositoryImpl mypageCommentSelect Exception->"+e.getMessage());
+		}
+		return mypageListComment;
 	}
 
 

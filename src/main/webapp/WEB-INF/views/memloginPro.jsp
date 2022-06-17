@@ -18,7 +18,7 @@
 <c:otherwise>
 	<script type="text/javascript">
 		alert("로그인에 실패했습니다.");
-		location.href="/memlogin";
+		location.href="login";
 	</script>
 </c:otherwise>
 </c:choose>
