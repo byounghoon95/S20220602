@@ -1,0 +1,70 @@
+body {
+  background-color: rgb(240, 240, 241);
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.input:focus,
+.input:focus {
+  border-color: #ffc107;
+  outline-color: #ffc107;
+}
+.input_all {
+  margin: 0 auto;
+  position: relative;
+  left: 45%;
+}
+
+#character {
+  width: 60%;
+  position: relative;
+  left: 20%;
+  top: 7%;
+}
+#logo {
+  width: 30%;
+  position: relative;
+  left: 35%;
+  margin-bottom: 5%;
+}
+#email_btn {
+  background-color: rgb(253, 201, 0);
+  color: white;
+  width: 23%;
+}
+#verify_btn {
+  background-color: rgb(253, 201, 0);
+  color: white;
+  width: 23%;
+}
+#check_btn:hover {
+  font-weight: bold;
+}
+#pw_btn {
+  background-color: rgb(253, 201, 0);
+  color: white;
+  width: 100%;
+}
+#verify_input,
+#email_input{
+	margin-right: 1%;
+	width: 78%;
+}
+.verify_text{
+	font-size: 0.7rem;
+}

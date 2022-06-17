@@ -151,5 +151,16 @@ public class BoardRepositoryImpl implements BoardRepository{
 		}
 		return board;
 	}
+	@Override
+	public int boardReplyCnt(int boardno) {
+		System.out.println("BoardRepositoryImpl boardReplyCnt Start");
+		int cnt = 0;
+		try {
+			cnt = session.selectOne("lbhboardReplycnt",boardno);
+		}catch (Exception e) {
+			System.out.println("BoardRepositoryImpl boardReplyCnt Exception -> " + e.getMessage());
+		}
+		return cnt;
+	}
 	
 }

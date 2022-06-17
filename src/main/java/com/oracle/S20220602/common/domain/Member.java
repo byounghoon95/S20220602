@@ -21,5 +21,10 @@ public class Member {
 	private int warningcnt;
 	private int bcd;
 	private int mcd;
+	private int chk;
+	
+	//buffer
+	private String temppw;
+	
 	
 }

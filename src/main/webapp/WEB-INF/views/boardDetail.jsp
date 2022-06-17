@@ -62,70 +62,50 @@
 
 
 		<form action="reply">
-			<p>댓글&nbsp4</p>
+			<p>댓글&nbsp${replycnt }</p>
 			<!-- 상세글 출력 -->
 			<c:forEach var="brList" items="${boardReplyList }">
-				<!-- 답변쓰기 했을 때 전체가 다 안열리고 하나씩만 열리게끔 하는 로직, i -> default는 0 -->
 				<c:set var="i" value="${i + 1 }" />
 				<c:choose>
-					<c:when
-						test="${board.nickname eq brList.nickname && brList.ref_level eq 1}">
+					<c:when test="${board.nickname eq brList.nickname}">
 						<div class="comment">
 							<h6>${brList.nickname }&nbsp&nbsp<img
 									src="images/writer.png" id="writer" />
 							</h6>
 							${brList.boardcontent }
-							<p>
-								<span id="comment_reply" data-bs-toggle="collapse"
-									href="#collapseExample${i }" role="button"
-									aria-expanded="false" aria-controls="collapseExample">답글쓰기</span>
-							</p>
-							<div class="collapse" id="collapseExample${i }">
-								<input type="text" id="comment_input" name="comment"
-									placeholder="${brList.nickname }에게 답글달기" />
-								<div class="d-flex justify-content-end">
-									<button type="submit" id="register">등록</button>
-								</div>
+						</div>
+						<p>
+							<span id="reply_update" data-bs-toggle="collapse"
+								href="#collapseExample${i }" role="button" aria-expanded="false"
+								aria-controls="collapseExample">수정</span>
+							<span id="reply_delete" href="#collapseExample${i }">삭제</span>
+						</p>
+						<div class="collapse" id="collapseExample${i }">
+							<input type="text" id="comment_input" name="update"
+								value="${brList.boardcontent }" />
+							<div class="d-flex justify-content-end">
+								<button type="button" id="update" name="update">수정</button>
 							</div>
 						</div>
 						<hr />
 					</c:when>
-					<c:when
-						test="${board.nickname eq brList.nickname && brList.ref_level > 1}">
-						<div class="comment1">
-							<h6>${brList.nickname }&nbsp&nbsp<img
-									src="images/writer.png" id="writer" />
-							</h6>
-							${brList.boardcontent }
-						</div>
-						<hr />
-					</c:when>
-					<c:when
-						test="${board.nickname ne brList.nickname && brList.ref_level eq 1}">
+					<c:when test="${board.nickname ne brList.nickname}">
 						<div class="comment">
 							<h6>${brList.nickname }&nbsp&nbsp</h6>
 							${brList.boardcontent }
-							<p>
-								<span id="comment_reply" data-bs-toggle="collapse"
-									href="#collapseExample${i }" role="button"
-									aria-expanded="false" aria-controls="collapseExample">
-									답글쓰기 </span>
-							</p>
-							<div class="collapse" id="collapseExample${i }">
-								<input type="text" id="comment_input" name="comment"
-									placeholder="${brList.nickname }에게 답글달기" />
-								<div class="d-flex justify-content-end">
-									<button type="submit" id="register">등록</button>
-								</div>
-							</div>
 						</div>
-						<hr />
-					</c:when>
-					<c:when
-						test="${board.nickname ne brList.nickname && brList.ref_level > 1}">
-						<div class="comment1">
-							<h6>${brList.nickname }&nbsp&nbsp</h6>
-							${brList.boardcontent }
+						<p>
+							<span id="reply_update" data-bs-toggle="collapse"
+								href="#collapseExample${i }" role="button" aria-expanded="false"
+								aria-controls="collapseExample">수정</span>
+							<span id="reply_delete" href="#collapseExample${i }">삭제</span>
+						</p>
+						<div class="collapse" id="collapseExample${i }">
+							<input type="text" id="comment_input" name="update"
+								value="${brList.boardcontent }" />
+							<div class="d-flex justify-content-end">
+								<button type="submit" id="update">수정</button>
+							</div>
 						</div>
 						<hr />
 					</c:when>

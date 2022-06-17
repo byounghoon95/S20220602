@@ -6,8 +6,8 @@
   width: 30%;
   border-right: 1px solid #ddd;
 }
-#photo{
-	border-radius: 70%;
+#photo {
+  border-radius: 70%;
 }
 .inbox_msg {
   border: 1px solid #ddd;
@@ -28,7 +28,6 @@
   display: inline-block;
   text-align: right;
   width: 60%;
-  padding: ;
 }
 
 .headind_srch {
@@ -110,7 +109,7 @@
   border-bottom: 1px solid #ddd;
   margin: 0;
   padding: 18px 16px 10px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .inbox_chat {
@@ -163,8 +162,9 @@
   float: left;
   padding: 30px 15px 0 25px;
   width: 70%;
-}#recent{
-	color: #ffc107;
+}
+#recent {
+  color: #ffc107;
 }
 .sent_msg p {
   background: #ffc107;
@@ -222,4 +222,40 @@
 .msg_history {
   height: 516px;
   overflow-y: auto;
+}
+
+.item_detail {
+  text-decoration: none;
+  color: black;
+}
+
+.item_boxbottom {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 10px;
+}
+li {
+  list-style: none;
+}
+.card_item {
+  margin: 0 auto;
+  margin-top: 20%;
+}
+.itembtn {
+  background-color: #ffc107;
+  color: white;
+}
+.itembtn:hover {
+  background-color: #ffc107;
+  color: white;
+  font-weight: bold;
+}
+
+.card-body {
+  text-align: center;
+}
+.card-itemTitle {
+  font-weight: bold;
+  font-size: 1.5rem;
 }

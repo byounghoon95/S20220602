@@ -7,14 +7,14 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
 integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="css/hf_before.css" rel="stylesheet" />
-    <link href="css/login.css" rel="stylesheet" />
+    <link href="css/memlogin.css" rel="stylesheet" />
 <title>Insert title here</title>
  <body>
     <section class="vh-100">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col col-xl-10">
-            <img src="images/cheese.png" id="cheese" />
+			<img src="images/logo.png" id="logo" />
             <div class="card" style="border-radius: 1rem">
               <div class="row g-0">
                 <div class="col-md-6 col-lg-5 d-none d-md-block">
@@ -40,14 +40,14 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                         <label class="form-label" for="form2Example17"
                           >아이디</label
                         >
-                        <input type="text" id="input1" name="id"/>
+                        <input type="text" id="input1" name="id" required="required"/>
                       </div>
 
                       <div class="form-outline mb-4">
                         <label class="form-label" for="form2Example27"
                           >패스워드</label
                         >
-                        <input type="password" id="input2" name="pw"/>
+                        <input type="password" id="input2" name="pw" required="required"/>
                       </div>
 
                       <div>
@@ -60,16 +60,16 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                         </button>
                       </div>
 
-                      <a href="#!" id="reg"
+                      <a href="registerForm" id="reg"
                         >계정이 없습니까?
                         <span id="reg_in">회원가입</span>하세요</a
                       ><br />
                       <div class="mt-3">
-                        <a href="#!" class="last" id="last1">회원가입</a>
+                        <a href="registerForm" class="last" id="last1">회원가입</a>
                         <span class="last">|</span>
-                        <a href="#!" class="last" id="last2">아이디찾기</a>
+                        <a href="idFind" class="last" id="last2">아이디찾기</a>
                         <span class="last">|</span>
-                        <a href="#!" class="last" id="last3">비밀번호찾기</a>
+                        <a href="pwForm" class="last" id="last3">비밀번호찾기</a>
                       </div>
                     </form>
                   </div>

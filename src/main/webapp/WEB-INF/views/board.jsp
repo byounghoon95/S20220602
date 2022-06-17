@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="board_header.jsp" %>
+<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
+<link href="css/board.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>Cheese Board</title>
 </head>
@@ -79,6 +80,6 @@
 		</section>
 	</div>
 	<!-- End Frequenty Asked Questions Section -->
-<%@ include file="board_footer.jsp" %>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

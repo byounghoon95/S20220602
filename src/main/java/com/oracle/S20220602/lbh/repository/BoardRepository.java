@@ -15,4 +15,5 @@ public interface BoardRepository {
 	int boardDelete(Board board);
 	List<Board> boardReplyList(int ref);
 	Board boardReplyOne(int boardno);
+	int boardReplyCnt(int boardno);
 }

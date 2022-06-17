@@ -54,10 +54,12 @@ public class BoardController {
 	public String boardDetail(int boardno, Model model) {
 		System.out.println("BoardController boardDetail Start...");
 		List<Board> boardReplyList = null;
+		int replycnt = bs.boardReplyCnt(boardno);
 		Board board = bs.boardDetail(boardno);
 		boardReplyList = bs.boardReplyList(board.getRef());
 		model.addAttribute("boardReplyList",boardReplyList);
 		model.addAttribute("board",board);
+		model.addAttribute("replycnt",replycnt);
 		return "boardDetail";
 	}
 	
@@ -90,6 +92,17 @@ public class BoardController {
 	@GetMapping("/reply")
 	public String reply(Board board, Model model, String comment) {
 		System.out.println("BoardController reply Start...");
+		board.setBoardcontent(comment);
+		int result = bs.boardReply(board);
+		model.addAttribute("result",result);
+		model.addAttribute("board",board);
+		return "boardReplyPro";
+	}
+	//리뷰 수정
+	@GetMapping("/replyUpdate")
+	public String replyUpdate(Board board, Model model, String comment) {
+		System.out.println("BoardController replyUpdate Start...");
+		
 		board.setBoardcontent(comment);
 		int result = bs.boardReply(board);
 		model.addAttribute("result",result);
