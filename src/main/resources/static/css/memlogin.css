@@ -85,3 +85,32 @@
 #last3:hover {
   color: rgb(253, 201, 0);
 }
+  font-size: 0.8rem;
+}
+#reg_in {
+  color: rgb(253, 201, 0);
+  font-size: 0.8rem;
+}
+.last {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(127, 127, 127);
+}
+#last1:hover,
+#last2:hover,
+#last3:hover {
+  color: rgb(253, 201, 0);
+}
+
+#admin_in{
+	color: rgb(75, 137, 220);
+}
+.adminpage{
+	float: right;
+	margin-bottom: 50px;
+}
+
+#member_in{
+	color: rgb(253, 201, 0);
+}

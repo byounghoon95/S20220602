@@ -32,7 +32,6 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberRepository.register(member);
 		return result;
 	}
-
 	@Override
 	public int idCheck(Member member) {
 		int result = 0;

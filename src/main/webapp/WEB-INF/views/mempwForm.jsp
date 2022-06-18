@@ -62,7 +62,7 @@ $(document).ready(function(){
 			 				success:function(data){
 			 					console.log("data.temppw -> " + data.temppw);
 			 					console.log("verify_input -> " + verify_input);
-			 					if(data.temppw == verify_input){
+			 					if(data.temppw ==  verify_input){
 			 						$(".verify_text").html("인증에 성공했습니다").css('color','green');
 			 					}else{
 			 						$(".verify_text").html("인증에 실패했습니다").css('color','rgb(253, 201, 0)');

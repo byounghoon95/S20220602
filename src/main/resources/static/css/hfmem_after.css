@@ -66,10 +66,21 @@ footer {
 /* hf_before 수정 */
 .fixed-top {
   position: fixed;
-  top: 3vh;
+  top: 2.5vh;
   right: 0;
   left: 0;
   z-index: 1030;
+}
+.fixed-top1 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  background-color: white;
+}
+.wrap_all{
+	 background-color: white;
 }
 .navbar-custom {
   padding-bottom: 1rem;
@@ -98,3 +109,12 @@ footer {
   text-decoration: none;
   color: rgb(127, 127, 127);
 }
+
+
+.customer{
+	display: flex;
+}
+.customer_phone{
+	color: rgb(253, 201, 0);
+}
+

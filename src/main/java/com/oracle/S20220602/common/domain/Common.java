@@ -6,7 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Common {
+
    private int bcd;
    private int mcd;
    private String content;
+	
 }

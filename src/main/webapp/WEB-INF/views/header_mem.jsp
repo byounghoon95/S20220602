@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
+
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -29,10 +30,12 @@
   </head>
   <body id="page-top">"src/main/resources/static/css/hf_before.css"
     <!-- Navigation-->
+    <div class="fixed-top1">
     <div class="container d-flex flex-row justify-content-end welcome">
       <i class="fa-regular fa-bell"></i
-      ><span id="welcome">치도리님 환영합니다!</span
-      ><a id="logout" href="#">Logout</a>
+      ><span id="welcome">${nickname }님 환영합니다!</span
+      ><a id="logout" href="/logout">Logout</a>
+    </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
       <div class="container px-5">
@@ -79,5 +82,6 @@
       </div>
     </nav>
     <div id="blank"></div>
+    
   </body>
 </html>

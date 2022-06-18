@@ -87,7 +87,6 @@ public class BoardServiceImpl implements BoardService{
 		Board board = boardRepository.boardReplyOne(boardno);
 		return board;
 	}
-
 	@Override
 	public int boardReplyCnt(int boardno) {
 		System.out.println("BoardServiceImpl boardReplyCnt Start");

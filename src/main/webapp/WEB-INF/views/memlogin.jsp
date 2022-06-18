@@ -72,6 +72,56 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                         <a href="pwForm" class="last" id="last3">비밀번호찾기</a>
                       </div>
                     </form>
+					<!-- admin 추가 부분 -->                  
+                  <div class="adminpage"><a href="adminlogin" id="reg">
+                        <span id="admin_in">관리자</span>이신가요?</a>
+                   	</div>
+                  
+                    <form action="loginPro" method="post">
+                      <div class="d-flex align-items-center mb-3 pb-1">
+                        <i
+                          class="fas fa-cubes fa-2x me-3"
+                          style="color: #ff6219"
+                        ></i>
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form2Example17"
+                          >아이디</label
+                        >
+                        <input type="text" id="input1" name="id" required="required"/>
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form2Example27"
+                          >패스워드</label
+                        >
+                        <input type="password" id="input2" name="pw" required="required"/>
+                      </div>
+
+                      <div>
+                        <button
+                          class="btn btn-lg btn-block"
+                          type="submit"
+                          id="login_btn"
+                        >
+                          	로그인
+                        </button>
+                      </div>
+
+                      <a href="registerForm" id="reg"
+                        >계정이 없습니까?
+                        <span id="reg_in">회원가입</span>하세요</a
+                      ><br />
+                      <div class="mt-3">
+                        <a href="registerForm" class="last" id="last1">회원가입</a>
+                        <span class="last">|</span>
+                        <a href="idFind" class="last" id="last2">아이디찾기</a>
+                        <span class="last">|</span>
+                        <a href="pwForm" class="last" id="last3">비밀번호찾기</a>
+                      </div>
+                    </form>
+                    <!-- admin 추가 부분 삭제가능 --> 
                   </div>
                 </div>
               </div>

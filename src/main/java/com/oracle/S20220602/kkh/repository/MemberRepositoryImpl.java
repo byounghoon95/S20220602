@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import com.oracle.S20220602.common.domain.Common;
 import com.oracle.S20220602.common.domain.Member;
+
 @Repository
 public class MemberRepositoryImpl implements MemberRepository {
 	
@@ -19,10 +20,12 @@ public class MemberRepositoryImpl implements MemberRepository {
 	public Member memberLogin(String id) {
 		Member member = null;
 		System.out.println("MemberRepositoryImpl memberLogin start");
+		System.out.println("MemberRepositoryImpl memberLogin id -> " + id);
+		
 		try {
 			member = session.selectOne("kkhGetIdPass",id);
-			System.out.println("BoardRepositoryImpl id -> " + member.getId());
-			System.out.println("BoardRepositoryImpl pw -> " + member.getPw());
+			System.out.println("MemberRepositoryImpl id -> " + member.getId());
+			System.out.println("MemberRepositoryImpl pw -> " + member.getPw());
 		}catch (Exception e) {
 			System.out.println("MemberRepositoryImpl memberLogin exception-> " + e.getMessage());
 		}

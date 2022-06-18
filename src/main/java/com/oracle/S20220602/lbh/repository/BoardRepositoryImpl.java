@@ -162,5 +162,4 @@ public class BoardRepositoryImpl implements BoardRepository{
 		}
 		return cnt;
 	}
-	
 }

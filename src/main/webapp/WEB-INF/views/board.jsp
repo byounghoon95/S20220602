@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,23 @@
 <meta charset="UTF-8">
 <title>Cheese Board</title>
 </head>
+
+<%
+	String id = (String) session.getAttribute("id");
+%>
+
+<!-- header -->
+<c:choose>
+<c:when test="${id == null}">
+	<%@ include file="header.jsp"%>
+</c:when>
+<c:otherwise>
+	<%@ include file="header_mem.jsp"%>
+</c:otherwise>
+</c:choose>
+
+<link href="css/board.css" rel="stylesheet" />
+
 <body>
 	<!-- Content section 1-->
 	<section id="scroll">
@@ -50,8 +69,8 @@
 						<li><a class="text-start" id="board_title" href="boardDetail?boardno=${bList.boardno }">${bList.boardtitle }</a>
 						<p class="text-start" id="board_txt">${bList.boardcontent }</p>
 						<div class="board_icon_view d-flex justify-content-start">
-							<i class="fa-solid fa-heart"></i>&nbsp <span id="heart_cnt">5&nbsp&nbsp</span>
-							<i class="fa-solid fa-comments"></i>&nbsp <span id="reply_cnt">5</span>
+							<i class="fa-solid fa-eye"></i>&nbsp <span id="heart_cnt">${bList.boardview }&nbsp&nbsp</span>
+							<i class="fa-solid fa-comments"></i>&nbsp <span id="reply_cnt">0</span>
 						</div></li>
 					</c:forEach> 
 				</ul>

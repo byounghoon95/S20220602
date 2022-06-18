@@ -2,10 +2,7 @@ package com.oracle.S20220602.kkh.controller;
 
 import java.util.List;
 
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeUtility;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.S20220602.common.domain.Common;
@@ -37,6 +33,7 @@ public class MemberController {
 		
 		return "memlogin";
 	}
+	
 	@PostMapping("/loginPro")
 	public String loginPro(HttpServletRequest request, Member member, Model model) {
 		System.out.println("MemberController loginPro start..");
@@ -47,6 +44,7 @@ public class MemberController {
 		System.out.println("input_id -> " + input_id);
 		System.out.println("input_pw -> " + input_pw);
 		member = ms.memberLogin(input_id);
+		session.setAttribute("nickname", member.getNickname());
 		model.addAttribute("input_id", input_id);
 		model.addAttribute("input_pw", input_pw);
 		model.addAttribute("member", member);
@@ -63,7 +61,6 @@ public class MemberController {
 	public String register(Member member, Model model) {
 		System.out.println("MemberController register start..");
 		int result = ms.register(member);
-		
 		return "memlogin";
 	}
 	
@@ -161,5 +158,40 @@ public class MemberController {
 		System.out.println("dbmember temp ->  " + dbmember.getTemppw());
 		
 		return dbmember;
+	}	
+	
+	
+	//로그아웃
+	@GetMapping("/logout")
+	public String memlogout(HttpServletRequest request, Member member, Model model) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		return "memlogout";
+	}
+	
+	//관리자
+	@GetMapping("/adminlogin")
+	public String adminlogin(Model model) {
+		
+		return "adminlogin";
+	}
+	
+	@PostMapping("/adminloginPro")
+	public String adminloginPro(HttpServletRequest request, Member member, Model model) {
+		System.out.println("adminloginPro start..");
+		String input_id = member.getId();
+		String input_pw = member.getPw();
+		HttpSession session = request.getSession();
+		session.setAttribute("id", input_id);
+		System.out.println("input_id -> " + input_id);
+		System.out.println("input_pw -> " + input_pw);
+		member = ms.memberLogin(input_id);
+//		member = ms.adminChk(input_id);
+		session.setAttribute("nickname", member.getNickname());
+		model.addAttribute("input_id", input_id);
+		model.addAttribute("input_pw", input_pw);
+		model.addAttribute("member", member);
+		return "adminloginPro";
 	}
 }
