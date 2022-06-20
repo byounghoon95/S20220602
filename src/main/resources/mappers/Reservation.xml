@@ -10,7 +10,7 @@
 			WHERE i.itemno = b.itemno 
 			AND i.id = m.id
 			AND m.locno = c.mcd
-			
+			AND i.smcd=202
 	 	]]>
 	</select>
 	
@@ -40,5 +40,43 @@
 	<delete id="pjhreservationDelete">
 		delete from resdeal where itemno=#{itemno}
 	</delete>
+	<!-- 거래완료 -->
+	<update id="pjhdealCompl" parameterType="Reservation">
+		update item set smcd=203 where itemno=#{itemno}
+	</update>
+	<!-- 거래후기 -->
+	<update id="pjhdealComment1" parameterType="Reservation">
+		<!-- (#{itemno}, #{sessionId}, #{resdate}, #{restime}, #{resloc}, #{dealcontent}, #{score}, #{bcd}, #{mcd}, 600, #{smcd}) -->
+		update resdeal set dealcontent=#{dealcontent}, score=#{score}, smcd=#{smcd} where itemno=#{itemno}
+	</update>
+	<update id="pjhdealComment2" parameterType="Reservation">
+		<!-- (#{itemno}, #{sessionId}, #{resdate}, #{restime}, #{resloc}, #{dealcontent}, #{score}, #{bcd}, #{mcd}, 600, #{smcd}) -->
+		update resdeal set dealcontent=#{dealcontent}, score=-1, smcd=#{smcd} where itemno=#{itemno}
+	</update>
+	<select id="pjhdealcs" parameterType="int" resultType="Reservation">
+		select m.nickname, i.itemtitle, r.dealcontent
+			from resdeal r, item i, member m
+			WHERE r.itemno = i.itemno
+			AND i.id = m.id
+			AND i.itemno=#{itemno } 
+	</select>
 	
+	<!-- 거래후기 조회 -->
+	
+	 <select id="pjhdealCommentDetail" parameterType="int" resultType="Reservation">
+    		select m.nickname, i.itemtitle, r.dealcontent, r.itemno
+			from resdeal r, item i, member m
+			where r.itemno = i.itemno
+			AND i.id = m.id
+			and  r.itemno=#{itemno }
+    </select>
+    
+    <select id="pjhdealCommentGetDetail" parameterType="int" resultType="Reservation">
+    		select m.nickname, i.itemtitle, r.dealcontent, r.itemno
+			from resdeal r, item i, member m
+			where r.itemno = i.itemno
+			AND r.id = m.id
+			and r.itemno=#{itemno }
+    </select>
+    
 </mapper>

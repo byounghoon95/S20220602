@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.WarningMapper">
+	<insert id="kjhReportReg" parameterType="Warning">
+		insert into Warning values
+		(warning_seq.nextval,#{id,},#{warnid},#{itemno},
+		#{boardno},#{reportcontent},'image1', sysdate,'N',900,#{mcd})
+	</insert>
+	
+	
+	
+	<select id="kshWarnCatName" parameterType="Warning" resultType="String">
+	select *
+	from warning
+	where warno=#{warno};
+	</select>
+</mapper>

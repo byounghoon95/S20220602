@@ -10,7 +10,7 @@
 	       select * from (
 	            select rownum rn, a.*
 	            from ( 
-			            select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview
+			            select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview, i.itemno
 			            from common c, member m, item i
 			            where c.mcd = m.locno
 			            and i.id = m.id
@@ -23,7 +23,7 @@
 	
 	<select id="khjmarketAllList" parameterType="Item" resultType="Item">
 		<![CDATA[
-			select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview
+			select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview, i.itemno
 			from common c, member m, (
 			        SELECT rownum rn ,  a.*
 			        FROM  (select * from item order by itemdate desc) a

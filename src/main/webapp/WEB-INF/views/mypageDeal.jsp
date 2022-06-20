@@ -28,14 +28,14 @@
 									<ul class="faq-list">
 										<c:forEach var="buyList" items="${mypageBuyList }">
 											<li>
-											 <a class="item_detail" href="#">
+											 <a class="item_detail" href="itemDetail?itemno=${buyList.itemno }">
 												<div class="card item" style="width: 18rem;">
 										          <!-- <img src="images/cheese.png" class="card-img-top" alt="..."> -->
 										          <img src="${context}/itemImgs/${buyList.itemimg1 }" class="card-img-top" width="286" height="286" >
 										          <div class="card-body">
 										            <h5 class="card-title"><div class="card-itemTitle">${buyList.itemtitle }</div></h5>
 										            <p class="card-text">
-										            	<span>${buyList.itemcost }</span><br>
+										            	<span>${buyList.itemcost }원</span><br>
 										            	<span>서울시&nbsp&nbsp ${buyList.content }</span>
 										            </p>
 										           
@@ -43,10 +43,10 @@
 										            
 										            	<c:choose>
 														<c:when test="${buyList.dealcontent == null}">
-															<a href="#" class="btn btn-primary itembtn">후기 보내기</a>
+															<a href="/dealCommentForm?itemno=${buyList.itemno }" class="btn btn-primary itembtn">후기 보내기</a>
 														</c:when>
 														<c:otherwise>
-															<a href="#" class="btn btn-primary itembtn">보낸 후기보기</a>
+															<a href="/dealCommentDetail?itemno=${buyList.itemno }" class="btn btn-primary itembtn">보낸 후기보기</a>
 														</c:otherwise>
 														</c:choose>
 										            
@@ -76,19 +76,19 @@
 									<ul class="faq-list">
 										<c:forEach var="sellList" items="${mypageSellList }">
 											<li>
-											  <a class="item_detail" href="#">
+											  <a class="item_detail" href="itemDetail?itemno=${sellList.itemno }">
 												<div class="card item" style="width: 18rem;">
 										          <!-- <img src="images/cheese.png" class="card-img-top" alt="..."> -->
 										          <img src="${context}/itemImgs/${sellList.itemimg1 }" class="card-img-top" width="286" height="286" >
 										          <div class="card-body">
 										            <h5 class="card-title"><div class="card-itemTitle">${sellList.itemtitle }</div></h5>
 										            <p class="card-text">
-										            	<span>${sellList.itemcost }</span><br>
+										            	<span>${sellList.itemcost }원</span><br>
 										            	<span>서울시&nbsp&nbsp ${sellList.content }</span>
 										            </p>
 										           
 										            <div class="item_boxbottom">
-										              <a href="#" class="btn btn-primary itembtn">후기 보러가기</a>
+										              <a href="/dealCommentGetDetail?itemno=${sellList.itemno }" class="btn btn-primary itembtn">후기 보러가기</a>
 										              
 										              <div class="board_icon_view d-flex justify-content-start likechat">
 										                <i class="fa-solid fa-heart"></i>&nbsp

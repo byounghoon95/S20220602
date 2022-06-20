@@ -19,6 +19,16 @@ public interface ReservationRepository {
 
 	int reservationDelete(Reservation reser);
 
+	int dealComment(Reservation reser);
+
+	int dealCompl(Reservation reser);
+
+	Reservation dealCommentDetail(int itemno);
+
+	Reservation dealcs(int itemno);
+
+	Reservation dealCommentGetDetail(int itemno);
+
 	
 	
 	

@@ -20,6 +20,22 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="css/hf_before.css" rel="stylesheet" />
 <link href="css/hf_after.css" rel="stylesheet" />
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('#button-addon2').click(function() {
+		var keyword =  $('#keyword').val();
+		if (!keyword) {
+			alert("검색어를 입력하세요")
+			return false;
+		}
+		var sendData = 'keyword='+keyword + '&Gubun=1';
+		/* alert('sendData-->'+sendData) */
+		location.href="searchList?"+sendData;
+	});
+});
+</script>
 
 <title>Insert title here</title>
 </head>
@@ -30,13 +46,13 @@
         <a href="/main"><img src="images/logo.png" id="logo"/></a>
         <div class="input-group">
           <input
-            type="text"
-            class="head_input"
+            type="text"  id="keyword" 
+            class="head_input"  value="${keyword }" 
             placeholder="동네 이름, 물품명 등을 검색해보세요 !"
           />
           <button
             class="btn btn-outline-secondary"
-            type="button"
+            type="button" value="확인1" 
             id="button-addon2"
           >
             <i class="fa-solid fa-magnifying-glass"></i>

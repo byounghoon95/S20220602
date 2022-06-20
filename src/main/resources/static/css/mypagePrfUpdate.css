@@ -166,3 +166,12 @@
   font-weight: bold;
 }
 
+.file_img{
+	margin-left: 15px;
+}
+
+.pwchk{
+	font-size: 0.7rem;
+	position: relative;
+	/* bottom: 23px; */
+}

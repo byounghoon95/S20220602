@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 창현 (검색)-->
+<mapper namespace="com.oracle.S20220602.ItemMapper">
+	<select id="PchItemListKeyword1" parameterType="Item" resultType="Item">
+		SELECT *
+		FROM (
+				SELECT rownum rn ,  a.itemtitle, a.itemcost, a.content, a.ITEMWISH, a.ITEMIMG1, a.ITEMVIEW
+		        FROM  (	SELECT * FROM Item i, Common c, Member m
+						WHERE  		i.ID = m.ID
+        				AND    		m.LOCNO = c.MCD
+						AND	  (     i.ITEMTITLE		like '%' || #{keyword} 		|| '%' 
+								OR	i.ITEMCONTENT 	like '%' || #{keyword} 		|| '%' 
+								OR	c.CONTENT 		like '%' || #{keyword} 		|| '%'
+							  ) 
+ 				ORDER BY i.ITEMVIEW DESC) a
+			)
+		WHERE rn between #{start} AND  #{end}
+	</select>
+
+	<select id="PchTotalItemKeyword1" parameterType="Item" resultType="int">
+		SELECT Count(*) FROM Item i, Common c, Member m
+		WHERE  		i.ID = m.ID
+        AND    		m.LOCNO = c.MCD
+				AND	  (     i.ITEMTITLE		like '%' || #{keyword} 		|| '%' 
+						OR	i.ITEMCONTENT 	like '%' || #{keyword} 		|| '%' 
+						OR	c.CONTENT 		like '%' || #{keyword} 		|| '%'
+					  ) 
+	</select>
+	<select id="PchItemListKeyword2" parameterType="Item" resultType="Item">
+		SELECT *
+		FROM (
+				SELECT rownum rn ,  a.itemtitle, a.itemcost, a.content, a.ITEMWISH, a.ITEMIMG1, a.ITEMVIEW
+		        FROM  (	SELECT i.itemtitle, i.itemcost, c1.content, i.ITEMWISH, i.ITEMIMG1, i.ITEMVIEW
+						from    Item i, Member m   
+				                , (SELECT * FROM Common WHERE bcd = 1100)   c1 <!-- 지역 -->
+				                , (SELECT * FROM Common WHERE bcd = 1000)   c2 <!-- 상품 -->
+						WHERE  		i.ID = m.ID
+        				AND   m.locno = c1.mcd    <!-- 지역 -->
+           				AND   i.mcd   = c2.mcd    <!-- 상품 -->
+       					<choose>
+        					  <when test='area == "a_all" and cartegori != "c_all"'>
+        					  		AND   		c2.content 		like '%' || #{cartegori}	|| '%'
+									AND	  (     i.ITEMTITLE		like '%' || #{keyword} 		|| '%' 
+											OR	i.ITEMCONTENT 	like '%' || #{keyword} 		|| '%' 
+											OR	c1.CONTENT 		like '%' || #{keyword} 		|| '%'
+										  ) 
+							  </when>
+							  <when test='cartegori == "c_all" and area != "a_all"'>
+							  		AND   		c1.content 		like '%' || #{area}			|| '%'
+									AND	  (     i.ITEMTITLE		like '%' || #{keyword} 		|| '%' 
+											OR	i.ITEMCONTENT 	like '%' || #{keyword} 		|| '%' 
+											OR	c1.CONTENT 		like '%' || #{keyword} 		|| '%'
+										  ) 
+							  </when>
+							  <when test='cartegori != "c_all" and area != "a_all"'>
+							  		AND   		c1.content 		like '%' || #{area}			|| '%'
+							  		AND   		c2.content 		like '%' || #{cartegori}	|| '%'
+									AND	  (     i.ITEMTITLE		like '%' || #{keyword} 		|| '%' 
+											OR	i.ITEMCONTENT 	like '%' || #{keyword} 		|| '%' 
+											OR	c1.CONTENT 		like '%' || #{keyword} 		|| '%'
+										  ) 
+							  </when>
+							 <when test='cartegori == "c_all" and area == "a_all"'>
+						  		AND	  (     i.ITEMTITLE		like '%' || #{keyword} 		|| '%' 
+										OR	i.ITEMCONTENT 	like '%' || #{keyword} 		|| '%' 
+										OR	c1.CONTENT 		like '%' || #{keyword} 		|| '%'
+									  ) 
+						  </when>
+						</choose>
+ 				<choose>
+ 					<when test='value == "최신순"'>
+ 						ORDER BY i.ITEMDATE desc) a
+ 					</when>
+ 					<otherwise>
+ 						ORDER BY i.ITEMVIEW DESC) a
+ 					</otherwise>
+ 				</choose>
+			)
+		WHERE rn between #{start} AND  #{end}
+	</select>
+
+	<select id="PchTotalItemKeyword2" parameterType="Item" resultType="int">
+		SELECT Count(*) 
+		from    Item i, Member m   
+                , (SELECT * FROM Common WHERE bcd = 1100)   c1 <!-- 지역 -->
+                , (SELECT * FROM Common WHERE bcd = 1000)   c2 <!-- 상품 -->
+		WHERE  		i.ID = m.ID
+ 		AND   m.locno = c1.mcd    <!-- 지역 -->
+    	AND   i.mcd   = c2.mcd    <!-- 상품 -->
+      	<choose>
+	  	  <when test='area == "a_all" and cartegori != "c_all"'>
+				AND   		c2.content 		like '%' || #{cartegori}	|| '%'
+				AND	  (     i.ITEMTITLE		like '%' || #{keyword} 		|| '%' 
+						OR	i.ITEMCONTENT 	like '%' || #{keyword} 		|| '%' 
+						OR	c1.CONTENT 		like '%' || #{keyword} 		|| '%'
+					  ) 
+		  </when>
+		  <when test='cartegori == "c_all" and area != "a_all"'>
+				AND   		c1.content 		like '%' || #{area}			|| '%'
+				AND	  (     i.ITEMTITLE		like '%' || #{keyword} 		|| '%' 
+						OR	i.ITEMCONTENT 	like '%' || #{keyword} 		|| '%' 
+						OR	c1.CONTENT 		like '%' || #{keyword} 		|| '%'
+					  ) 
+		  </when>
+		  <when test='cartegori != "c_all" and area != "a_all"'>
+				AND   		c1.content 		like '%' || #{area}			|| '%'
+		  		AND   		c2.content 		like '%' || #{cartegori}	|| '%'
+				AND	  (     i.ITEMTITLE		like '%' || #{keyword} 		|| '%' 
+						OR	i.ITEMCONTENT 	like '%' || #{keyword} 		|| '%' 
+						OR	c1.CONTENT 		like '%' || #{keyword} 		|| '%'
+					  ) 
+		  </when>
+		  <when test='cartegori == "c_all" and area == "a_all"'>
+		  		AND	  (     i.ITEMTITLE		like '%' || #{keyword} 		|| '%' 
+						OR	i.ITEMCONTENT 	like '%' || #{keyword} 		|| '%' 
+						OR	c1.CONTENT 		like '%' || #{keyword} 		|| '%'
+					  ) 
+		  </when>
+		</choose>
+		<choose>
+			<when test='value == "최신순"'>
+				ORDER BY i.ITEMDATE desc
+			</when>
+			<otherwise>
+				ORDER BY i.ITEMVIEW DESC
+			</otherwise>
+		</choose>
+	</select>
+
+	
+	<select id="PchCommonlist" parameterType="Common" resultType="Common">
+		SELECT * FROM common
+		WHERE bcd = 1100
+		AND	  mcd != 999
+		ORDER BY mcd
+	</select>
+	<select id="PchCartegorilist" parameterType="Common" resultType="Common">
+		SELECT * FROM common
+		WHERE bcd = 1000
+		AND	  mcd != 999
+		AND	  mcd != 1001
+		ORDER BY mcd
+	</select>
+
+
+
+
+<!-- 주희 (아이템)-->
+	<insert id="kjhItemReg" parameterType="Item">
+		insert into Item values
+		(item_seq.nextval,#{id},#{itemtitle},#{itemcost},#{itemcontent},sysdate,0,
+		0,'N','image1','image1','image1','image1','image1',1000,#{mcd})
+	</insert>
+	<select id="kjhItemDetail" parameterType="Item" resultType="Item">
+		SELECT m.id, m.nickname, m.participation, c.content, i.*, 
+		TO_CHAR(i.itemcost, 'FM999,999,999,999') AS itemcostfilter
+		FROM item i, member m, common c
+		WHERE i.id = m.id
+		AND i.itemno = #{itemno}
+		AND c.bcd=(select bcd from item where itemno=#{itemno}) 
+		AND c.mcd=(select mcd from item where itemno=#{itemno})
+	</select>
+	<select id="kjhLocName" parameterType="Item" resultType="String">
+		select c.content
+		from member m, common c
+		where m.locno = c.mcd
+		and  m.id = (select m.id
+             		 from item i, member m
+            		 where i.id = m.id
+            		 and i.itemno = #{itemno})
+	</select>
+	<select id="kjhSellerItemList" parameterType="Item" resultType="Item" >
+		<![CDATA[
+		SELECT a.*
+		FROM(	SELECT i.*,TO_CHAR(i.itemcost, 'FM999,999,999,999') AS itemcostfilter, c.content as locname
+				FROM item i, common c, member m
+				WHERE m.id=i.id
+				AND m.id=(select id from item where itemno = #{itemno})
+				AND i.itemno != #{itemno}
+				AND m.locno = c.mcd
+				ORDER BY itemdate desc) a
+		WHERE rownum <= 8
+		]]>
+	</select>
+	
+	<select id="kjhWishCheck" parameterType="Item" resultType="boolean">
+		SELECT decode(count(*),0,'0','1') 
+		FROM wish
+		WHERE itemno=#{itemno}
+		AND id=#{buyerid, jdbcType=VARCHAR }
+	</select>
+	<update id="kjhItemUpdate" parameterType="Item">
+		UPDATE Item SET itemtitle=#{itemtitle}, mcd = #{mcd}, itemcost = #{itemcost}, itemcontent = #{itemcontent}
+		WHERE itemno = #{itemno}
+	</update>
+	<delete id="kjhitemDelete">
+		DELETE
+		FROM Item 
+		WHERE itemno=#{itemno}
+	</delete>
+
+
+
+
+
+
+</mapper>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.S20220602.common.domain.Board;
+import com.oracle.S20220602.common.domain.Common;
 import com.oracle.S20220602.common.domain.Item;
 import com.oracle.S20220602.common.domain.Member;
 import com.oracle.S20220602.common.domain.Reservation;
@@ -100,6 +101,13 @@ public class MypageServiceImpl implements MypageService {
 		List<Reservation> mypageCommentSelect = null;
 		mypageCommentSelect = mypageRepository.mypageCommentSelect(reservation);
 		return mypageCommentSelect;
+	}
+
+	@Override
+	public List<Common> selectLocList() {
+		System.out.println("MypageServiceImpl selectLocList start");
+		List<Common> selectLocList = mypageRepository.selectLocList();
+		return selectLocList;
 	}
 	
 //	@Override

@@ -95,11 +95,89 @@ public class ReservationRepositoryImpl implements ReservationRepository {
 		System.out.println("ReservationRepository reservationDelete Start..");
 		int result = 0;
 		try {
+			
+			
 			result = session.update("pjhreservationDelete", reser);
 		} catch (Exception e) {
 			System.out.println("ReservationRepositoryImpl exception->"+ e.getMessage());
 		}
 		
 		return result;
+	}
+
+	@Override
+	public int dealComment(Reservation reser) {
+		System.out.println("ReservationRepository dealComment Start");
+		
+		int result1 = 0;
+		int result2 = 0;
+		try {
+			if (reser.getSmcd() ==601) {
+			result1 = session.update("pjhdealComment1", reser);
+			}
+			if(reser.getSmcd() ==602) {
+			result2 = session.update("pjhdealComment2", reser);	
+			}
+				
+			
+			System.out.println("itmeno->" + reser.getItemno());
+			System.out.println("id->" + reser.getId());	
+		} catch (Exception e) {
+			System.out.println("reservationRepositoryImpl exception" + e.getMessage());
+		}
+		
+		return result1;
+	}
+
+	@Override
+	public int dealCompl(Reservation reser) {
+		System.out.println("ReservationRepository dealCompl Start");
+		int result = 0;
+		try {
+			result =session.update("pjhdealCompl", reser);
+		} catch (Exception e) {
+			System.out.println("reservationRepositoryImpl exception" + e.getMessage());
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Reservation dealCommentDetail(int itemno) {
+		System.out.println("ReservationRepositoryImpl dealCommentDetail Start..");
+		Reservation reserItem =null;
+		try {
+			reserItem = session.selectOne("pjhdealCommentDetail", itemno);
+		} catch (Exception e) {
+			System.out.println("ReservationRepositoryImpl exception -> " + e.getMessage());
+		}
+		return reserItem;
+	}
+
+	@Override
+	public Reservation dealcs(int itemno) {
+		System.out.println("ReservationRepositoryImpl dealcs start");
+		Reservation dealcommentsend = null;
+		try {
+			dealcommentsend = session.selectOne("pjhdealcs", itemno);
+		} catch (Exception e) {
+			System.out.println("ReservationRepositoryImpl exception  ->" +e.getMessage());
+		}
+		
+		
+		return dealcommentsend;
+	}
+
+	@Override
+	public Reservation dealCommentGetDetail(int itemno) {
+		System.out.println("ReservaiontRepositoryImpl daelCommentDetail Start .");
+		Reservation reserItem = null;
+		try {
+			reserItem = session.selectOne("pjhdealCommentGetDetail", itemno);
+		} catch (Exception e) {
+			System.out.println("ReservationRepositoryImpl Exception->" + e.getMessage());
+			
+		}
+		return reserItem;
 	}
 }
