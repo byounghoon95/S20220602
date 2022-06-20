@@ -74,7 +74,6 @@ $(document).ready(function(){
 		}
 	})
 });
-
 </script>
 <body>
 	<div class="container py-5 h-100">
@@ -91,7 +90,7 @@ $(document).ready(function(){
 									<div class="input_all">
 										<div class="form-outline mb-4">
 											<label class="form-label" for="form2Example27">아이디</label>
-											<input type="text" class="input" name="name" id="id_input"
+											<input type="text" class="input" name="id" id="id_input"
 												placeholder="아이디를 입력해주세요" required />
 										</div>
 

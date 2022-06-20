@@ -98,13 +98,13 @@ public class MemberController {
 	}
 
 	@GetMapping("/pwForm")
-	public String pwForm(Model model) {
-		
+	public String pwForm(Model model, Member member) {
+		model.addAttribute("member", member);
 		return "mempwForm";
 	}
 	@GetMapping("/pwFind")
-	public String pwFind(Model model) {
-		
+	public String pwFind(Model model, Member member) {
+		model.addAttribute("member", member);
 		return "mempwFind";
 	}
 	
@@ -187,11 +187,19 @@ public class MemberController {
 		System.out.println("input_id -> " + input_id);
 		System.out.println("input_pw -> " + input_pw);
 		member = ms.memberLogin(input_id);
-//		member = ms.adminChk(input_id);
 		session.setAttribute("nickname", member.getNickname());
 		model.addAttribute("input_id", input_id);
 		model.addAttribute("input_pw", input_pw);
 		model.addAttribute("member", member);
 		return "adminloginPro";
 	}
+	@PostMapping("/pwupdate")
+	public String pwupdate(Model model, Member member) {
+		System.out.println("MemberController pwupdate start..");
+		System.out.println("id -> " + member.getId());
+		System.out.println("pw -> " + member.getPw());
+		
+		ms.memberPwUpdate(member);
+		return "memlogin";
+	}	
 }

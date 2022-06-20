@@ -23,4 +23,6 @@ public interface MemberRepository {
 	void updateTempPw(Member member);
 
 	Member memberSelectOne(Member member);
+
+	void memberPwUpdate(Member member);
 }

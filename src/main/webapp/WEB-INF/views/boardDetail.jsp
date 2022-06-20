@@ -24,7 +24,7 @@
 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 </head>
 <script>
- 	$(document).ready(function() {
+/*  	$(document).ready(function() {
 		$(".register").click(function() {
 			var boardno = $(this).val();
 			var comment = $(".comment_input"+boardno).val();
@@ -32,7 +32,15 @@
 			console.log(comment);
 			$(location).attr('href',"rereply?comment=" + comment + "&boardno=" + boardno);
 		});
-	});
+	}); */
+/*  	$(document).ready(function() {
+		$("#replyupdate").click(function() {
+			var value = $(this).val();
+			var comment = $(".comment_input"+value).val();
+			console.log(comment);
+			/* $(location).attr('href',"rereply?comment=" + comment + "&boardno=" + boardno); */
+		});
+	}); */
 </script>
 <body>
 	<div id="blank"></div>
@@ -49,14 +57,30 @@
 				type="hidden" name='ref_level' value="${board.ref_level }">
 			<h4>치즈 일상</h4>
 			<hr />
-			<div id="reg_btn" class="d-flex justify-content-end">
-				<button type="button" class="btn btn-warning mx-1" id="revise"
-					onclick="location.href='boardUpdateForm?boardno=${board.boardno}'">
-					수정</button>
-				<button type="button" class="btn btn-warning mx-1" id="delete"
-					onclick="location.href='boardDelete?boardno=${board.boardno}'">
-					삭제</button>
-			</div>
+			<c:set var="sid" value="${id }" />
+			<c:set var="bid" value="${board.id }" />
+			<c:choose>
+				<c:when test="${sid eq bid}">
+					<div id="reg_btn" class="d-flex justify-content-end">
+						<button type="button" class="btn btn-warning mx-1" id="revise"
+							onclick="location.href='boardUpdateForm?boardno=${board.boardno}'">
+							수정</button>
+						<button type="button" class="btn btn-warning mx-1" id="delete"
+							onclick="location.href='boardDelete?boardno=${board.boardno}'">
+							삭제</button>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div id="reg_btn" class="d-flex justify-content-end">
+						<button type="button" class="btn btn-warning mx-1" id="revise" disabled="disabled">
+							수정</button>
+						<button type="button" class="btn btn-warning mx-1" id="delete" disabled="disabled">
+							삭제</button>
+					</div></c:otherwise>
+			</c:choose>
+				
+
+
 			<h6>${board.nickname }</h6>
 			<hr>
 			<br>
@@ -72,53 +96,57 @@
 			<hr />
 		</form>
 
-
-
-		<form action="reply">
+		<form action="replyUpdate" method="post">
 			<p>댓글&nbsp${replycnt }</p>
 			<!-- 상세글 출력 -->
-			<c:forEach var="brList" items="${boardReplyList }">
+			<c:forEach var="ReplyList" items="${boardReplyList }">
+			<input type="hidden" value="${ReplyList.boardno }" name="boardno">
 				<c:set var="i" value="${i + 1 }" />
 				<c:choose>
-					<c:when test="${board.nickname eq brList.nickname}">
+					<c:when test="${board.nickname eq ReplyList.nickname}">
 						<div class="comment">
-							<h6>${brList.nickname }&nbsp&nbsp<img
+							<h6>${ReplyList.nickname }&nbsp&nbsp<img
 									src="images/writer.png" id="writer" />
 							</h6>
-							${brList.boardcontent }
+							${ReplyList.boardcontent }
 						</div>
-						<p>
-							<span id="reply_update" data-bs-toggle="collapse"
-								href="#collapseExample${i }" role="button" aria-expanded="false"
-								aria-controls="collapseExample">수정</span>
-							<span id="reply_delete" href="#collapseExample${i }">삭제</span>
-						</p>
+						<c:set var="Reid" value="${ReplyList.id }"></c:set>
+						
+						<c:if test="${sid eq Reid }">
+							<p>
+								<span id="reply_update" data-bs-toggle="collapse"
+									href="#collapseExample${i }" role="button" aria-expanded="false"
+									aria-controls="collapseExample">수정</span>
+								<span id="reply_delete" href="#collapseExample${i }">삭제</span>
+							</p>
+						</c:if>
 						<div class="collapse" id="collapseExample${i }">
-							<input type="text" id="comment_input" name="update"
-								value="${brList.boardcontent }" />
+							<input type="text" id="comment_input" class="comment_input${i } name="boardcontent"
+								value="${ReplyList.boardcontent }" />
 							<div class="d-flex justify-content-end">
-								<!-- <button type="button" id="update" name="update">수정</button> -->
-								<button type="submit" id="update">수정</button>
+								<button type="submit" id="replyupdate">수정</button>
 							</div>
 						</div>
 						<hr />
 					</c:when>
-					<c:when test="${board.nickname ne brList.nickname}">
+					<c:when test="${board.nickname ne ReplyList.nickname}">
 						<div class="comment">
-							<h6>${brList.nickname }&nbsp&nbsp</h6>
-							${brList.boardcontent }
+							<h6>${ReplyList.nickname }&nbsp&nbsp</h6>
+							${ReplyList.boardcontent }
 						</div>
-						<p>
-							<span id="reply_update" data-bs-toggle="collapse"
-								href="#collapseExample${i }" role="button" aria-expanded="false"
-								aria-controls="collapseExample">수정</span>
-							<span id="reply_delete" href="#collapseExample${i }">삭제</span>
-						</p>
+						<c:if test="${sid eq Reid }">
+							<p>
+								<span id="reply_update" data-bs-toggle="collapse"
+									href="#collapseExample${i }" role="button" aria-expanded="false"
+									aria-controls="collapseExample">수정</span>
+								<span id="reply_delete" href="#collapseExample${i }">삭제</span>
+							</p>
+						</c:if>
 						<div class="collapse" id="collapseExample${i }">
-							<input type="text" id="comment_input" name="update"
-								value="${brList.boardcontent }" />
+							<input type="text" id="comment_input" class="comment_input${i } name="boardcontent"
+								value="${ReplyList.boardcontent }" />
 							<div class="d-flex justify-content-end">
-								<button type="submit" id="update">수정</button>
+								<button type="submit" id="replyupdate">수정</button>
 							</div>
 						</div>
 						<hr />

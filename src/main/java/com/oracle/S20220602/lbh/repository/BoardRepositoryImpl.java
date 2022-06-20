@@ -74,6 +74,7 @@ public class BoardRepositoryImpl implements BoardRepository{
 	}
 	
 	//리뷰 등록
+	//삭제할것
 	@Override
 	public int boardReply(Board board) {
 		System.out.println("BoardRepositoryImpl boardReply Start");
@@ -161,5 +162,16 @@ public class BoardRepositoryImpl implements BoardRepository{
 			System.out.println("BoardRepositoryImpl boardReplyCnt Exception -> " + e.getMessage());
 		}
 		return cnt;
+	}
+	@Override
+	public int boardReplyUpdate(Board board) {
+		System.out.println("BoardRepositoryImpl boardReplyUpdate Start");
+		int result = 0;
+		try {
+			result = session.update("lbhboardReplyUpdate",board);
+		}catch (Exception e) {
+			System.out.println("BoardRepositoryImpl boardReplyUpdate Exception -> " + e.getMessage());
+		}
+		return result;
 	}
 }

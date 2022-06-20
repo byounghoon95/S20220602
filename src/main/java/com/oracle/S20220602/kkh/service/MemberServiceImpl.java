@@ -78,4 +78,11 @@ public class MemberServiceImpl implements MemberService {
 		Member dbmember = memberRepository.memberSelectOne(member);
 		return dbmember;
 	}
+
+	@Override
+	public void memberPwUpdate(Member member) {
+		System.out.println("MemberServiceImpl memberPwUpdate start");
+		memberRepository.memberPwUpdate(member);
+		
+	}
 }

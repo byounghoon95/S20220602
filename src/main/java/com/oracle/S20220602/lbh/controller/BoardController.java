@@ -139,16 +139,16 @@ public class BoardController {
 		return "boardReplyPro";
 	}
 	//리뷰 수정
-	@GetMapping("/replyUpdate")
-	public String replyUpdate(Board board, Model model, String comment) {
-		System.out.println("BoardController replyUpdate Start...");
-		
-		board.setBoardcontent(comment);
-		int result = bs.boardReply(board);
-		model.addAttribute("result",result);
-		model.addAttribute("board",board);
-		return "boardReplyPro";
-	}
+//	@GetMapping("/replyUpdate")
+//	public String replyUpdate(Board board, Model model, String comment) {
+//		System.out.println("BoardController replyUpdate Start...");
+//		
+//		board.setBoardcontent(comment);
+//		int result = bs.boardReply(board);
+//		model.addAttribute("result",result);
+//		model.addAttribute("board",board);
+//		return "boardReplyPro";
+//	}
 	// 대댓글
 	@GetMapping("/rereply")
 	public String rereply(int boardno, Model model, String comment) {
@@ -161,10 +161,19 @@ public class BoardController {
 		model.addAttribute("result",result);
 		return "boardReReplyPro";
 	}
-
-//	@GetMapping("/main")
-//	public String main(Model model) {
-//		return "main";
-//	}
-
+	@PostMapping("/replyUpdate")
+	public String replyUpdate(Board board, Model model) {
+		//삭제용
+		//		System.out.println("BoardController replyUpdate Start...");
+//		System.out.println("boardno -> " + board.getBoardno());
+//		System.out.println("comment ->" + comment);
+//		board = bs.boardReplyOne(board.getBoardno());
+//		board.setBoardcontent(comment);
+		System.out.println("BoardController replyUpdate Start...");
+		System.out.println("boardno -> " + board.getBoardno());
+		System.out.println("boardcontent ->" + board.getBoardcontent());
+		int result = bs.boardReplyUpdate(board);
+		model.addAttribute("result",result);
+		return "boardReReplyPro";
+	}
 }

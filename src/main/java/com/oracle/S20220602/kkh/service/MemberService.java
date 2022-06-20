@@ -14,5 +14,5 @@ public interface MemberService {
 	Member EmailChk(Member member);
 	void updateTempPw(Member dbmember);
 	Member memberSelectOne(Member member);
-	
+	void memberPwUpdate(Member member);
 }

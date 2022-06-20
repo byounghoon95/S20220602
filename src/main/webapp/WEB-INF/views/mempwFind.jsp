@@ -14,35 +14,7 @@
 <link href="css/mempwFind.css" rel="stylesheet" />
 <title>Insert title here</title>
 </head>
-<script type="text/javascript">
-$(document).ready(function(){
-	$('#find_btn').click(function(){
-		var name_input = $('#id_input').val();
-		var phone_input = $('#phone_input').val();
-		var email_input = $('#email_input').val();
-		 $.ajax(
-		   		 {
-		 				url:'<%=context%>/idchk',
-		 				type:"get",
-		 				data:{"name" : name_input, "phone" : phone_input, "email" : email_input},
-		 				dataType:'json',
-		 				success:function(data){
-		 				var id = data.id;
-		 					if(data.chk == 0){
-		 						alert("정보를 확인해 주세요");
-		 						$('#id_input').val("");
-		 						$('#phone_input').val("");
-		 						$('#email_input').val("");
-		 					}else{
-		 						$(".modal-body").html("회원님의 아이디는 " + id + " 입니다");		
-		 						$('#exampleModal').modal("show");
-		 					}
-		 				}
-		 			}
-		   	 );
-	});
-});
-</script>
+
 <body>
 	<div class="container py-5 h-100">
 		<div
@@ -54,21 +26,23 @@ $(document).ready(function(){
 					<div class="g-0">
 						<div class="col-md-6 col-lg-7 d-flex align-items-center">
 							<div class="card-body p-4 p-lg-5 text-black">
-								<form>
+								<form action="pwupdate" method="post">
+								<input type="hidden" name="id" value="${member.id }">
 									<div class="input_all">
 										<div class="form-outline mb-4">
 											<label class="form-label" for="form2Example27">새 비밀번호</label>
-											<input type="text" class="input" name="name" id="pw_input"
+											<input type="password" class="input" name="pw" id="pw_input"
 												placeholder="새 비밀번호를 입력해주세요" required />
 										</div>
 
 										<div class="form-outline mb-4">
 											<label class="form-label" for="form2Example27">비밀번호
-												확인</label> <input type="text" class="input" name="phone"
+												확인</label> <input type="password" class="input" name="pw2"
 												id="pw2_input" placeholder="새 비밀번호를 한 번 더 입력해주세요" required />
 										</div>
-										<button type="button" class="btn btn-lg btn-block"
-											id="pw_btn">비밀번호 변경</button>
+										<div class="pw_chk"></div>
+										<button type="submit" class="btn btn-lg btn-block" id="pw_btn">비밀번호
+											변경</button>
 										<br />
 									</div>
 								</form>
@@ -79,6 +53,21 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#pw2_input').blur(function() {
+				console.log("시작");
+				var pw = $('#pw_input').val();
+				var pw2 = $('#pw2_input').val();
+				if (pw == pw2) {
+					$(".pw_chk").html('비밀번호가 일치합니다').css('color','green');
+				} else {
+					$(".pw_chk").html('비밀번호가 일치하지 않습니다').css('color','rgb(253, 201, 0)');
+					$('#pw2_input').val("");
+				}
+			})
+		});
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

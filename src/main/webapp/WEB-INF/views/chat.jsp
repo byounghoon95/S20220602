@@ -160,86 +160,80 @@ function send() {
 </script>
 </head>
 <body>
-    <div id="blank_5vh"></div>
-    <!-- 삭제용 -->
-    <input type="hidden" id="sessionId" value="" />
-    <div id="member" class="member"></div>
-    <div id="meName"></div>
-    <div id="yourName">
-      <table class="inputTable">
-        <tr>
-          <th>사용자명</th>
-          <th><input type="text" name="userName" id="userName" /></th>
-          <th><button onclick="chatName()">이름 등록</button></th>
-        </tr>
-      </table>
-    </div>
-    <!-- 삭제용 -->
-    <div class="container">
-      <div class="messaging">
-        <div class="inbox_msg">
-          <div class="inbox_people">
-            <div class="inbox_chat scroll">
-              <li>
-                <div class="card_item" style="width: 18rem">
-                  <a href="itemDetail">
-                    <img
-                      src="images/cheese.png"
-                      class="card-img-top"
-                      alt="..."
-                    />
-                  </a>
-                  <div class="card-body">
-                    <div class="card-itemTitle">안녕하세요</div>
-                    <p class="card-text"><span>30000원</span><br /></p>
+	<div id="blank"></div>
 
-                    <div class="item_boxbottom">
-                      <a
-                        href="reservationDetail?itemno=${itemList.itemno }"
-                        class="btn itembtn"
-                        >예약하기</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </div>
-          </div>
-          <div class="mesgs">
-            <div class="msg_history">
-              <div class="incoming_msg">
-                <div class="incoming_msg_img">
-                  <img src="images/mem_profile.jpg" alt="sunil" id="photo" />
-                </div>
-                <div class="received_msg">
-                  <div class="received_withd_msg">
-                    <p>Test which is a new approach to have all solutions</p>
-                    <span class="time_date"> 11:01 AM | June 9</span>
-                  </div>
-                </div>
-              </div>
-              <div class="outgoing_msg">
-                <div class="sent_msg">
-                  <p>Test which is a new approach to have all solutions</p>
-                  <span class="time_date"> 11:01 AM | June 9</span>
-                </div>
-              </div>
-            </div>
-            <div class="type_msg">
-              <div class="input_msg_write">
-                <input
-                  type="text"
-                  class="write_msg"
-                  placeholder="보내실 메시지를 입력하세요."
-                />
-                <button class="msg_send_btn" type="button" onclick="send()">
-                  <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+	<div class="container">
+		<!-- 삭제용 -->
+		<input type="hidden" id="sessionId" value="" />
+		<div id="member" class="member"></div>
+		<div id="meName"></div>
+		<div id="yourName">
+			<table class="inputTable">
+				<tr>
+					<th>사용자명</th>
+					<th><input type="text" name="userName" id="userName" value="삥뽕4"/></th>
+					<th><button onclick="chatName()" class="btn btn-warning"
+							id="chat_btn" >채팅입장</button></th>
+				</tr>
+			</table>
+		</div>
+		<!-- 삭제용 -->
+		<div class="messaging">
+			<div class="inbox_msg">
+				<div class="inbox_people">
+					<div class="inbox_chat scroll">
+						<li>
+							<div class="card_item" style="width: 18rem">
+								<a href="itemDetail"> <img src="images/cheese.png"
+									class="card-img-top" alt="..." />
+								</a>
+								<div class="card-body">
+									<div class="card-itemTitle">안녕하세요</div>
+									<p class="card-text">
+										<span>30000원</span><br />
+									</p>
+
+									<div class="item_boxbottom">
+										<a href="reservationDetail?itemno=${itemList.itemno }"
+											class="btn itembtn">예약하기</a>
+									</div>
+								</div>
+							</div>
+						</li>
+					</div>
+				</div>
+				<div class="mesgs">
+					<div class="msg_history">
+						<div class="incoming_msg">
+							<div class="incoming_msg_img">
+								<img src="images/mem_profile.jpg" alt="sunil" id="photo" />
+							</div>
+							<div class="received_msg">
+								<div class="received_withd_msg">
+									<p>Test which is a new approach to have all solutions</p>
+									<span class="time_date"> 11:01 AM | June 9</span>
+								</div>
+							</div>
+						</div>
+						<div class="outgoing_msg">
+							<div class="sent_msg">
+								<p>Test which is a new approach to have all solutions</p>
+								<span class="time_date"> 11:01 AM | June 9</span>
+							</div>
+						</div>
+					</div>
+					<div class="type_msg">
+						<div class="input_msg_write">
+							<input type="text" class="write_msg"
+								placeholder="보내실 메시지를 입력하세요." />
+							<button class="msg_send_btn" type="button" onclick="send()">
+								<i class="fa fa-paper-plane" aria-hidden="true"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

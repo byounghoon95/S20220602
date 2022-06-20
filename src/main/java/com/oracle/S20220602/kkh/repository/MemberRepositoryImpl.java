@@ -135,4 +135,15 @@ public class MemberRepositoryImpl implements MemberRepository {
 		}
 		return dbmember;
 	}
+
+	@Override
+	public void memberPwUpdate(Member member) {
+		System.out.println("MemberRepositoryImpl memberPwUpdate start");
+		
+		try {
+			session.update("kkhmemberPwUpdate", member);
+		}catch (Exception e) {
+			System.out.println("MemberRepositoryImpl memberPwUpdate exception-> " + e.getMessage());
+		}
+	}
 }

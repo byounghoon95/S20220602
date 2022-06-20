@@ -60,4 +60,7 @@
 	<select id="lbhReplyOne" parameterType="int" resultType="Board">
 		select * from Board where boardno=#{boardno}
 	</select>
+	<update id="lbhboardReplyUpdate"  parameterType="Board">
+		update Board set boardcontent=#{boardcontent} where boardno=#{boardno}
+	</update>
 </mapper>
