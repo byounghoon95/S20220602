@@ -23,7 +23,7 @@
 								<ul class="faq-list">
 									<c:forEach var="wList" items="${mypageWishList }">
 										<li>
-										  <a class="item_detail" href="#">
+										  <a class="item_detail" href="itemDetail?itemno=${wList.itemno }">
 											<div class="card item" style="width: 18rem;">
 									          <!-- <img src="images/cheese.png" class="card-img-top" alt="..."> -->
 									          <img src="${context}/itemImgs/${wList.itemimg1 }" class="card-img-top" width="286" height="286" >
@@ -33,7 +33,7 @@
 									           
 									            <div class="item_boxbottom">
 										            <p class="card-text">
-										            	<span>${wList.itemcost }</span><br>
+										            	<span>${wList.itemcost }원</span><br>
 										            	<span>서울시&nbsp&nbsp ${wList.content }</span>
 										            </p>
 									              

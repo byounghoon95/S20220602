@@ -16,7 +16,7 @@
 </head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-
+	
 <body>
  <div>
  	<div>
@@ -26,9 +26,16 @@
  					<h2 class="reser_timetitle1">약속시간(장소) 설정</h2>
  				</div>
 				<hr class="reser_titleLine" id="reser-up" width="90%">
-		
 				
-					
+				<c:choose>
+				<c:when test="${sessid } ==${reser.id }">
+					<input type="hidden" name="mcd" value="502">
+				</c:when>
+				
+				<c:otherwise>
+					<input type="hidden" name="mcd" value="501">
+				</c:otherwise>
+				</c:choose>	
 				<div class="reser_datetime">
 				<!-- 달력 -->
 					
@@ -51,9 +58,9 @@
 							
 				<!-- 예약시간 설정 -->
 				
-			시간<input type="time" name="restime" onclick=data() value="${restime }">
+			시간<input type="time" name="restime" onclick=data() value="${reser.restime }">
 				<!-- <input type="submit" value="Submit"> -->
-			장소<input type="text" id="hiddenValue" name="resloc" value="${resloc }" placeholder="장소를 검색하세요!">
+			장소<input type="text" id="hiddenValue" name="resloc" value="${reser.resloc }" placeholder="장소를 검색하세요!">
 				</div>
 	
 				<!-- 지도 AIP -->

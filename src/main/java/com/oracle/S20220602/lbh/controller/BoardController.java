@@ -23,37 +23,38 @@ public class BoardController {
 	
 
 	// Board 전체 리스트 불러오기
-	@GetMapping("/board")
-	public String board(Board board,String currentPage, Model model, HttpServletRequest request, Member member) {
-		System.out.println("BoardController board Start...");
-		
-		// 세션에서 id 가져오기
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
-		session.setAttribute("id", id);
-		model.addAttribute("id", id);
-		
-		
-		int total = bs.total();
-		System.out.println("BoardController total ->" +total);
-		Paging pg = new Paging(total, currentPage);
-		board.setStart(pg.getStart());
-		board.setEnd(pg.getEnd());
-		List<Board> boardList = bs.boardSelect(board);
-		System.out.println("BoardController board boardList.size()->"+boardList.size());
-		
-//		// header --> id 값 받기
-//		String input_id = member.getId();
-//		HttpSession session = request.getSession();
-//		session.setAttribute("id", input_id);
-//		model.addAttribute("input_id", input_id);
-		
-		
-		model.addAttribute("boardList", boardList);
-		model.addAttribute("pg", pg);
-		model.addAttribute("total", total);
-		return "board";
-	}
+	   @GetMapping("/board")
+	   public String board(Board board,String currentPage, Model model, HttpServletRequest request, Member member) {
+	      System.out.println("BoardController board Start...");
+	      
+	      // 세션에서 id 가져오기
+	      HttpSession session = request.getSession();
+	      String id = (String) session.getAttribute("id");
+	      session.setAttribute("id", id);
+	      model.addAttribute("id", id);
+	      
+	      
+	      int total = bs.total(board); /* ()에서 (board) 추가함 */
+	      System.out.println("BoardController total ->" +total);
+	      Paging pg = new Paging(total, currentPage);
+	      board.setStart(pg.getStart());
+	      board.setEnd(pg.getEnd());
+	      List<Board> boardList = bs.boardSelect(board);
+	      System.out.println("BoardController board boardList.size()->"+boardList.size());
+	      
+//	      // header --> id 값 받기
+//	      String input_id = member.getId();
+//	      HttpSession session = request.getSession();
+//	      session.setAttribute("id", input_id);
+//	      model.addAttribute("input_id", input_id);
+	      
+	      
+	      model.addAttribute("boardList", boardList);
+	      model.addAttribute("bdkeyword", board.getBdkeyword());   /* <- 창현 추가(게시물검색) */
+	      model.addAttribute("pg", pg);
+	      model.addAttribute("total", total);
+	      return "board";
+	   }
 	// 글 작성하기 클릭 후 새글 작성 페이지로 이동
 	@GetMapping("/boardWriteForm")
 	public String boardWriteForm(String id, Model model, HttpServletRequest request) {

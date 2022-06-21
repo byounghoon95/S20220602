@@ -32,8 +32,7 @@
 											<li>
 											  <a class="item_detail" href="#">
 												<div class="card item" style="width: 18rem;">
-										          <!-- <img src="images/cheese.png" class="card-img-top" alt="..."> -->
-										          <img src="${context}/itemImgs/${itemList.itemimg1 }" class="card-img-top" width="286" height="286" >
+										          <img src="images/cheese.png" class="card-img-top" alt="...">
 										          <div class="card-body">
 										            <h5 class="card-title"><div class="card-itemTitle">${itemList.itemtitle }</div></h5>
 										            <p class="card-text">

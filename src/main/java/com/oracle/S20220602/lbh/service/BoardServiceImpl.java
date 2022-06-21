@@ -26,10 +26,10 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int total() {
+	public int total(Board board) {
 		int total = 0;
 		System.out.println("BoardServiceImpl total start");
-		total = boardRepository.total();
+		total = boardRepository.total(board);
 		return total;
 	}
 

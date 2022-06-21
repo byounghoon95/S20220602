@@ -13,7 +13,7 @@
 	<div class="container mypage_all">
 	<h4 class="my_cheese">뽀로로님의 치즈</h4>
 		<div class="prfother_all">
-			<div class="prf_report_div"><a class="prf_report" href="#"><i class="fa-solid fa-circle-exclamation"></i>신고하기</a></div>
+			<div class="prf_report_div"><a class="prf_report" href="/reportForm"><i class="fa-solid fa-circle-exclamation"></i>신고하기</a></div>
 			<div class="profile_box">
 				<div class="left_prf">
 					<img src="images/profile.jpg" class="profile_img" alt="..."><p>

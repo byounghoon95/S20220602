@@ -28,14 +28,14 @@
 									<ul class="faq-list">
 										<c:forEach var="sellList" items="${mypageSellList }">
 											<li>
-											   <a class="item_detail" href="#">
+											   <a class="item_detail" href="itemDetail?itemno=${sellList.itemno }">
 												<div class="card item" style="width: 18rem;">
 										          <!-- <img src="images/cheese.png" class="card-img-top" alt="..."> -->
 										          <img src="${context}/itemImgs/${sellList.itemimg1 }" class="card-img-top" width="286" height="286" >
 										          <div class="card-body">
 										            <h5 class="card-title"><div class="card-itemTitle">${sellList.itemtitle }</div></h5>
 										            <p class="card-text">
-										            	<span>${sellList.itemcost }</span><br>
+										            	<span>${sellList.itemcost }원</span><br>
 										            	<span>서울시&nbsp&nbsp ${sellList.content }</span>
 										            </p>
 										           

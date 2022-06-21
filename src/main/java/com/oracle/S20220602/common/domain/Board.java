@@ -38,6 +38,7 @@ public class Board {
 	private String search;   	private String keyword;
 	private String pageNum;  
 	private int start; 		 	private int end;
+	private String bdkeyword; // 게시글 검색용
 	
 	//session id
 	private String sessionId;

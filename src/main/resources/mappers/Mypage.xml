@@ -17,7 +17,7 @@
 	
 	
 	<select id="khjmypageWishList" parameterType="Item" resultType="Item">
-        select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview
+        select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview, i.itemno
 			from common c, member m, item i, (SELECT * FROM wish WHERE id =#{id}) w
 			where c.mcd = m.locno
 			and i.itemno = w.itemno
@@ -26,7 +26,7 @@
 	</select>
 	
 	<select id="khjmypageBuyList" parameterType="Item" resultType="Item">
-		select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview, r.dealcontent
+		select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview, r.dealcontent, i.itemno
 		from common c, member m, item i, resdeal r
 		where i.itemno=r.itemno
 		and c.mcd = m.locno
@@ -36,7 +36,7 @@
 	</select>
 	
 	<select id="khjmypageSellList" parameterType="Item" resultType="Item">
-        select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview, r.dealcontent
+        select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview, r.dealcontent, i.itemno
 		from common c, member m, item i, resdeal r
 		where c.mcd = m.locno
         and i.itemno=r.itemno
@@ -63,8 +63,12 @@
 		update Member set nickname=#{nickname}, pw=#{pw}, email=#{email}, phone=#{phone}, locno=#{locno} where id=#{id}
 	</update>
 	
+	<select id="khjselectLocList" resultType="Common">
+		select * from Common where bcd=1100 and mcd!=999
+	</select>
+	
 	<select id="khjmypageCommentList" parameterType="Reservation" resultType="Reservation">
-        select r.dealcontent, r.id, m.nickname
+        select r.dealcontent, r.id, m.nickname, i.itemno
 		from resdeal r, item i, member m
 		where i.itemno = r.itemno
 		and r.id = m.id

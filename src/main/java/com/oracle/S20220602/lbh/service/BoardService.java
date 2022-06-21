@@ -6,7 +6,7 @@ import com.oracle.S20220602.common.domain.Board;
 
 public interface BoardService {
 	List<Board> boardSelect(Board board);
-	int total();
+	int total(Board board);
 	int boardWrite(Board board);
 	Board boardDetail(int boardno);
 	int boardReply(Board board);

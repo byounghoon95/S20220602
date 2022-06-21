@@ -5,6 +5,22 @@
 
 <!DOCTYPE html>
 <html>
+<script type="text/javascript"
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript"> /* 창현추가(게시물검색) */
+$(function() {
+   $('#search_bd').click(function() {
+      var bdkeyword =  $('#bdkeyword').val();
+      if (!bdkeyword) {
+         alert("검색어를 입력하세요")
+         return false;
+      }
+      var sendData = 'bdkeyword='+bdkeyword;
+      /* alert('sendData-->'+sendData) */
+      location.href="board?"+sendData;
+   });
+});
+</script>
 <head>
 <meta charset="UTF-8">
 <title>Cheese Board</title>
@@ -24,7 +40,7 @@
 </c:otherwise>
 </c:choose>
 
-<link href="css/board.css" rel="stylesheet" />
+<link href="css/board.css?after" rel="stylesheet" />
 
 <body>
 	<!-- Content section 1-->
@@ -62,6 +78,13 @@
 			<div class="container">
 				<div class="section-title">
 					<h2>일상 게시판</h2>
+					<div class="search">
+               <input type="text" id="bdkeyword" class="search_board"
+                     placeholder="찾고 싶은 게시글 검색"/>
+                    <button  class="btn-outline-secondary" type="button" value="검색" id="search_bd">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
 				</div>
 				<ul class="faq-list">
 					<c:forEach var="bList" items="${boardList }">
@@ -77,17 +100,17 @@
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center">
 						<c:if test="${pg.startPage > pg.pageBlock }">
-							<li class="page-item"><a class="page-link" href="board?currentPage=${pg.startPage-pg.pageBlock}"
+							<li class="page-item"><a class="page-link" href="board?currentPage=${pg.startPage-pg.pageBlock}&bdkeyword=${bdkeyword}"
 								aria-label="Previous" id="page_btn"> <span
 									aria-hidden="true">&laquo;</span>
 							</a></li>
 						</c:if>
 						<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
-							<li class="page-item"><a class="page-link" href="board?currentPage=${i}"
+							<li class="page-item"><a class="page-link" href="board?currentPage=${i}&bdkeyword=${bdkeyword}"
 								id="page_btn">${i}</a></li>
 						</c:forEach>
 						<c:if test="${pg.endPage < pg.totalPage }">
-							<li class="page-item"><a class="page-link" href="board?currentPage=${pg.startPage+pg.pageBlock}"
+							<li class="page-item"><a class="page-link" href="board?currentPage=${pg.startPage+pg.pageBlock}&bdkeyword=${bdkeyword}"
 								aria-label="Next" id="page_btn"> <span aria-hidden="true">&raquo;</span>
 							</a></li>
 						</c:if>

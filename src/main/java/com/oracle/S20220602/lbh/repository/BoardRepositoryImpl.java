@@ -14,31 +14,35 @@ public class BoardRepositoryImpl implements BoardRepository{
 	private SqlSession		session;
 	
 	//Board 전체 리스트 조회
-	@Override
-	public List<Board> boardSelect(Board board) {
-		List<Board> listBoard = null;
-		System.out.println("BoardRepositoryImpl boardSelect start...");
-		try {
-			listBoard = session.selectList("lbhListBoard",board);
-			System.out.println("BoardRepositoryImpl boardSelect listBoard.size() -> " + listBoard.size());
-		} catch (Exception e) {
-			System.out.println("BoardRepositoryImpl boardSelect Exception->"+e.getMessage());
-		}
-		return listBoard;
-	}
-	//Board 댓글을 제외한 나머지 count
-	@Override
-	public int total() {
-		int total = 0;
-		System.out.println("BoardRepositoryImpl total start...");
-		try {
-			total = session.selectOne("lbhBoardCount");
-			System.out.println("BoardRepositoryImpl total -> " + total);
-		} catch (Exception e) {
-			System.out.println("BoardRepositoryImpl total() Exception->"+e.getMessage());
-		}
-		return total;
-	}
+	   @Override
+	   public List<Board> boardSelect(Board board) {
+	      List<Board> listBoard = null;
+	      System.out.println("BoardRepositoryImpl boardSelect start...");
+	      if (board.getBdkeyword()== null) board.setBdkeyword("%");   /* <- 창현 추가(게시물검색) */
+	      System.out.println("BoardRepositoryImpl boardSelect bdkeyword->"+board.getBdkeyword());   /* <- 창현 추가(게시물검색) */
+	      try {
+	         listBoard = session.selectList("lbhListBoard",board);   /*lbhListBoard 옆에  ,board 추가함(창현)*/
+	         System.out.println("BoardRepositoryImpl boardSelect listBoard.size() -> " + listBoard.size());
+	      } catch (Exception e) {
+	         System.out.println("BoardRepositoryImpl boardSelect Exception->"+e.getMessage());
+	      }
+	      return listBoard;
+	   }
+	   //Board 댓글을 제외한 나머지 count
+	   @Override
+	   public int total(Board board) {   /* ()에서 (Board board) 추가함 */
+	      int total = 0;
+	      System.out.println("BoardRepositoryImpl total start...");
+	      if (board.getBdkeyword()== null) board.setBdkeyword("%");   /* <- 창현 추가(게시물검색) */
+	      System.out.println("BoardRepositoryImpl total bdkeyword->"+board.getBdkeyword());   /* <- 창현 추가(게시물검색) */
+	      try {
+	         total = session.selectOne("lbhBoardCount", board); /*lbhBoardCount 옆에 ,board 추가함(창현)*/
+	         System.out.println("BoardRepositoryImpl total -> " + total);
+	      } catch (Exception e) {
+	         System.out.println("BoardRepositoryImpl total() Exception->"+e.getMessage());
+	      }
+	      return total;
+	   }
 
 	@Override
 	public int boardWrite(Board board) {

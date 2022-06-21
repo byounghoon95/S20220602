@@ -3,21 +3,27 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.oracle.S20220602.BoardMapper">
-	<select id="lbhListBoard" parameterType="int" resultType="Board">
-        <![CDATA[
-		    SELECT *
-			FROM (
-			        SELECT rownum rn ,  a.*
-			        FROM  (select * from board where ref_step=0 order by boardno desc) a
-			     )
-			WHERE rn >= #{start} 
-			AND   rn <= #{end}
-	 	]]>
-	</select>
-	
-	<select id="lbhBoardCount" resultType="int">
-		select count(*) from board where ref_step=0
-	</select>
+	<select id="lbhListBoard" parameterType="Board" resultType="Board">
+       <!--  창현 수정(게시물검색) -->
+        SELECT *
+      FROM (
+            SELECT rownum rn ,  a.*
+              FROM  (   SELECT * FROM board
+                  WHERE (     BOARDTITLE      like '%' || #{bdkeyword}       || '%' 
+                        OR   BOARDCONTENT    like '%' || #{bdkeyword}       || '%'
+                       ) 
+             ORDER BY BOARDDATE) a
+         )
+      WHERE rn between #{start} AND  #{end}
+   </select>
+   
+   <select id="lbhBoardCount" resultType="int" parameterType="Board">
+   <!--  창현 수정(게시물검색) -->
+      SELECT Count(*) FROM board
+      WHERE (     BOARDTITLE      like '%' || #{bdkeyword}       || '%' 
+            OR   BOARDCONTENT    like '%' || #{bdkeyword}       || '%'
+           )
+   </select>
 	
 	<insert id="lbhBoardWrite" parameterType="Board">
 		insert into Board values

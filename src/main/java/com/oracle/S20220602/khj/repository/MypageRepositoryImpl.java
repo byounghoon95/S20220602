@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.oracle.S20220602.common.domain.Board;
+import com.oracle.S20220602.common.domain.Common;
 import com.oracle.S20220602.common.domain.Item;
 import com.oracle.S20220602.common.domain.Member;
 import com.oracle.S20220602.common.domain.Reservation;
@@ -157,6 +158,20 @@ public class MypageRepositoryImpl implements MypageRepository {
 			System.out.println("MypageRepositoryImpl mypageCommentSelect Exception->"+e.getMessage());
 		}
 		return mypageListComment;
+	}
+
+
+	@Override
+	public List<Common> selectLocList() {
+		List<Common> selectLocList = null;
+		
+		System.out.println("MypageRepositoryImpl selectLocList start");
+		try {
+			selectLocList = session.selectList("khjselectLocList");
+		}catch (Exception e) {
+			System.out.println("MypageRepositoryImpl selectLocList exception -> " + e.getMessage());
+		}
+		return selectLocList;
 	}
 
 

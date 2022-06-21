@@ -64,6 +64,44 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		return result;
 	}
+	@Override
+	public int dealComment(Reservation reser) {
+		System.out.println("ReservationServiceImpl dealComment Start");
+		int result =0;
+		result = reservationRepository.dealComment(reser);
+		return result;
+	}
+	@Override
+	public int dealCompl(Reservation reser) {
+		System.out.println("ReservationServiceImpl dealCompl Start");
+		int result = 0;
+		result = reservationRepository.dealCompl(reser);
+		
+		return result;
+	}
+	@Override
+	public Reservation dealCommentDetail(int itemno) {
+		System.out.println("ReservationServiceImpl dealCommentDetail start");
+		Reservation reserItem = null ;
+		reserItem = reservationRepository.dealCommentDetail(itemno);
+		return reserItem;
+	
+	}
+	@Override
+	public Reservation dealcs(int itemno) {
+		System.out.println("ReservationServiceImpl dealcs start");
+		Reservation dealcommentsend = null;
+		dealcommentsend = reservationRepository.dealcs(itemno);
+
+		return dealcommentsend;
+	}
+	@Override
+	public Reservation dealCommentGetDetail(int itemno) {
+		System.out.println("ReservationServiveImpl dealCommentGetDetail start...");
+		Reservation reserItem =null;
+		reserItem = reservationRepository.dealCommentGetDetail(itemno);
+		return reserItem;
+	}
 
 
 }

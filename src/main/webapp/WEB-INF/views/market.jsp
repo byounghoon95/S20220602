@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
 <%
 	String id = (String) session.getAttribute("id");
@@ -26,6 +28,13 @@
 </c:choose>
 
 <link href="css/market.css" rel="stylesheet" />
+
+<script type="text/javascript">
+
+
+
+
+</script>
 
 <body id="page-top">
 
@@ -74,7 +83,7 @@
 					<ul class="faq-list">
 						<c:forEach var="bestList" items="${marketBestList }">
 							<li class="li_item">
-							  <a class="item_detail" href="#">
+							  <a class="item_detail" href="/itemDetail?itemno=${bestList.itemno }">
 								<div class="card item" style="width: 18rem;">
 						         <!--  <img src="images/cheese.png" class="card-img-top" alt="..."> -->
 						          <img src="${context}/itemImgs/${bestList.itemimg1 }" class="card-img-top" width="286" height="286" >
@@ -85,7 +94,7 @@
 						           
 						            <div class="item_boxbottom">
 							            <p class="card-text">
-							            	<span>${bestList.itemcost }</span><br>
+							            	<span>${bestList.itemcost }원</span><br>
 							            	<span>서울시&nbsp&nbsp ${bestList.content }</span>
 							            </p>
 						              
@@ -120,7 +129,7 @@
 							<ul class="faq-list">
 								<c:forEach var="allList" items="${marketAllList }">
 									<li class="li_item">
-									  <a class="item_detail" href="#">
+									  <a class="item_detail" href="itemDetail?itemno=${allList.itemno }">
 										<div class="card item" style="width: 18rem;">
 								          <!-- <img src="images/cheese.png" class="card-img-top" alt="..."> -->
 								          <img src="${context}/itemImgs/${allList.itemimg1 }" class="card-img-top" width="286" height="286" >
@@ -130,7 +139,7 @@
 								           
 								            <div class="item_boxbottom">
 									            <p class="card-text">
-									            	<span>${allList.itemcost }</span><br>
+									            	<span>${allList.itemcost }원</span><br>
 									            	<span>서울시&nbsp&nbsp ${allList.content }</span>
 									            </p>
 								              	<div class="board_icon_view d-flex justify-content-start likechat">
