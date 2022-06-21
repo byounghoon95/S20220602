@@ -45,7 +45,7 @@
 
     <title>Insert title here</title>
   </head>
-  <body id="page-top">
+  <body id="page-top">"src/main/resources/static/css/hf_before.css"
     <!-- Navigation-->
     <div class="fixed-top1">
     <div class="container d-flex flex-row justify-content-end welcome">

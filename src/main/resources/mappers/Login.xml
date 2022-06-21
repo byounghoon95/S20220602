@@ -27,8 +27,20 @@
 	<select id="kkhmemberSelectCnt" parameterType="Member" resultType="int">
 		select count(*) from member where name=#{name} and phone=#{phone} and email=#{email}
 	</select>
+	<select id="kkhemailChk" parameterType="Member" resultType="Member">
+		select * from member where id=#{id} and email=#{email}
+	</select>
 	
-
-	
-	
+	<select id="kkhemailChkCnt" parameterType="Member" resultType="int">
+		select count(*) from member where id=#{id} and email=#{email}
+	</select>
+	<update id="kkhupdateTempPw">
+		update member set temppw=#{temppw} where id=#{id} and email=#{email}
+	</update>
+	<select id="kkhmemberSelectOne" parameterType="Member" resultType="Member">
+		select * from Member where id=#{id}
+	</select>
+	<update id="kkhmemberPwUpdate">
+		update member set pw=#{pw} where id=#{id}
+	</update>
 </mapper>

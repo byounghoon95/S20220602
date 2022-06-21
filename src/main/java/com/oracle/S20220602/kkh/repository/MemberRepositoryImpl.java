@@ -94,20 +94,56 @@ public class MemberRepositoryImpl implements MemberRepository {
 		return dbmember;
 	}
 
-//	@Override
-//	public Member adminLogin(String id) {
-//		Member member = null;
-//		System.out.println("MemberRepositoryImpl adminLogin start");
-//		System.out.println("MemberRepositoryImpl adminLogin id -> " + id);
-//		
-//		try {
-//			member = session.selectOne("kkhGetIdPass",id);
-//			System.out.println("MemberRepositoryImpl id -> " + member.getId());
-//			System.out.println("MemberRepositoryImpl pw -> " + member.getPw());
-//		}catch (Exception e) {
-//			System.out.println("MemberRepositoryImpl memberLogin exception-> " + e.getMessage());
-//		}
-//		return member;
-//	}
-	
+	@Override
+	public Member emailChk(Member member) {
+		System.out.println("MemberRepositoryImpl emailChk start");
+		Member dbmember = null;
+		Member nullmember = new Member();
+		int chk = 0;
+		
+		int cnt = session.selectOne("kkhemailChkCnt",member);
+		System.out.println("cnt -> " + cnt);
+		try {
+			if (cnt == 1) {
+				chk = 1;
+				dbmember = session.selectOne("kkhemailChk",member);
+				dbmember.setChk(chk);
+			}else {
+				dbmember = nullmember;
+				dbmember.setChk(chk);
+			}
+		}catch (Exception e) {
+			System.out.println("MemberRepositoryImpl memberSelect exception -> " + e.getMessage());
+		}
+		return dbmember;
+	}
+
+	@Override
+	public void updateTempPw(Member member) {
+		System.out.println("MemberRepositoryImpl updateTempPw start");
+		session.update("kkhupdateTempPw",member);
+	}
+
+	@Override
+	public Member memberSelectOne(Member member) {
+		Member dbmember = null;
+		System.out.println("MemberRepositoryImpl memberSelectOne start");
+		try {
+			dbmember = session.selectOne("kkhmemberSelectOne", member);
+		}catch (Exception e) {
+			System.out.println("MemberRepositoryImpl memberSelectOne exception-> " + e.getMessage());
+		}
+		return dbmember;
+	}
+
+	@Override
+	public void memberPwUpdate(Member member) {
+		System.out.println("MemberRepositoryImpl memberPwUpdate start");
+		
+		try {
+			session.update("kkhmemberPwUpdate", member);
+		}catch (Exception e) {
+			System.out.println("MemberRepositoryImpl memberPwUpdate exception-> " + e.getMessage());
+		}
+	}
 }

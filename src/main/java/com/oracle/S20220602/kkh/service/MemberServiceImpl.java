@@ -32,7 +32,6 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberRepository.register(member);
 		return result;
 	}
-	
 	@Override
 	public int idCheck(Member member) {
 		int result = 0;
@@ -41,7 +40,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		return result;
 	}
-	
+
 	@Override
 	public List<Common> selectLocList() {
 		System.out.println("MemberServiceImpl selectLocList start");
@@ -59,12 +58,31 @@ public class MemberServiceImpl implements MemberService {
 		return dbmember;
 	}
 
-//	@Override
-//	public Member adminChk(String id) {
-//		System.out.println("MemberServiceImpl memberLogin start");
-//		Member member = memberRepository.adminLogin(id);
-//		
-//		return member;
-//	}
-	
+	@Override
+	public Member EmailChk(Member member) {
+		System.out.println("MemberServiceImpl EmailChk start");
+		Member dbmember = memberRepository.emailChk(member);
+		return dbmember;
+	}
+
+	@Override
+	public void updateTempPw(Member member) {
+		System.out.println("MemberServiceImpl updateTempPw start");
+		memberRepository.updateTempPw(member);
+		
+	}
+
+	@Override
+	public Member memberSelectOne(Member member) {
+		System.out.println("MemberServiceImpl memberSelectOne start");
+		Member dbmember = memberRepository.memberSelectOne(member);
+		return dbmember;
+	}
+
+	@Override
+	public void memberPwUpdate(Member member) {
+		System.out.println("MemberServiceImpl memberPwUpdate start");
+		memberRepository.memberPwUpdate(member);
+		
+	}
 }

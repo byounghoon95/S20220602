@@ -26,12 +26,11 @@ function idCheck() {
  				dataType:'text',
  				success:function(data){
  					if(data == "redundancy"){
- 						$('.idchk').html("중복된 아이디입니다").css('color','rgb(253, 201, 0)');
- 						$('#id_input').val("");
+ 						$('.idchk').html("중복된 아이디입니다");
  					}else if(data =="noredundancy"){
- 						$('.idchk').html("사용가능한 아이디입니다").css('color','green');;
+ 						$('.idchk').html("사용가능한 아이디입니다").css('color','green');
  					}else{
- 						$('.idchk').html("아이디를 입력해주세요").css('color','rgb(253, 201, 0)');
+ 						$('.idchk').html("아이디를 입력해주세요");
  					}
  				}
  			}
@@ -95,7 +94,7 @@ $(document).ready(function() {
 					<div class="g-0">
 						<div class="col-md-6 col-lg-7 d-flex align-items-center">
 							<div class="card-body p-4 p-lg-5 text-black">
-								<form action="register">
+								<form>
 									<div class="input_all">
 										<div class="form-outline mb-4">
 											<label class="form-label" for="form2Example17">아이디</label>
@@ -155,8 +154,8 @@ $(document).ready(function() {
 											</select>
 										</div>
 										<div>
-											<button class="btn btn-lg btn-block" type="submit"
-												id="login_btn">회원가입</button>
+											<button class="btn btn-lg btn-block" type="button"
+												id="login_btn" onclick="register">회원가입</button>
 										</div>
 										<br /> <a href="login" id="reg">이미
 											계정이 있습니까?&nbsp <span id="reg_in">로그인</span>하세요

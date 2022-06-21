@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html>
 <script type="text/javascript"
@@ -22,6 +22,7 @@ $(function() {
 });
 </script>
 <head>
+<link href="css/board.css" rel="stylesheet" />
 <meta charset="UTF-8">
 <title>Cheese Board</title>
 </head>

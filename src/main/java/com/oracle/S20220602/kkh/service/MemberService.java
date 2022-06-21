@@ -11,6 +11,8 @@ public interface MemberService {
 	int idCheck(Member member);
 	List<Common> selectLocList();
 	Member memberSelect(Member member);
-//	Member adminChk(String id);
-	
+	Member EmailChk(Member member);
+	void updateTempPw(Member dbmember);
+	Member memberSelectOne(Member member);
+	void memberPwUpdate(Member member);
 }

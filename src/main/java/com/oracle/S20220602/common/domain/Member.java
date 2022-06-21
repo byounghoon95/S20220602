@@ -23,14 +23,17 @@ public class Member {
 	private int warningcnt;
 	private int bcd;
 	private int mcd;
+	private int chk;
+	
+	//buffer
+	private String temppw;
+	
 	
 	//join
 	private String content;
 	
-	private int chk;
 
 
-//	private String userimg;
 	
 
 }

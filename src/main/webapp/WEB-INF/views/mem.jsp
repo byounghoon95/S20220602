@@ -11,10 +11,9 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <link href="css/hf_before.css" rel="stylesheet" />
-<link href="css/mempwFind.css" rel="stylesheet" />
+<link href="css/pwFind.css" rel="stylesheet" />
 <title>Insert title here</title>
 </head>
-
 <body>
 	<div class="container py-5 h-100">
 		<div
@@ -26,23 +25,38 @@
 					<div class="g-0">
 						<div class="col-md-6 col-lg-7 d-flex align-items-center">
 							<div class="card-body p-4 p-lg-5 text-black">
-								<form action="pwupdate" method="post">
-								<input type="hidden" name="id" value="${member.id }">
+								<form>
 									<div class="input_all">
 										<div class="form-outline mb-4">
-											<label class="form-label" for="form2Example27">새 비밀번호</label>
-											<input type="password" class="input" name="pw" id="pw_input"
-												placeholder="새 비밀번호를 입력해주세요" required />
+											<label class="form-label" for="form2Example27">아이디</label>
+											<input type="text" class="input" name="name" id="id"
+												placeholder="아이디를 입력해주세요" required />
 										</div>
-
+										
 										<div class="form-outline mb-4">
-											<label class="form-label" for="form2Example27">비밀번호
-												확인</label> <input type="password" class="input" name="pw2"
-												id="pw2_input" placeholder="새 비밀번호를 한 번 더 입력해주세요" required />
+											<label class="form-label" for="form2Example17">이메일</label>
+											<div class="d-flex">
+												<input type="text" class="input" name="email" id="id_input"
+													placeholder="이메일을 입력해주세요" required />
+												<button type="button" class="btn" id="check_btn" onclick="idCheck()">
+													인증하기</button>
+											</div>
 										</div>
-										<div class="pw_chk"></div>
-										<button type="submit" class="btn btn-lg btn-block" id="pw_btn">비밀번호
-											변경</button>
+										
+										<div class="form-outline mb-4">
+											<label class="form-label" for="form2Example17">인증번호 입력</label>
+											<div class="d-flex">
+												<input type="text" class="input" name="veryfy" id="id_input"
+													placeholder="인증번호를 입력해주세요" required />
+												<button type="button" class="btn" id="check_btn" onclick="idCheck()">
+													확인</button>
+											</div>
+										</div>
+										
+										<div>
+											<button class="btn btn-lg btn-block" type="button"
+												id="pw_btn" onclick="register">비밀번호 변경</button>
+										</div>
 										<br />
 									</div>
 								</form>
@@ -53,21 +67,6 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#pw2_input').blur(function() {
-				console.log("시작");
-				var pw = $('#pw_input').val();
-				var pw2 = $('#pw2_input').val();
-				if (pw == pw2) {
-					$(".pw_chk").html('비밀번호가 일치합니다').css('color','green');
-				} else {
-					$(".pw_chk").html('비밀번호가 일치하지 않습니다').css('color','rgb(253, 201, 0)');
-					$('#pw2_input').val("");
-				}
-			})
-		});
-	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

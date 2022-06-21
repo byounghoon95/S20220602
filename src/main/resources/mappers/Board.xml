@@ -56,7 +56,7 @@
 	</delete>
 	
 	<select id="lbhboardReplyList" parameterType="int" resultType="Board">
-		select * from Board b, Member m where b.id=m.id and ref=#{ref} and ref_step>0 order by ref_step desc, ref_level desc
+		select * from Board b, Member m where b.id=m.id and ref=#{ref} and ref_step>0 order by ref_step desc
 	</select>
 	
 	<select id="lbhboardReplycnt" parameterType="int" resultType="int">
@@ -66,4 +66,7 @@
 	<select id="lbhReplyOne" parameterType="int" resultType="Board">
 		select * from Board where boardno=#{boardno}
 	</select>
+	<update id="lbhboardReplyUpdate"  parameterType="Board">
+		update Board set boardcontent=#{boardcontent} where boardno=#{boardno}
+	</update>
 </mapper>

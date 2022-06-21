@@ -16,33 +16,64 @@
 </head>
 <script type="text/javascript">
 $(document).ready(function(){
-	$('#email_input').click(function(){
+	$('#email_btn').click(function(){
 		var email_input = $('#email_input').val();
-		console.log(email_input);
-		 $.ajax(
-		   		 {
-		 				url:'<%=context%>/mailTransport',
-		 				type:"get",
-		 				data:{"email" : email_input},
-		 				dataType:'text',
-		 				success:function(data){
-		 					alert("여기로옴")
-		 					if(data == 0){
-		 						alert("정보를 확인해 주세요");
-		 						$('#id_input').val("");
-		 						$('#phone_input').val("");
-		 						$('#email_input').val("");
-		 					}else{
-		 						$(".modal-body").html("회원님의 아이디는 " + id + " 입니다");		
-		 						$('#exampleModal').modal("show");
-		 					}
-		 				}
-		 			}
-		   	 );
+		var id_input = $('#id_input').val();
+		if (email_input == "" || id_input == ""){
+			alert("정보를 입력해주세요");
+		}else{
+			 $.ajax(
+			   		 {
+			 				url:'<%=context%>/mailTransport',
+			 				type:"post",
+			 				data:{"email" : email_input, "id" : id_input},
+			 				dataType:'json',
+			 				success:function(data){
+			 					if(data == 0){
+			 						alert("정보를 확인해 주세요");
+			 						$('#id_input').val("");
+			 						$('#email_input').val("");
+			 					}else{
+			 						alert('인증번호를 입력해 주세요');
+			 					}
+			 				}
+			 			}
+			   	 );
+		}
+
 	});
 });
-
-
+$(document).ready(function(){
+	$('#verify_btn').click(function(){
+		var verify_input = $('#verify_input').val();
+		var email_input = $('#email_input').val();
+		var id_input = $('#id_input').val();
+		console.log(verify_input);
+		console.log(id_input);
+		if (verify_input == "" || email_input == "" || id_input == ""){
+			alert("정보를 입력해주세요");
+		}else{
+			 $.ajax(
+			   		 {
+			 				url:'<%=context%>/verifyChk',
+			 				type:"post",
+			 				data:{"temppw" : verify_input,"id" : id_input,"email" : email_input },
+			 				dataType:'json',
+			 				success:function(data){
+			 					console.log("data.temppw -> " + data.temppw);
+			 					console.log("verify_input -> " + verify_input);
+			 					if(data.temppw ==  verify_input){
+			 						$(".verify_text").html("인증에 성공했습니다").css('color','green');
+			 					}else{
+			 						$(".verify_text").html("인증에 실패했습니다").css('color','rgb(253, 201, 0)');
+			 						$('#verify_input').val("");
+			 					}
+			 				}
+			 			}
+			   	 );
+		}
+	})
+});
 </script>
 <body>
 	<div class="container py-5 h-100">
@@ -55,11 +86,11 @@ $(document).ready(function(){
 					<div class="g-0">
 						<div class="col-md-6 col-lg-7 d-flex align-items-center">
 							<div class="card-body p-4 p-lg-5 text-black">
-								<form>
+								<form action="pwFind">
 									<div class="input_all">
 										<div class="form-outline mb-4">
 											<label class="form-label" for="form2Example27">아이디</label>
-											<input type="text" class="input" name="name" id="id_input"
+											<input type="text" class="input" name="id" id="id_input"
 												placeholder="아이디를 입력해주세요" required />
 										</div>
 
@@ -78,13 +109,13 @@ $(document).ready(function(){
 											<div class="d-flex">
 											<input type="text" class="input" name="verifynum" id="verify_input"
 												placeholder="인증번호를 입력해주세요" required />
-											<button type="button" class="btn" id="verify_btn" onclick="idCheck()">
+											<button type="button" class="btn" id="verify_btn">
 											확인</button></div>
+											<div class="verify_text"></div>
 										</div>
-										
 										<div id="veryfy"></div>
-										<button type="button" class="btn btn-lg btn-block"
-											id="pw_btn" onclick="location.href='pwFind'">비밀번호 변경</button>
+										<button type="submit" class="btn btn-lg btn-block"
+											id="pw_btn">비밀번호 변경</button>
 										<br />
 									</div>
 								</form>

@@ -70,6 +70,21 @@
   text-decoration: none;
   color: rgb(94, 94, 94);
   font-weight: bold;
+}
+#reg_in {
+  color: rgb(253, 201, 0);
+}
+.last {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(127, 127, 127);
+}
+#last1:hover,
+#last2:hover,
+#last3:hover {
+  color: rgb(253, 201, 0);
+}
   font-size: 0.8rem;
 }
 #reg_in {
@@ -99,6 +114,7 @@
 #member_in{
 	color: rgb(253, 201, 0);
 }
+
 #admincharacter {
   width: 50%;
   position: relative;
