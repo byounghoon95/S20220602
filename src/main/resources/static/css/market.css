@@ -1,0 +1,141 @@
+/* 헤더 배경 하얗게 */
+nav {
+    background-color: white;
+}
+
+/* 노랑 상자 영역 */ 
+ #scroll {
+   background-color: rgba(253, 201, 0, 0.15);
+ }
+  
+/* 카테고리 */
+ .categorytitle{
+   margin-left: 10px;
+   margin-top: 30px;
+ }
+ .maincategory {
+   display: flex;
+ }
+ .maincategory_left{
+   margin-right: 50px;
+ }
+ .maincategory li a{
+   text-decoration: none;
+   color: black;
+ }
+  
+.maincategory li :hover{
+    color: rgb(253, 201, 0);
+  }
+  
+.img-fluid {
+    max-width: 50%;
+    height: auto;
+}
+  
+  
+/* 내 물건 팔기 버튼 */
+ .sellbtn{
+   background-color:rgb(253, 201, 0);
+   border-color: rgb(253, 201, 0);
+   margin-left: 60px;
+ }
+  
+/* 오늘의 인기상품 / 전체상품 글씨 */
+.itemtitle{
+    justify-content: center;
+    margin-top: 120px;
+    margin-bottom: 60px;
+    font-size: large;
+    font-weight: bolder;
+  }
+  
+ .itemtitle h2 {
+ 	text-align: center;
+ }
+  
+/* 아이템 카드 */
+
+.item_detail{
+	text-decoration: none;
+	color: black;
+}
+
+.item_detail:hover{
+	color: #ffc107;
+}
+
+.market_itembox li {
+	float: left;
+	list-style: none;
+}
+  
+.faq .faq-list {
+  padding: 0;
+  list-style: none;
+}
+ .items{
+   display: flex;
+   justify-content: center;
+   margin: 60px;
+ }
+ 
+ .item{
+   margin: 10px;
+ }
+ 
+ .item_boxbottom{
+  display: flex;
+}
+
+/* 아이템 아이콘 */
+ .likechat{
+  margin-left: 50px;
+  padding-top: 10px;
+}
+.board_icon_view{
+	margin-top: 18px;
+   color: rgb(204, 204, 204);
+}
+
+/* 아이템 제목 글자수 제한 */
+ .card-itemTitle{
+  	  width:240px;
+     overflow:hidden;
+     text-overflow:ellipsis;
+     white-space:nowrap;
+     display:inline-block;
+  }
+  
+ 
+ /* 상품보러가기 버튼 */
+ .itembtn{
+ 	color: white;
+   background-color:rgb(253, 201, 0);
+   border-color: rgb(253, 201, 0);
+  
+ }
+ 
+ .itembtn:hover{
+   background-color: white;
+   color: rgb(253, 201, 0);
+   border-color: rgb(253, 201, 0);
+ }
+
+
+  /* 페이지 넘김 버튼 */
+  #page_btn {
+    text-decoration: none;
+    color: black;
+  }
+
+
+.market_notice{
+	color: gray;
+}
+
+
+
+
+
+

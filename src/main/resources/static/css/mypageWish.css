@@ -1,0 +1,134 @@
+.wrap {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.icon_prf{
+	width: 30px;
+	height: 30px;
+	color: black;
+	font-weight: lighter;
+}
+
+.mypage_itembox{
+	display: flex;
+}
+
+/* 제목 */
+.mypage_title{
+	display: flex;
+}
+
+.mypage_title h4{
+	margin-top: 5px;
+	margin-left: 10px;
+}
+
+/* 아이템 카드 */
+.item_detail{
+   text-decoration: none;
+   color: black;
+}
+
+.item_detail:hover{
+   color: #ffc107;
+}
+
+.faq .faq-list {
+  padding: 0;
+  list-style: none;
+}
+
+/* 글자수 제한 */
+  .card-itemTitle{
+   	  width:240px;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      display:inline-block;
+   }
+  
+  .items{
+    display: flex;
+    justify-content: center;
+    margin: 60px;
+  }
+  
+  .item{
+    margin: 10px;
+  }
+  
+  .itembtn{
+  	color: white;
+    background-color:rgb(253, 201, 0);
+    border-color: rgb(253, 201, 0);
+   
+  }
+  
+  .itembtn:hover{
+    background-color: white;
+    color: rgb(253, 201, 0);
+    border-color: rgb(253, 201, 0);
+  }
+
+
+  .sellbtn{
+    background-color:rgb(253, 201, 0);
+    border-color: rgb(253, 201, 0);
+    margin-left: 60px;
+  }
+  
+  .itemtitle{
+    justify-content: center;
+    margin-top: 120px;
+    margin-bottom: 60px;
+    font-size: large;
+    font-weight: bolder;
+  }
+  
+  #page_btn {
+    text-decoration: none;
+    color: black;
+  }
+
+  .categorytitle{
+    margin-left: 10px;
+    margin-top: 30px;
+  }
+  .maincategory {
+    display: flex;
+  }
+  .maincategory_left{
+    margin-right: 50px;
+  }
+
+.mainlink:hover{
+  color: black;
+}
+
+.item_boxbottom{
+  display: flex;
+}
+
+.likechat{
+  margin-left: 50px;
+  padding-top: 10px;
+}
+
+.img-fluid {
+    max-width: 50%;
+    height: auto;
+}
+
+nav {
+    background-color: white;
+}
+
+.board_icon_view{
+	margin-top: 18px;
+    color: rgb(204, 204, 204);
+}
+
+li {
+	float: left;
+}

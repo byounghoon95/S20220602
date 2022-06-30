@@ -1,0 +1,60 @@
+.wrap {
+  width: 50%;
+  margin: 0 auto;
+}
+
+/* 아이콘 */
+.icon_prf{
+	width: 30px;
+	height: 30px;
+	color: black;
+	font-weight: lighter;
+}
+
+.mypage_title{
+	display: flex;
+}
+
+.mypage_title h4{
+	margin-top: 5px;
+	margin-left: 10px;
+}
+
+.banklist{
+	font-weight: 900;
+}  
+
+.bankresult{
+	margin-left: 200px;
+	color: #ffc107;
+}
+
+.banknickname{
+	color: #ffc107;
+	font-weight: 900;
+}
+
+.bank_box{
+	display: flex;
+	/* background-color: rgba(253, 201, 0, 0.15); */
+	margin-bottom: 200px;
+	
+}
+
+#character {
+  width: 150px;
+  /* left: 20%; */
+  /* top: 7%; */
+}
+
+.bank_right{
+	margin-left: 150px;
+}
+
+.bank_left{
+	margin-left: 50px;
+	padding-top: 10px;
+}
+.bankrow{
+	display: flex;
+}

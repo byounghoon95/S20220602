@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.BoardMapper">
+	<select id="lbhListBoard" parameterType="int" resultType="Board">
+        <![CDATA[
+		    SELECT *
+			FROM (
+			        SELECT rownum rn ,  a.*
+			        FROM  (select * from board where ref_step=0 order by boardno desc) a
+			     )
+			WHERE rn >= #{start} 
+			AND   rn <= #{end}
+	 	]]>
+	</select>
+	
+	<select id="lbhBoardCount" resultType="int">
+		select count(*) from board where ref_step=0
+	</select>
+	
+	<insert id="lbhBoardWrite" parameterType="Board">
+		insert into Board values
+		(board_seq.nextval,#{sessionId},#{boardtitle},#{boardcontent},sysdate,0,
+		0,board_seq.currval,0,0,'N',400,401)
+	</insert>
+	
+	<select id="lbhBoardDetail" parameterType="int" resultType="Board">
+		select * from board b, member m where b.id=m.id and boardno=#{boardno}
+	</select>
+	
+	<update id="lbhupHit"  parameterType="int">
+		update Board set boardview=(boardview+1) where boardno=#{boardno}
+	</update>
+	
+	<insert id="lbhReplyWrite" parameterType="Board">
+		insert into Board values(board_seq.nextval,#{sessionId},'댓글',#{boardcontent},sysdate,0,
+		0,#{ref},#{ref_step}+1,#{ref_level}+1,'N',400,401)
+	</insert>
+	
+	<update id="lbhReplyShape"  parameterType="Board">
+		update Board set ref_step=ref_step+1 where ref=#{ref} and ref_step>#{ref_step}
+	</update>
+	
+	<update id="lbhboardUpdate"  parameterType="Board">
+		update Board set boardtitle=#{boardtitle}, boardcontent=#{boardcontent} where boardno=#{boardno}
+	</update>
+	<delete id="lbhboardDelete">
+		delete from Board where boardno=#{boardno}
+	</delete>
+	
+	<select id="lbhboardReplyList" parameterType="int" resultType="Board">
+		select * from Board b, Member m where b.id=m.id and ref=#{ref} and ref_step>0 order by ref_step desc, ref_level desc
+	</select>
+	
+	<select id="lbhboardReplycnt" parameterType="int" resultType="int">
+		select count(*) from Board b, Member m where b.id=m.id and ref=#{ref} and ref_step>0 order by ref_step desc
+	</select>
+	
+	<select id="lbhReplyOne" parameterType="int" resultType="Board">
+		select * from Board where boardno=#{boardno}
+	</select>
+</mapper>

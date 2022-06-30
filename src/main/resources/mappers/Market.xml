@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.MarketMapper">
+	
+	
+	<select id="khjmarketBestList" parameterType="Item" resultType="Item">
+		<![CDATA[
+	       select * from (
+	            select rownum rn, a.*
+	            from ( 
+			            select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview
+			            from common c, member m, item i
+			            where c.mcd = m.locno
+			            and i.id = m.id
+			            order by i.itemview desc
+			            ) a 
+	            	)
+	            where rn <=8
+        ]]>
+	</select>
+	
+	<select id="khjmarketAllList" parameterType="Item" resultType="Item">
+		<![CDATA[
+			select c.content, i.itemtitle, i.itemcost, i.itemwish, i.itemimg1, i.itemview
+			from common c, member m, (
+			        SELECT rownum rn ,  a.*
+			        FROM  (select * from item order by itemdate desc) a
+			     ) i
+			where c.mcd = m.locno
+			and i.id = m.id
+			And   rn >= #{start}
+			AND   rn <= #{end}
+		]]>
+	</select>
+	
+	<select id="khjMarketCount" resultType="int">
+		select count(*) from item
+	</select>
+
+	
+</mapper>
