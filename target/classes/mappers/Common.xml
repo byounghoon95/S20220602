@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.CommonMapper">
+	<select id="kjhItemCategoryList" resultType="Common">
+		select c.mcd, c.content
+		from common c
+		where bcd=1000 and mcd!=1001 and mcd!=999
+	</select>
+	<select id="kjhReportCategoryList" resultType="Common">
+		select c.mcd, c.content
+		from common c
+		where bcd=900 and mcd!=1001 and mcd!=999
+	</select>
+	<select id="kjhMemberLocName" resultType="String" parameterType="String">
+		select content
+		from common
+		where bcd=1100 and mcd = (select locno
+                          		  from member
+                          		  where id = #{id})
+	</select>
+	
+</mapper>

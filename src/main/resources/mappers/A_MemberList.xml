@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.MemberMapper">
+
+
+	<select id="kshMemberTotal" resultType="int">
+		SELECT Count(*)FROM member
+	</select>
+
+	<select id="kshMemberListAll3" parameterType="Member"
+		resultType="Member">
+
+		SELECT *
+		FROM (
+		SELECT rownum rn , a.*
+		FROM (select id,name,nickname,email,phone,joindate,warningcnt,locno,m.mcd,
+		content
+		from member m, common c where m.mcd = c.mcd order by joindate desc) a
+		)
+		WHERE rn between #{start} AND #{end}
+	</select>
+	
+	<select id="kshMemberDetail" parameterType="String" resultType="Member">
+		       select m.*, c.content
+               from member m inner join common c
+                on m.bcd=c.bcd and m.mcd=c.mcd
+                Where id = #{id}
+	</select>
+	
+	 
+	<update id="kshMemberUpdate" parameterType="Member">
+		 update member set 
+	                        
+	                	   warningcnt=#{warningcnt},
+				           mcd=#{mcd}
+		where id=#{id}
+		
+	</update>
+	
+	
+	
+	<select id="kshMemberKeyword" parameterType="Member"
+		resultType="Member">
+
+		SELECT *
+		FROM (
+            SELECT rownum rn , a.*
+            FROM (select id,name,nickname,email,phone,joindate,warningcnt,locno,m.mcd,	content
+                  from  member    m, 
+                       common     c 
+                  where m.mcd = c.mcd 
+                 <choose>
+					<when test="search=='s_all'">
+						AND (	id like '%' || #{keyword} || '%'
+							 OR	nickname like '%' || #{keyword} || '%'
+							 OR content like '%' || #{keyword} || '%'
+							 )
+					</when>
+					<when test="search=='s_id'">
+						AND id like '%' || #{keyword} || '%'
+					</when>
+					<when test="search=='s_nickname'">
+						AND nickname like '%' || #{keyword} || '%'
+					</when>
+					<when test="search=='s_content'">
+						AND content like '%' || #{keyword} || '%'
+					</when>
+					<otherwise>
+						AND id like '%'
+					</otherwise>
+             	</choose>            
+                    order by joindate desc
+                 ) a
+		   )
+		WHERE rn between #{start} AND #{end}
+		
+	</select>
+	
+	<select id="kshMemberTotalKeyword" parameterType="Member" resultType="int">
+	 SELECT Count(*)        
+     FROM (      select m.*, c.content
+                from member m inner join common c
+                on m.bcd=c.bcd and m.mcd=c.mcd)
+		<choose>
+			<when test="search=='s_all'">
+			WHERE (	id like '%' || #{keyword} || '%'
+					 OR	nickname like '%' || #{keyword} || '%'
+					 OR content like '%' || #{keyword} || '%'
+					 )
+			</when>
+			<when test="search=='s_id'">
+				WHERE id like '%' || #{keyword} || '%'
+			</when>
+			<when test="search=='s_nickname'">
+				WHERE nickname like '%' || #{keyword} || '%'
+			</when>
+			<when test="search=='s_content'">
+				WHERE content like '%' || #{keyword} || '%'
+			</when>
+			<otherwise>
+				WHERE id like '%'
+			</otherwise>
+		</choose>
+	</select>
+	
+	<update id="kshMemberDelete">
+		update member set mcd = 103 where id = #{id}
+	</update>
+	
+	<select id="kshMemberStatusList" resultType="Common">
+      select c.mcd, c.content
+      from common c
+      where bcd=100 and mcd!=999
+   </select>
+   
+</mapper>

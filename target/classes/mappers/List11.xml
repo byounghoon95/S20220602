@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.List11Mapper">
+      <select id="kkhList11List" parameterType="List11"
+      resultType="List11">
+        <![CDATA[
+          SELECT *
+         FROM (
+                 SELECT rownum rn ,  a.*
+                 FROM  (select * from inquiry where id=#{id} order by inqno desc) a
+              )
+         WHERE rn >= #{start} 
+         AND   rn <= #{end}
+       ]]>
+   </select>
+
+   <select id="kkhList11Count" resultType="int" parameterType="List11">
+      select count(*) from
+      inquiry where ref_step=0
+   </select>
+
+
+   <select id="kkhList11Detail" parameterType="int"
+      resultType="List11">
+      select * from inquiry i, member m where i.id=m.id and
+      inqno=#{inqno}
+   </select>
+
+   <insert id="kkhList11Write" parameterType="List11">
+      insert into inquiry
+      values
+      (inquiry_seq.nextval,#{id},#{inqtitle},#{inqcontent},sysdate,'N',#{ref},#{ref_step},#{ref_level})
+   </insert>
+   <update id="kkhList11Update" parameterType="List11">
+      update inquiry set
+      inqtitle=#{inqtitle}, inqcontent=#{inqcontent} where inqno=#{inqno}
+   </update>
+   <delete id="kkhList11Delete">
+      delete from inquiry where inqno=#{inqno}
+   </delete>
+   <select resultType="List11" parameterType="int"
+      id="kkhList11ReplyList">select * from inquiry i, Member m where i.id=m.id and ref=#{ref}
+      and
+      ref_step>0 order by ref_step desc, ref_level desc
+   </select>
+   <select resultType="int" parameterType="int"
+      id="kkhList11Replycnt">select count(*) from inquiry i, Member m where i.id=m.id and
+      ref=#{ref} and ref_step>0 order by ref_step desc
+   </select>
+</mapper>

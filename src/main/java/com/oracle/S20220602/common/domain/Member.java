@@ -28,6 +28,11 @@ public class Member {
 	private String content;
 	
 	private int chk;
+	
+	private int start;
+	private int end;
+	private String keyword;
+	private String search;
 
 
 //	private String userimg;

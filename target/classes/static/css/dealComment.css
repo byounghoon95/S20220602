@@ -1,0 +1,105 @@
+ .psAll {
+ 	margin: 0 15% 0 15%;
+ 
+ }
+ 
+ .ps_Haed {
+	display:flex;
+
+ }
+ 
+ .ps_title {
+ 	padding: 90px 0 0 25px;
+ 	text-align: left;
+ }
+ .ps_insertTitle{
+ 	display:flex;
+ }
+ .ps_ID {
+ 	text-align: left;
+ }
+ 
+ .radioButton{
+ 	margin: 100px 0 70px 0;
+ }
+ 
+ #s1 {
+ 	border: none;
+ 	text-align: center;
+ 	background-color:transparent;
+ 	
+ }
+  #s2 {
+ 	border: none;
+ 	text-align: center;
+ 	background-color:transparent;
+ 	
+ }
+ .label_s1{
+ 	margin-right: 50px;
+ }
+ .label_s2{
+ 	margin-left: 50px;
+ }
+ 
+ .ps_Content{
+
+ }
+ 
+ .dealcontent_box{
+ 	margin-top: 20px;
+ 	
+ }
+ 
+ .radioButton input[type=radio] {
+ 	display: none;
+ }
+ .radioButton input[type=radio]:checked+label{
+    
+    color: #ffc107;;
+    opacity: 70%;
+}
+ 
+ 
+
+ /* 별점주기 */
+ .star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 5em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+ 
+.star-rating input {
+  display: none;
+}
+ 
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  cursor: pointer;
+}
+ 
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+}
+/* 인서트 버튼 */
+.ps_insertButton {
+	margin: 20px 0 15px 0;
+}
+
+ #insert{
+	color:white; 
+ }

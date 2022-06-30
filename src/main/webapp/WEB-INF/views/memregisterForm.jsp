@@ -12,7 +12,7 @@
 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <link href="css/hf_before.css" rel="stylesheet" />
 <link href="css/memregister.css" rel="stylesheet" />
-<title>Insert title here</title>
+<title>Cheese Market</title>
 </head>
 <script type="text/javascript">
 //아이디 중복확인

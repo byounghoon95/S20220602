@@ -18,7 +18,7 @@
    href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
    rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<title>Insert title here</title>
+<title>Cheese Market</title>
 </head>
   <body id="page-top">
      <footer class="py-5">
@@ -26,9 +26,9 @@
         <div class="footer-area">
           <img src="images/logo.png" class="logo" id="logo-f" />
           <div class="footer1">
-            <div><a class="footer_a" href="#">공지사항</a></div>
-            <div><a class="footer_a" href="#">자주 묻는 질문</a></div>
-            <div><a class="footer_a" href="#">1:1문의</a></div>
+            <div><a class="footer_a" href="footer_notice">공지사항</a></div>
+            <div><a class="footer_a" href="footer_qlist">자주 묻는 질문</a></div>
+            <div><a class="footer_a" href="footer_list11">1:1문의</a></div>
           </div>
           <div class="footer2">
             <div><a class="footer_a" href="footer_userAgreement">이용약관</a></div>

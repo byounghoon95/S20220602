@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.oracle.S20220602.common.domain.Item;
 import com.oracle.S20220602.khj.repository.MarketRepository;
-import com.oracle.S20220602.khj.repository.MypageRepository;
 
 @Service
 public class MarketServiceimpl implements MarketService {

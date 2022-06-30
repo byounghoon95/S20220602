@@ -7,6 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
 <%
 	String id = (String) session.getAttribute("id");
@@ -15,6 +17,31 @@
 <title>Cheese Market</title>
 </head>
 
+<script type="text/javascript">
+$(document).ready(function() {
+   // 모달창 
+   // 모달창id얻기
+    var modal = document.getElementById('dtsch_modal1');
+    // 클릭id얻기
+    var btn = document.getElementById("first_btn");
+    // 닫기
+    var close = document.getElementsByClassName("modal_close")[0];                                          
+    //검색버튼클릭시 모달창 block
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    // close_btn클릭시 모달창none
+    close.onclick = function() {
+        modal.style.display = "none";
+    }
+    // 모달창외 클릭시 모달 닫힘
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+});
+</script>
 <!-- header -->
 <c:choose>
 <c:when test="${id == null}">
@@ -25,7 +52,14 @@
 </c:otherwise>
 </c:choose>
 
-<link href="css/market.css" rel="stylesheet" />
+<link href="css/market.css?after" rel="stylesheet" />
+
+<script type="text/javascript">
+
+
+
+
+</script>
 
 <body id="page-top">
 
@@ -43,7 +77,22 @@
 						<p>함께해요 치즈마켓 :D</p>
 						</div>
 						<br><br>
-                        <button type="button" class="btn btn-warning sellbtn" id="start">내 물건 팔기</button>
+						<c:choose>
+		                     <c:when test="${empty id }" >
+		                           <button type="button" class="btn btn-warning sellbtn" id="first_btn">내 물건 팔기</button>
+		                           <div id="dtsch_modal1" class="dtsch_modal modal">
+		                              <div class="modal-cnt">
+		                                  <span class="modal_close">&times;</span>                                                               
+		                                   <p class="tit">로그인 후 이용하세요</p>
+		                                   <p class="m-content"><a class="modal-btn" href="login">로그인</a> &nbsp하러가기 </p>
+		                              </div>
+		                           </div>
+		                     </c:when>
+		                     <c:otherwise>
+		                        <button type="button" class="btn btn-warning sellbtn" id="start" onclick="location.href='itemRegForm'">내 물건 팔기</button>
+		                     </c:otherwise>
+		                </c:choose>
+                        <!-- <button type="button" class="btn btn-warning sellbtn" id="start" onclick="location.href='itemRegForm'">내 물건 팔기</button> -->
                       </div>
                 </div>
                 <div class="col-lg-6 order-lg-1">
@@ -74,7 +123,7 @@
 					<ul class="faq-list">
 						<c:forEach var="bestList" items="${marketBestList }">
 							<li class="li_item">
-							  <a class="item_detail" href="#">
+							  <a class="item_detail" href="/itemDetail?itemno=${bestList.itemno }">
 								<div class="card item" style="width: 18rem;">
 						         <!--  <img src="images/cheese.png" class="card-img-top" alt="..."> -->
 						          <img src="${context}/itemImgs/${bestList.itemimg1 }" class="card-img-top" width="286" height="286" >
@@ -85,7 +134,7 @@
 						           
 						            <div class="item_boxbottom">
 							            <p class="card-text">
-							            	<span>${bestList.itemcost }</span><br>
+							            	<span>${bestList.itemcost }원</span><br>
 							            	<span>서울시&nbsp&nbsp ${bestList.content }</span>
 							            </p>
 						              
@@ -120,7 +169,7 @@
 							<ul class="faq-list">
 								<c:forEach var="allList" items="${marketAllList }">
 									<li class="li_item">
-									  <a class="item_detail" href="#">
+									  <a class="item_detail" href="itemDetail?itemno=${allList.itemno }">
 										<div class="card item" style="width: 18rem;">
 								          <!-- <img src="images/cheese.png" class="card-img-top" alt="..."> -->
 								          <img src="${context}/itemImgs/${allList.itemimg1 }" class="card-img-top" width="286" height="286" >
@@ -130,7 +179,7 @@
 								           
 								            <div class="item_boxbottom">
 									            <p class="card-text">
-									            	<span>${allList.itemcost }</span><br>
+									            	<span>${allList.itemcost }원</span><br>
 									            	<span>서울시&nbsp&nbsp ${allList.content }</span>
 									            </p>
 								              	<div class="board_icon_view d-flex justify-content-start likechat">

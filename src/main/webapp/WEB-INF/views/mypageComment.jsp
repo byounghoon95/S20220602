@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/mypageComment.css" rel="stylesheet" />
-<title>Cheese Board</title>
+<title>Cheese Market</title>
 </head>
 <body>
 
@@ -20,12 +20,12 @@
 					<span class="mypage_title"><i class="fa-solid fa-envelope icon_prf"></i><h4>받은 후기</h4></span>
 					<hr /><br><br>
 					
-					<ul class="faq-list">
-						<c:forEach var="cList" items="${mypageCommentList }">
-							<li><a class="text-start" id="board_title">${cList.dealcontent }</a>
-							<p class="text-start" id="board_txt">${cList.nickname }</p>
-						</c:forEach> 
-					</ul>
+						<ul class="faq-list">
+							<c:forEach var="cList" items="${mypageCommentList }">
+								<li><a class="text-start" id="board_title">${cList.dealcontent }</a>
+								<p class="text-start" id="board_txt">${cList.nickname }</p>
+							</c:forEach> 
+						</ul>
 					
 				</div>
 			</section>

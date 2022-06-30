@@ -8,7 +8,7 @@ import com.oracle.S20220602.common.domain.Reservation;
 
 public interface ReservationService {
 	int reservation(Reservation reser);
-	
+	Reservation reservationForm(int itemno);
 	int total();
 	
 	List<Item> reserSelect(Item item);
@@ -18,6 +18,18 @@ public interface ReservationService {
 	int reservationUpdate(Reservation reser);
 
 	int reservationDelete(Reservation reser);
+
+	int dealComment(Reservation reser);
+
+	int dealCompl(Reservation reser);
+
+	Reservation dealCommentDetail(int itemno);
+
+	Reservation dealcs(int itemno);
+
+	Reservation dealCommentGetDetail(int itemno);
+
+	
 
 
 

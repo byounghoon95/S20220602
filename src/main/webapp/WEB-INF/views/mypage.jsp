@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/mypage.css" rel="stylesheet" />
-<title>Insert title here</title>
+<title>Cheese Market</title>
 </head>
 <body>
 	
@@ -16,7 +16,10 @@
 			<div class="left_prf">
 				<!-- <img src="images/profile.jpg" class="profile_img" alt="..."><p> -->
 				<img src="${context}/itemImgs/${member.userImg }" class="profile_img" width="200" height="200" ><p>
-				<button type="button" class="btn btn-warning btn_prf" id="s_btn1" onclick="location.href='/mypagePrfUpdate'">프로필 수정</button>
+				<form action="mypagePrfUpdate" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="userImg" value="${member.userImg}">
+					<button type="submit" class="btn btn-warning btn_prf" id="s_btn1">프로필 수정</button>
+				</form>
 			</div>
 			<div class="right_prf">
 				<span class="prf_name">${member.nickname }</span>

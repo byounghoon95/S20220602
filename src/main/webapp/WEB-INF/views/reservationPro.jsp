@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Cheese Market</title>
 </head>
 <body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("예약에 성공했습니다.");
-		location.href="reservation";
+		location.href="reservationDetail?itemno=${itemno}";
 	</script>
 </c:if>	
 <c:if test="${result == 0 }">

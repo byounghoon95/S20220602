@@ -10,9 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.S20220602.common.domain.Board;
 import com.oracle.S20220602.common.domain.Member;
+import com.oracle.S20220602.common.domain.Warning;
+import com.oracle.S20220602.kjh.service.ItemService;
 import com.oracle.S20220602.lbh.service.BoardService;
 import com.oracle.S20220602.lbh.service.Paging;
 
@@ -23,37 +26,34 @@ public class BoardController {
 	
 
 	// Board 전체 리스트 불러오기
-	@GetMapping("/board")
-	public String board(Board board,String currentPage, Model model, HttpServletRequest request, Member member) {
-		System.out.println("BoardController board Start...");
-		
-		// 세션에서 id 가져오기
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
-		session.setAttribute("id", id);
-		model.addAttribute("id", id);
-		
-		
-		int total = bs.total();
-		System.out.println("BoardController total ->" +total);
-		Paging pg = new Paging(total, currentPage);
-		board.setStart(pg.getStart());
-		board.setEnd(pg.getEnd());
-		List<Board> boardList = bs.boardSelect(board);
-		System.out.println("BoardController board boardList.size()->"+boardList.size());
-		
-//		// header --> id 값 받기
-//		String input_id = member.getId();
-//		HttpSession session = request.getSession();
-//		session.setAttribute("id", input_id);
-//		model.addAttribute("input_id", input_id);
-		
-		
-		model.addAttribute("boardList", boardList);
-		model.addAttribute("pg", pg);
-		model.addAttribute("total", total);
-		return "board";
-	}
+	   @GetMapping("/board")
+	   public String board(Board board,String currentPage, Model model, HttpServletRequest request, Member member) {
+	      System.out.println("BoardController board Start...");
+	      
+	      // 세션에서 id 가져오기
+	      HttpSession session = request.getSession();
+	      String id = (String) session.getAttribute("id");
+	      session.setAttribute("id", id);
+	      model.addAttribute("id", id);
+	      
+	      
+	      int total = bs.total(board); /* ()에서 (board) 추가함 */
+	      System.out.println("BoardController total ->" +total);
+	      Paging pg = new Paging(total, currentPage);
+	      board.setStart(pg.getStart());
+	      board.setEnd(pg.getEnd());
+	      List<Board> boardList = bs.boardSelect(board);
+	      System.out.println("BoardController board boardList.size()->"+boardList.size());
+	      
+	      int replycnt = bs.boardReplyCnt(board.getRef());
+	      
+	      model.addAttribute("replycnt ", replycnt );
+	      model.addAttribute("boardList", boardList);
+	      model.addAttribute("bdkeyword", board.getBdkeyword());   /* <- 창현 추가(게시물검색) */
+	      model.addAttribute("pg", pg);
+	      model.addAttribute("total", total);
+	      return "board";
+	   }
 	// 글 작성하기 클릭 후 새글 작성 페이지로 이동
 	@GetMapping("/boardWriteForm")
 	public String boardWriteForm(String id, Model model, HttpServletRequest request) {
@@ -115,9 +115,9 @@ public class BoardController {
 	}
 	//게시판 상세 삭제
 	@GetMapping(value="boardDelete")
-	public String boardDelete(Board board, Model model) {
+	public String boardDelete(Board board,Warning warning, Model model) {
 		System.out.println("BoardController boardUpdate Start...");
-		int result = bs.boardDelete(board);
+		int result = bs.boardDelete(board, warning);
 		model.addAttribute("result", result);
 		return "boardDeletePro";
 	}
@@ -138,7 +138,17 @@ public class BoardController {
 		model.addAttribute("board",board);
 		return "boardReplyPro";
 	}
-
+	//리뷰 수정
+//	@GetMapping("/replyUpdate")
+//	public String replyUpdate(Board board, Model model, String comment) {
+//		System.out.println("BoardController replyUpdate Start...");
+//		
+//		board.setBoardcontent(comment);
+//		int result = bs.boardReply(board);
+//		model.addAttribute("result",result);
+//		model.addAttribute("board",board);
+//		return "boardReplyPro";
+//	}
 	// 대댓글
 	@GetMapping("/rereply")
 	public String rereply(int boardno, Model model, String comment) {
@@ -151,10 +161,49 @@ public class BoardController {
 		model.addAttribute("result",result);
 		return "boardReReplyPro";
 	}
+	@PostMapping("/replyUpdate")
+	@ResponseBody
+	public int replyUpdate(Board board, Model model) {
+		System.out.println("BoardController replyUpdate Start...");
+		System.out.println("boardno -> " + board.getBoardno());
+		System.out.println("boardcontent ->" + board.getBoardcontent());
+		int result = bs.boardReplyUpdate(board);
+		
+		return result;
+	}
+	@PostMapping("/replydelete")
+	@ResponseBody
+	public int replydelete(Board board, Model model) {
+		System.out.println("BoardController replydelete Start...");
+		System.out.println("boardno -> " + board.getBoardno());
+		int result = bs.boardReplyDelete(board);
+		
+		return result;
+	}
+	
+	// 승혜
+	//관리자 게시판디테일
+	@GetMapping("/A_BoardDetail")
+	public String A_BoardDetail(int boardno,int warno, Model model) {
+		System.out.println("BoardController boardDetail Start...");
+		List<Board> boardReplyList = null;
+		Board board = bs.boardDetail(boardno);
+		boardReplyList = bs.boardReplyList(board.getRef());
+		model.addAttribute("boardReplyList",boardReplyList);
+		model.addAttribute("board",board);
+		model.addAttribute("warno",warno);
+		return "A_BoardDetail";
+	}
+	
+	//관리자게시글삭제
+	@GetMapping(value="A_BoardDeletePro")
+	public String A_BoardDeletePro(Board board,Warning warning, int warno ,  Model model) {
+		System.out.println("BoardController A_BoardDeletePro Start...");
+		System.out.println("BoardController A_BoardDeletePro warno->"+warno);
+		int delStatus = bs.boardDelete(board,warning);
+		model.addAttribute("delStatus", delStatus);
 
-//	@GetMapping("/main")
-//	public String main(Model model) {
-//		return "main";
-//	}
-
+		return "redirect:adminWarList";
+	}
+	
 }

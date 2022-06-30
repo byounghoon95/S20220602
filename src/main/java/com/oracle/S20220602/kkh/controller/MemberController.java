@@ -121,20 +121,20 @@ public class MemberController {
 	}
 	
 	@PostMapping("/adminloginPro")
-	public String adminloginPro(HttpServletRequest request, Member member, Model model) {
-		System.out.println("adminloginPro start..");
-		String input_id = member.getId();
-		String input_pw = member.getPw();
-		HttpSession session = request.getSession();
-		session.setAttribute("id", input_id);
-		System.out.println("input_id -> " + input_id);
-		System.out.println("input_pw -> " + input_pw);
-		member = ms.memberLogin(input_id);
-//		member = ms.adminChk(input_id);
-		session.setAttribute("nickname", member.getNickname());
-		model.addAttribute("input_id", input_id);
-		model.addAttribute("input_pw", input_pw);
-		model.addAttribute("member", member);
-		return "adminloginPro";
-	}
+	   public String adminloginPro(HttpServletRequest request, Member member, Model model) {
+	      System.out.println("adminloginPro start..");
+	      String input_id = member.getId();
+	      String input_pw = member.getPw();
+	      HttpSession session = request.getSession();
+	      session.setAttribute("id", input_id);
+	      System.out.println("input_id -> " + input_id);
+	      System.out.println("input_pw -> " + input_pw);
+	      member = ms.memberLogin(input_id);
+//	      member = ms.adminChk(input_id);
+	      session.setAttribute("nickname", member.getNickname());
+	      model.addAttribute("input_id", input_id);
+	      model.addAttribute("input_pw", input_pw);
+	      model.addAttribute("member", member);
+	      return "adminloginPro";
+	   }
 }

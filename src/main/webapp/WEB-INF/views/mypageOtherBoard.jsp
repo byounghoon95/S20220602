@@ -1,12 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="header_mem.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- header -->
+<c:choose>
+<c:when test="${id == null}">
+	<%@ include file="header.jsp"%>
+</c:when>
+<c:otherwise>
+	<%@ include file="header_mem.jsp"%>
+</c:otherwise>
+</c:choose>
 <link href="css/mypageBoard.css" rel="stylesheet" />
-<title>Cheese Board</title>
+<title>Cheese Market</title>
 </head>
 <body>
 
@@ -25,7 +35,6 @@
 							<p class="text-start" id="board_txt">${bList.boardcontent }</p>
 							<div class="board_icon_view d-flex justify-content-start">
 								<i class="fa-solid fa-heart"></i>&nbsp <span id="heart_cnt">${bList.boardlike } &nbsp&nbsp</span>
-								<i class="fa-solid fa-comments"></i>&nbsp <span id="reply_cnt">5</span>
 							</div></li>
 						</c:forEach> 
 					</ul>

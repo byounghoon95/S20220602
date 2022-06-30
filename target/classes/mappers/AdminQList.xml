@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.AdminQListMapper">
+	<select id="kkhListAdminQList" parameterType="int" resultType="AdminQList">
+        <![CDATA[
+		    SELECT *
+			FROM (
+			        SELECT rownum rn ,  a.*
+			        FROM  (select * from board where mcd=403 order by boardno desc) a
+			     )
+			WHERE rn >= #{start} 
+			AND   rn <= #{end}
+	 	]]>
+	</select>
+		
+	<select id="kkhAdminQListCount" resultType="int">
+		select count(*) from board where mcd=403
+	</select>
+	
+	<insert id="kkhAdminQListWrite" parameterType="AdminQList">
+		insert into Board values
+		(board_seq.nextval,'admin',#{boardtitle},#{boardcontent},sysdate,0,
+		0,board_seq.currval,0,0,'N',400,403)
+	</insert>
+	
+		
+	<select id="kkhAdminQListDetail" parameterType="int" resultType="AdminQList">
+		select * from board b, member m where b.id=m.id and boardno=#{boardno}
+	</select>
+	
+	<update id="kkhAdminQListUpdate"  parameterType="AdminQList">
+		update Board set boardtitle=#{boardtitle}, boardcontent=#{boardcontent} where boardno=#{boardno}
+	</update>
+	<delete id="kkhAdminQListDelete">
+		delete from Board where boardno=#{boardno}
+	</delete>
+</mapper>

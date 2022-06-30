@@ -8,7 +8,7 @@
 integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="css/hf_before.css" rel="stylesheet" />
     <link href="css/memlogin.css" rel="stylesheet" />
-<title>Insert title here</title>
+<title>Cheese Market</title>
  <body>
     <section class="vh-100">
       <div class="container py-5 h-100">
@@ -23,7 +23,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                     alt="login form"
                     class="img-fluid"
                     style="border-radius: 1rem 0 0 1rem"
-                    id="character"
+                    id="admincharacter"
                   />
                 </div>
                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
@@ -43,7 +43,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 
                       <div class="form-outline mb-4">
                         <label class="form-label" for="form2Example17"
-                          >아이디</label
+                          >관리자 아이디</label
                         >
                         <input type="text" id="input1" name="id" required="required"/>
                       </div>

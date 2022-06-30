@@ -12,7 +12,7 @@
 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <link href="css/hf_before.css" rel="stylesheet" />
 <link href="css/mempwForm.css" rel="stylesheet" />
-<title>Insert title here</title>
+<title>Cheese Market</title>
 </head>
 <script type="text/javascript">
 $(document).ready(function(){

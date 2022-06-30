@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.S20220602.common.domain.Board;
+import com.oracle.S20220602.common.domain.Common;
 import com.oracle.S20220602.common.domain.Item;
 import com.oracle.S20220602.common.domain.Member;
 import com.oracle.S20220602.common.domain.Reservation;
@@ -21,11 +22,9 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public Member memberMypage(String id) {
+	public Member memberMypage(Member member) {
 		System.out.println("MypageServiceImpl memberMypage Start...");
-		Member member = null;
-		System.out.println("MypageServiceImpl id-> "+id);
-		member = mypageRepository.memberMypage(id);
+		member = mypageRepository.memberMypage(member);
 		return member;
 	}
 
@@ -70,6 +69,14 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
+	public List<Item> mypageSellList2(Item item) {
+		System.out.println("MypageServiceImpl mypageSellList2 ...");
+		List<Item> mypageSellList2 = null;
+		mypageSellList2 = mypageRepository.mypageSellSelect2(item);
+		return mypageSellList2;
+	}
+	
+	@Override
 	public int totalSellCount(Item item) {
 		System.out.println("MypageServiceImpl totalSellCount Start....");
 	    int totalSellCount = 0;
@@ -101,6 +108,31 @@ public class MypageServiceImpl implements MypageService {
 		mypageCommentSelect = mypageRepository.mypageCommentSelect(reservation);
 		return mypageCommentSelect;
 	}
+
+	@Override
+	public List<Common> selectLocList() {
+		System.out.println("MypageServiceImpl selectLocList start");
+		List<Common> selectLocList = mypageRepository.selectLocList();
+		return selectLocList;
+	}
+
+	@Override
+	public Member memberMypage(String id) {
+		System.out.println("MypageServiceImpl memberMypage Start...");
+		Member member = null;
+		member = mypageRepository.memberMypage(id);
+		return member;
+	}
+
+	@Override
+	public List<Item> mypageOtherSellList(Item item) {
+		System.out.println("MypageServiceImpl mypageOtherSellList ...");
+		List<Item> mypageOtherSellList = null;
+		mypageOtherSellList = mypageRepository.mypageOtherSellList(item);
+		return mypageOtherSellList;
+	}
+
+	
 	
 //	@Override
 //	public int mypagePrfUpdatePro(Member member) {

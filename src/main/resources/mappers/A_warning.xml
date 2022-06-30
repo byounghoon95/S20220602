@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.WarningMapper">
+
+	<select id="kshWarningTotal" resultType="int">
+		SELECT Count(*)FROM warning
+	</select>
+
+	<select id="kshWarningList" parameterType="Warning"
+		resultType="Warning">
+	   SELECT *
+		FROM (
+		SELECT rownum rn , a.*
+		FROM (select warno,warnid,wardate,id,warstatus,w.mcd,content
+               from warning w, common c where w.mcd = c.mcd order by wardate desc) a
+		)
+		WHERE rn between #{start} AND #{end}
+	</select>
+	
+	
+	<select id="kshWarningDetail" parameterType="int" resultType="Warning">
+		       select w.*, c.content
+               from warning w inner join common c
+                on w.bcd=c.bcd and w.mcd=c.mcd
+                Where warno = #{warno}
+	</select>
+
+	
+	
+<!-- 	<select id="kshWarnCatName" parameterType="Warning" resultType="Warning">
+		select *
+       from warning
+       where warno= #{warno}
+	</select> -->
+
+	<update id="kshWarState" parameterType="warning">
+		 update warning 
+		 set    warstatus=#{warstatus}
+		 where  warno=#{warno}
+	</update>
+
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.CommonMapper">
+
+   <select id="kshCatTotal" resultType="int">
+		SELECT Count(*)
+		FROM  (select * from common where bcd in(900,1000))
+		
+	</select>
+
+	<select id="kshCatList" parameterType="Common"	resultType="Common">
+	   SELECT *
+		FROM (
+		        SELECT rownum rn ,  a.*
+		        FROM  (select * from common where bcd in(900,1000)) a
+		     )
+		
+        WHERE rn between #{start} AND  #{end}
+	</select>
+	
+	<select id="kshCommonBcd"  parameterType="int"  resultType="Common">
+	     SELECT * from common 
+         WHERE bcd  =  #{bcd}
+         AND   mcd  = 999
+	</select>
+	
+	<insert id="kshAdminCatWrite" parameterType="Common">
+		 insert into common values(#{bcd},
+        (select max(mcd) from common where bcd = #{bcd} and mcd!=999) + 1,#{content})
+	</insert>
+	
+	<select id="kshAdminCatList" resultType="Common">
+      select *
+      from common c
+      where bcd in(900,1000) and mcd=999
+   </select>
+	
+</mapper>	

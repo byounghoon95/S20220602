@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.oracle.S20220602.common.domain.Board;
+import com.oracle.S20220602.common.domain.Common;
 import com.oracle.S20220602.common.domain.Item;
 import com.oracle.S20220602.common.domain.Member;
 import com.oracle.S20220602.common.domain.Reservation;
@@ -18,13 +19,12 @@ public class MypageRepositoryImpl implements MypageRepository {
 	private SqlSession session;
 
 	@Override
-	public Member memberMypage(String id) {
+	public Member memberMypage(Member member) {
 		System.out.println("MypageRepositoryImpl memberMypage Start...");
-		Member member = null;
 		Member locname = null;
-		System.out.println("MypageRepositoryImpl memberMypage id-> "+id);
+		System.out.println("MypageRepositoryImpl memberMypage id-> "+member.getId());
 		try {
-			member = session.selectOne("khjMemberMypage", id);
+			member = session.selectOne("khjMemberMypage", member);
 		} catch (Exception e) {
 			System.out.println("MypageRepositoryImpl memberMypage Exception-> "+e.getMessage());
 		}
@@ -102,6 +102,19 @@ public class MypageRepositoryImpl implements MypageRepository {
 		}
 		return mypageSellSelect;
 	}
+	
+	@Override
+	public List<Item> mypageSellSelect2(Item item) {
+		List<Item> mypageSellSelect2 = null;
+		System.out.println("MypageRepositoryImpl mypageSellSelect2 start...");
+		try {
+			mypageSellSelect2 = session.selectList("khjmypageSellList2",item);
+			System.out.println("MypageRepositoryImpl mypageSellSelect2 mypageSellSelect.size() -> " + mypageSellSelect2.size());
+		} catch (Exception e) {
+			System.out.println("MypageRepositoryImpl mypageSellSelect2 Exception->"+e.getMessage());
+		}
+		return mypageSellSelect2;
+	}
 
 
 	@Override
@@ -138,6 +151,7 @@ public class MypageRepositoryImpl implements MypageRepository {
 		int result = 0;
 		try {
 			System.out.println("MypageRepositoryImpl mypagePrfUpdate id -> " + member.getId());
+			System.out.println("업데이트 되는 사진 ->" + member.getUserImg());
 			result = session.update("khjmypagePrfUpdate", member);
 		}catch (Exception e) {
 			System.out.println("MypageRepositoryImpl mypagePrfUpdate Exception -> " + e.getMessage());
@@ -158,6 +172,51 @@ public class MypageRepositoryImpl implements MypageRepository {
 		}
 		return mypageListComment;
 	}
+
+
+	@Override
+	public List<Common> selectLocList() {
+		List<Common> selectLocList = null;
+		
+		System.out.println("MypageRepositoryImpl selectLocList start");
+		try {
+			selectLocList = session.selectList("khjselectLocList");
+		}catch (Exception e) {
+			System.out.println("MypageRepositoryImpl selectLocList exception -> " + e.getMessage());
+		}
+		return selectLocList;
+	}
+
+
+	@Override
+	public Member memberMypage(String id) {
+		System.out.println("MypageRepositoryImpl memberMypage Start...");
+		Member member = null;
+		Member locname = null;
+		System.out.println("MypageRepositoryImpl memberMypage id-> "+id);
+		try {
+			member = session.selectOne("khjMemberMypageOther", id);
+		} catch (Exception e) {
+			System.out.println("MypageRepositoryImpl memberMypage Exception-> "+e.getMessage());
+		}
+		
+		return member;
+	}
+
+
+	@Override
+	public List<Item> mypageOtherSellList(Item item) {
+		List<Item> mypageOtherSellSelect = null;
+		System.out.println("MypageRepositoryImpl mypageSellSelect start...");
+		try {
+			mypageOtherSellSelect = session.selectList("khjmypageOtherSellList",item);
+			System.out.println("MypageRepositoryImpl mypageSellSelect mypageOtherSellSelect.size() -> " + mypageOtherSellSelect.size());
+		} catch (Exception e) {
+			System.out.println("MypageRepositoryImpl mypageSellSelect Exception->"+e.getMessage());
+		}
+		return mypageOtherSellSelect;
+	}
+
 
 
 

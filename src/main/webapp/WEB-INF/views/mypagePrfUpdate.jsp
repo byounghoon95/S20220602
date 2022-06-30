@@ -5,22 +5,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <link href="css/mypagePrfUpdate.css" rel="stylesheet" />
-<title>Insert title here</title>
+<title>Cheese Market</title>
 </head>
-<body>
+<script type="text/javascript">
+//비밀번호 중복확인
+$(document).ready(function() {
+	$('#pwcheck').blur(function() {
+		if($('#pw').val() != $('#pwcheck').val()){
+			$('.pwchk').html("비밀번호가 일치하지 않습니다").css('color','rgb(253, 201, 0)');
+			$('#pwcheck').val("");
+		}else{
+			$('.pwchk').html("비밀번호가 일치합니다").css('color','green');
+		}
+	});
+})
 
-	
+
+</script>
+
+<body>
+	<form action="mypagePrfUpdatePro" method="post" enctype="multipart/form-data">
 	<div class="container mypage_all">
 	<h4 class="my_cheese">My 치즈</h4>
+	
 		<div class="profile_box">
-			
+				
 				<div class="left_prf">
 					<!-- <img src="images/profile.jpg" class="profile_img" alt="..."> -->
 					<img src="${context}/itemImgs/${member.userImg }" class="profile_img" width="200" height="200" >
 					<p>
 					<!-- <span class="prfimgUpd_A" href="#">프로필 이미지 수정</span><br> -->
-					<input type="file" name="userImg" value="${member.userImg }">
+					<div class="file_img"><input type="file" name="file" ></div>
+					<!-- <a class="file_img_del" href="uploadFileDelete" target="myBatisFrame">파일삭제</a> -->
 				</div>
 				
 				<div class="right_prf">
@@ -28,7 +47,7 @@
 						
 						<div class="card-body p-4 p-lg-5 text-black">
 							
-								<form action="mypagePrfUpdatePro" method="post">
+								
 									<div class="input_all">
 									
 									<span class="prf_name">${member.name } &nbsp&nbsp ${member.id }</span>
@@ -41,15 +60,18 @@
 
 										<div class="form-outline mb-4">
 											<label class="form-label" for="form2Example27">비밀번호</label>
-											<input type="password" class="input" name="pw"
+											<input type="password" class="input" name="pw" id="pw"  
 												placeholder="비밀번호를 입력해주세요" required />
 										</div>
-
+										
 										<div class="form-outline mb-4">
 											<label class="form-label" for="form2Example27">비밀번호
-												확인</label> <input type="password" class="input" name="pwcheck"
+												확인</label> <input type="password" class="input" name="pwcheck" id="pwcheck" 
 												placeholder="비밀번호를 한 번 더 입력해주세요" required />
 										</div>
+										<span class="pwchk"></span>
+										
+										
 
 										<div class="form-outline mb-4">
 											<label class="form-label" for="form2Example27">이메일</label>
@@ -66,44 +88,22 @@
 										<div class="form-outline mb-4">
 											<label class="form-label" for="form2Example27">지역</label>
 											<select name="locno" class="input">
-												<option value="locno" selected disabled hidden>지역을
-													선택해주세요</option>
-												<option value="1101">강남구</option>
-												<option value="1102">강동구</option>
-												<option value="1103">강북구</option>
-												<option value="1104">강서구</option>
-												<option value="1105">관악구</option>
-												<option value="1106">광진구</option>
-												<option value="1107">구로구</option>
-												<option value="1108">금천구</option>
-												<option value="1109">노원구</option>
-												<option value="1110">도봉구</option>
-												<option value="1111">동대문구</option>
-												<option value="1112">동작구</option>
-												<option value="1113">마포구</option>
-												<option value="1114">서대문구</option>
-												<option value="1115">서초구</option>
-												<option value="1116">성동구</option>
-												<option value="1117">성북구</option>
-												<option value="1118">송파구</option>
-												<option value="1119">양천구</option>
-												<option value="1120">영등포구</option>
-												<option value="1121">용산구</option>
-												<option value="1122">은평구</option>
-												<option value="1123">종로구</option>
-												<option value="1124">중구</option>
-												<option value="1125">중랑구</option>
+												<c:forEach var="locList" items="${locList }">
+													<option value="${locList.mcd }" <c:if test ="${member.locno eq locList.mcd}"> selected="selected"</c:if>>${locList.content }</option>
+												</c:forEach>
 											</select>
+											
+											
 										</div>
 										<div>
 											<button class="btn btn-lg btn-block" type="submit"
 												id="login_btn">수정완료</button>
 										</div>
 									</div>
-								</form>
+								
 							</div>
 						
-						
+					
 						
 						
 						
@@ -123,7 +123,7 @@
 	
 	</div>
 
-
+	</form>
 <%@ include file="footer.jsp" %>
 </body>
 </html>

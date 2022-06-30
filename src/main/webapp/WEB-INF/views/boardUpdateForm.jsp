@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/boardWriteForm.css" rel="stylesheet" />
-<title>Insert title here</title>
+<title>Cheese Market</title>
 </head>
 <body>
 	<div id="blank"></div>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.oracle.S20220602.common.domain.Board;
+import com.oracle.S20220602.common.domain.Warning;
 import com.oracle.S20220602.lbh.repository.BoardRepository;
 
 @Service
@@ -26,10 +27,10 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int total() {
+	public int total(Board board) {
 		int total = 0;
 		System.out.println("BoardServiceImpl total start");
-		total = boardRepository.total();
+		total = boardRepository.total(board);
 		return total;
 	}
 
@@ -66,10 +67,10 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int boardDelete(Board board) {
+	public int boardDelete(Board board, Warning warning) {
 		System.out.println("BoardServiceImpl boardDelete Start");
 		int result = 0;
-		result = boardRepository.boardDelete(board);
+		result = boardRepository.boardDelete(board,warning);
 		return result;
 	}
 
@@ -87,12 +88,25 @@ public class BoardServiceImpl implements BoardService{
 		Board board = boardRepository.boardReplyOne(boardno);
 		return board;
 	}
-	
 	@Override
 	public int boardReplyCnt(int boardno) {
 		System.out.println("BoardServiceImpl boardReplyCnt Start");
 		int cnt = boardRepository.boardReplyCnt(boardno);
 		return cnt;
+	}
+
+	@Override
+	public int boardReplyUpdate(Board board) {
+		System.out.println("BoardServiceImpl boardReplyUpdate Start");
+		int result = boardRepository.boardReplyUpdate(board);
+		return result;
+	}
+
+	@Override
+	public int boardReplyDelete(Board board) {
+		System.out.println("BoardServiceImpl boardReplyDelete Start");
+		int result = boardRepository.boardReplyDelete(board);
+		return result;
 	}
 
 

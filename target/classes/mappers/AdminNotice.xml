@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.AdminNoticeMapper">
+	<select id="kkhListAdminNotice" parameterType="int" resultType="AdminNotice">
+        <![CDATA[
+		    SELECT *
+			FROM (
+			        SELECT rownum rn ,  a.*
+			        FROM  (select * from board where mcd=402 order by boardno desc) a
+			     )
+			WHERE rn >= #{start} 
+			AND   rn <= #{end}
+	 	]]>
+	</select>
+		
+	<select id="kkhAdminNoticeCount" resultType="int">
+		select count(*) from board where mcd=402
+	</select>
+	
+	<insert id="kkhAdminNoticeWrite" parameterType="AdminNotice">
+		insert into Board values
+		(board_seq.nextval,'admin',#{boardtitle},#{boardcontent},sysdate,0,
+		0,board_seq.currval,0,0,'N',400,402)
+	</insert>
+	
+		
+	<select id="kkhAdminNoticeDetail" parameterType="int" resultType="AdminNotice">
+		select * from board b, member m where b.id=m.id and boardno=#{boardno}
+	</select>
+	
+	<update id="kkhAdminNoticeUpdate"  parameterType="AdminNotice">
+		update Board set boardtitle=#{boardtitle}, boardcontent=#{boardcontent} where boardno=#{boardno}
+	</update>
+	<delete id="kkhAdminNoticeDelete">
+		delete from Board where boardno=#{boardno}
+	</delete>
+</mapper>

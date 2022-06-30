@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.oracle.S20220602.common.domain.Board;
+import com.oracle.S20220602.common.domain.Warning;
 @Repository
 public class BoardRepositoryImpl implements BoardRepository{
 	
@@ -14,31 +15,35 @@ public class BoardRepositoryImpl implements BoardRepository{
 	private SqlSession		session;
 	
 	//Board 전체 리스트 조회
-	@Override
-	public List<Board> boardSelect(Board board) {
-		List<Board> listBoard = null;
-		System.out.println("BoardRepositoryImpl boardSelect start...");
-		try {
-			listBoard = session.selectList("lbhListBoard",board);
-			System.out.println("BoardRepositoryImpl boardSelect listBoard.size() -> " + listBoard.size());
-		} catch (Exception e) {
-			System.out.println("BoardRepositoryImpl boardSelect Exception->"+e.getMessage());
-		}
-		return listBoard;
-	}
-	//Board 댓글을 제외한 나머지 count
-	@Override
-	public int total() {
-		int total = 0;
-		System.out.println("BoardRepositoryImpl total start...");
-		try {
-			total = session.selectOne("lbhBoardCount");
-			System.out.println("BoardRepositoryImpl total -> " + total);
-		} catch (Exception e) {
-			System.out.println("BoardRepositoryImpl total() Exception->"+e.getMessage());
-		}
-		return total;
-	}
+	   @Override
+	   public List<Board> boardSelect(Board board) {
+	      List<Board> listBoard = null;
+	      System.out.println("BoardRepositoryImpl boardSelect start...");
+	      if (board.getBdkeyword()== null) board.setBdkeyword("%");   /* <- 창현 추가(게시물검색) */
+	      System.out.println("BoardRepositoryImpl boardSelect bdkeyword->"+board.getBdkeyword());   /* <- 창현 추가(게시물검색) */
+	      try {
+	         listBoard = session.selectList("lbhListBoard",board);   /*lbhListBoard 옆에  ,board 추가함(창현)*/
+	         System.out.println("BoardRepositoryImpl boardSelect listBoard.size() -> " + listBoard.size());
+	      } catch (Exception e) {
+	         System.out.println("BoardRepositoryImpl boardSelect Exception->"+e.getMessage());
+	      }
+	      return listBoard;
+	   }
+	   //Board 댓글을 제외한 나머지 count
+	   @Override
+	   public int total(Board board) {   /* ()에서 (Board board) 추가함 */
+	      int total = 0;
+	      System.out.println("BoardRepositoryImpl total start...");
+	      if (board.getBdkeyword()== null) board.setBdkeyword("%");   /* <- 창현 추가(게시물검색) */
+	      System.out.println("BoardRepositoryImpl total bdkeyword->"+board.getBdkeyword());   /* <- 창현 추가(게시물검색) */
+	      try {
+	         total = session.selectOne("lbhBoardCount", board); /*lbhBoardCount 옆에 ,board 추가함(창현)*/
+	         System.out.println("BoardRepositoryImpl total -> " + total);
+	      } catch (Exception e) {
+	         System.out.println("BoardRepositoryImpl total() Exception->"+e.getMessage());
+	      }
+	      return total;
+	   }
 
 	@Override
 	public int boardWrite(Board board) {
@@ -74,6 +79,7 @@ public class BoardRepositoryImpl implements BoardRepository{
 	}
 	
 	//리뷰 등록
+	//삭제할것
 	@Override
 	public int boardReply(Board board) {
 		System.out.println("BoardRepositoryImpl boardReply Start");
@@ -119,15 +125,32 @@ public class BoardRepositoryImpl implements BoardRepository{
 		return result;
 	}
 	@Override
-	public int boardDelete(Board board) {
+	public int boardDelete(Board board, Warning warning) {
 		System.out.println("BoardRepositoryImpl boardDelete Start");
 		int result = 0;
+		int result3 = 0;
+		int warnRowCnt = 0;
 		try {
-			result = session.update("lbhboardDelete", board);
+			result = session.delete("lbhboardDelete", board);
+			System.out.println("warning boardno->"+warning.getBoardno());
+			System.out.println("warning itemno->"+ warning.getItemno());
+			warnRowCnt = session.selectOne("kjhWarnRowCntBoard", warning);
+			System.out.println("BoardRepositoryImpl boardDelete result-->"+result);
+			System.out.println("BoardRepositoryImpl boardDelete warnRowCnt-->"+warnRowCnt);
+			// warning의 itemno가 유일하다는 전제에 수행
+			if (result>0) {
+				if (warnRowCnt>0) { //Warning 테이블에 삭제하려는  itemno또는 boardno가 있을 때만 WarningUpdate진행
+					result3 = session.update("kshWarningUpadate", board.getBoardno());
+					System.out.println("BoardRepositoryImpl boardDelete WarningUpdate result3-->"+result3);
+					result = result3;
+					}
+				}	
 		}catch (Exception e) {
 			System.out.println("BoardRepositoryImpl boardDelete Exception -> " + e.getMessage());
 		}
 		return result;
+		
+		
 	}
 	@Override
 	public List<Board> boardReplyList(int ref) {
@@ -151,7 +174,6 @@ public class BoardRepositoryImpl implements BoardRepository{
 		}
 		return board;
 	}
-	
 	@Override
 	public int boardReplyCnt(int boardno) {
 		System.out.println("BoardRepositoryImpl boardReplyCnt Start");
@@ -163,5 +185,26 @@ public class BoardRepositoryImpl implements BoardRepository{
 		}
 		return cnt;
 	}
-	
+	@Override
+	public int boardReplyUpdate(Board board) {
+		System.out.println("BoardRepositoryImpl boardReplyUpdate Start");
+		int result = 0;
+		try {
+			result = session.update("lbhboardReplyUpdate",board);
+		}catch (Exception e) {
+			System.out.println("BoardRepositoryImpl boardReplyUpdate Exception -> " + e.getMessage());
+		}
+		return result;
+	}
+	@Override
+	public int boardReplyDelete(Board board) {
+		System.out.println("BoardRepositoryImpl boardReplyDelete Start");
+		int result = 0;
+		try {
+			result = session.delete("lbhboardReplyDelete",board);
+		}catch (Exception e) {
+			System.out.println("BoardRepositoryImpl boardReplyDelete Exception -> " + e.getMessage());
+		}
+		return result;
+	}
 }

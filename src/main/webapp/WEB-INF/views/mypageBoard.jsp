@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/mypageBoard.css" rel="stylesheet" />
-<title>Cheese Board</title>
+<title>Cheese Market</title>
 </head>
 <body>
 
@@ -25,7 +25,7 @@
 							<p class="text-start" id="board_txt">${bList.boardcontent }</p>
 							<div class="board_icon_view d-flex justify-content-start">
 								<i class="fa-solid fa-eye"></i>&nbsp <span id="heart_cnt">${bList.boardview } &nbsp&nbsp</span>
-								<i class="fa-solid fa-comments"></i>&nbsp <span id="reply_cnt">0</span>
+								<!-- <i class="fa-solid fa-comments"></i>&nbsp <span id="reply_cnt">0</span> -->
 							</div></li>
 						</c:forEach> 
 					</ul>

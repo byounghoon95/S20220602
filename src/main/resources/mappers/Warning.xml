@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oracle.S20220602.WarningMapper">
+	<select id="kjhSelectWarnidItem" parameterType="Warning" resultType="String">
+		select i.id
+		from member m, item i
+		where i.itemno=#{itemno}
+		AND i.id= m.id
+	</select>
+	<select id="kjhSelectWarnidBoard" parameterType="Warning" resultType="String">
+		select b.id
+		from member m, board b
+		where b.boardno=#{boardno}
+		AND b.id= m.id
+	</select>	
+	<insert id="kjhReportReg" parameterType="Warning">
+		insert into Warning values
+		(warning_seq.nextval,#{id},#{warnid},#{itemno},
+		#{boardno},#{warcontent},'image1', sysdate,'N',900,#{mcd},800,#{smcd})
+	</insert>
+	
+   <select id="kjhWarnNickname" resultType="String" parameterType="Warning">
+      select m.nickname
+      from Member m, Item i, Board b
+      where (m.id = #{warnid,  jdbcType = VARCHAR})
+      OR    (i.id = m.id and i.itemno = #{itemno})
+      OR    (b.id = m.id and b.boardno = #{boardno})
+      group by nickname
+   </select>
+	
+	<select id="kshWarnCatName" parameterType="Warning" resultType="String">
+	select *
+	from warning
+	where warno=#{warno};
+	</select>
+</mapper>

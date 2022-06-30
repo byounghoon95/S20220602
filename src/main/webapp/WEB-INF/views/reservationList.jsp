@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link href="css/market.css" rel="stylesheet" />
 <link href="css/reservationList.css" rel="stylesheet" />
-<title>Insert title here</title>
+<title>Cheese Market</title>
 </head>
 <body>
 <div class="col-lg-8 col-md-10 mx-auto"></div>
@@ -30,7 +30,7 @@
 									<ul class="faq-list">
 										<c:forEach var="itemList" items="${reservationList }">
 											<li>
-											  <a class="item_detail" href="#">
+											  <a class="item_detail" href="itemDetail?itemno=${itemList.itemno }">
 												<div class="card item" style="width: 18rem;">
 										          <!-- <img src="images/cheese.png" class="card-img-top" alt="..."> -->
 										          <img src="${context}/itemImgs/${itemList.itemimg1 }" class="card-img-top" width="286" height="286" >
