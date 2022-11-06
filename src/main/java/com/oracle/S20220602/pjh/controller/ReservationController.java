@@ -49,6 +49,7 @@ public class ReservationController {
 //			 System.out.println("ReservationController rItem.getItemtitle()->"+ rItem.getItemtitle());
 //			 System.out.println("ReservationController rItem.getContent()->"+ rItem.getContent());
 //			 System.out.println("ReservationController rItem.getItemcost()->"+ rItem.getItemcost());
+		 //asdfahsdfhsad
 //		 }
 		
 		 System.out.println("ReservationController reservItemList.size()"+ reserItemList.size());
